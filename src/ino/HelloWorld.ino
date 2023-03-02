@@ -1,23 +1,6 @@
-// #include <Wire.h>
-
-// void setup() {
-//   Serial.begin(9600);
-//   Wire.begin(12); // Set the I2C address to 8
-//   Wire.onRequest(requestEvent); // Set the onRequest event handler
-// }
-
-// void loop() {
-//   // This loop is intentionally left empty
-// }
-
-// void requestEvent() {
-//   Serial.println("Request received...");
-//   Wire.write("Hello, Iliasse!"); // Respond with "Hello, world!"
-// }
-
 /*
-   This program is used to control the motors for Krabbs
-   see ```github```
+   This program is used to control the motors for Kira
+   see https://github.com/imouflih/Kira
 
    It uses an I2C bus to communicate with the RapsberryPi.
    The board send a PWM value between -255 and 255 for each motors.
@@ -42,18 +25,31 @@
 #define SPEED_RIGHT       9
 #define DIRECTION_RIGHT   8
 
+// Right encoder wheel
+#define PULSE_RIGHT_ENCODER       3
+#define DIRECTION_RIGHT_ENCODER   5
+
+// Left encoder wheel
+#define PULSE_LEFT_ENCODER        2
+#define DIRECTION_LEFT_ENCODER    4
+
 // I2C address
 #define ADDR_I2C   12
 
+// Odometry config
+#define ENTRAXE     235 
+#define DIAMETER     35
+#define TICK_PER_TURN  512
+#define TICK_SPEED     1000  // Values : 500, 1000, 2000, 4000, 8000
 
-// Timeout
-#define TIMEOUT_DELAY_MS 10000
-uint16_t timeout_timer = 30000;
+// Counters
+volatile long countRight = 0;
+volatile long countLeft = 0;
 
 void setup() {
 
 #ifdef DEBUG
-  Serial.begin(115200);
+  Serial.begin(9600);
 #endif
 
   // Setup the pins to OUTPUT
@@ -63,21 +59,19 @@ void setup() {
   pinMode(SPEED_RIGHT, OUTPUT);
   pinMode(DIRECTION_RIGHT, OUTPUT);
 
+  pinMode(PULSE_RIGHT_ENCODER, INPUT);
+  pinMode(PULSE_LEFT_ENCODER, INPUT);
+
+  pinMode(DIRECTION_RIGHT_ENCODER, INPUT);
+  pinMode(DIRECTION_LEFT_ENCODER, INPUT);
+
   digitalWrite(PIN_POWER_ENABLE, HIGH);
+
+  attachInterrupt(digitalPinToInterrupt(PULSE_RIGHT_ENCODER), countRightEncoder, FALLING);
+  attachInterrupt(digitalPinToInterrupt(PULSE_LEFT_ENCODER), countLeftEncoder, FALLING);
 
   // Make sure the motors are stopped
   stop();
-
-#ifdef TEST
-  // Simple forward then backward
-  forward(40);
-  delay(1000);
-
-  backward(40);
-  delay(1000);
-
-  stop();
-#endif
 
   // Start I2C
   Wire.begin(ADDR_I2C);
@@ -86,19 +80,42 @@ void setup() {
   Wire.onReceive(recv);
 }
 
-
-/* Empty loop function. We wait for an interruption to do something. */
 void loop() {
-  if (millis() > timeout_timer) {
-#ifdef DEBUG
-    Serial.println("TIMEOUT !!! Emergency stop");
-#endif
-    //stop();
 
+  int directionRight = !digitalRead(DIRECTION_RIGHT_ENCODER);
+  int directionLeft = digitalRead(DIRECTION_LEFT_ENCODER);
+
+  //clear screen
+  for (int i = 0; i < 50; i++) {
+    Serial.println();
   }
+
+  Serial.print("Right encoder count: ");
+  Serial.println(countRight);
+  Serial.print("Left encoder count: ");
+  Serial.println(countLeft);
+
+  Serial.print("Right encoder direction: ");
+  Serial.println(directionRight);
+  Serial.print("Left encoder direction: ");
+  Serial.println(directionLeft);
+
+  delay(1000);
 }
 
-/* Function that stop the motors */
+// Function that detects and increament/decreament right wheel direction
+void countRightEncoder() {
+  int direction = !digitalRead(DIRECTION_RIGHT_ENCODER);
+  countRight += direction ? -1 : 1;
+}
+
+// Function that detects and increament/decreament left wheel direction
+void countLeftEncoder() {
+  int direction = digitalRead(DIRECTION_LEFT_ENCODER);
+  countLeft += direction ? -1 : 1;
+}
+
+// Function that stop the motors
 void stop() {
   analogWrite(SPEED_LEFT, LOW);
   digitalWrite(DIRECTION_LEFT, LOW);
@@ -107,31 +124,7 @@ void stop() {
   digitalWrite(DIRECTION_RIGHT, LOW);
 }
 
-#ifdef TEST
-void forward(uint8_t speed) {
-  digitalWrite(INPUT_1_LEFT, LOW);
-  digitalWrite(INPUT_2_LEFT, HIGH);
-
-  digitalWrite(INPUT_1_RIGHT, LOW);
-  digitalWrite(INPUT_2_RIGHT, HIGH);
-
-  analogWrite(ENABLE_RIGHT, speed);
-  analogWrite(ENABLE_LEFT, speed);
-}
-
-void backward(uint8_t speed) {
-  digitalWrite(INPUT_1_LEFT, HIGH);
-  digitalWrite(INPUT_2_LEFT, LOW);
-
-  digitalWrite(INPUT_1_RIGHT, HIGH);
-  digitalWrite(INPUT_2_RIGHT, LOW);
-
-  analogWrite(ENABLE_RIGHT, speed);
-  analogWrite(ENABLE_LEFT, speed);
-}
-#endif
-
-/* Function that send an order to the right motor */
+// Function that send an order to the left motor
 void orderLeft(uint8_t direction, uint8_t speed) {
   switch (direction) {
   case 0:
@@ -152,7 +145,7 @@ void orderLeft(uint8_t direction, uint8_t speed) {
   }
 }
 
-/* Function that send an order to the right motor */
+// Function that send an order to the right motor
 void orderRight(uint8_t direction, uint8_t speed) {
   switch (direction) {
   case 0:
@@ -173,7 +166,7 @@ void orderRight(uint8_t direction, uint8_t speed) {
   }
 }
 
-/* Function that receive the bytes from the I2C */
+// Function that receive the bytes from the I2C
 void recv(int numBytes) {
 
 #ifdef DEBUG
@@ -189,7 +182,6 @@ void recv(int numBytes) {
     uint8_t leftDirection = Wire.read();
     uint8_t rightDirection = Wire.read();
 
-    timeout_timer = millis() + TIMEOUT_DELAY_MS;
 #ifdef DEBUG
     Serial.print("PWM_Left : ");
     Serial.println(PWM_Left);
