@@ -2,15 +2,16 @@
 
 ## Upload arduino's code
 
-1. cd Documents/Kira/src/cpp
-2. ./HelloWorld -u
+1. ``` cd Documents/Kira/src/cpp ```
+2. ``` ./HelloWorld -u ```
 
 ## To start motors
 
-./HelloWorld speedG speedD
+``` ./HelloWorld speedG speedD ```
 
 ## to open arduino's screen
-sudo screen /dev/ttyUSB0 9600
+
+``` sudo screen /dev/ttyUSB0 9600 ```
 
 ## Warning!!
 
