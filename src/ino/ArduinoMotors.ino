@@ -15,7 +15,7 @@
 #define DEBUG // Used to print informations to the serial port
 // #define TEST  // Used to activate the motors on startup.
 
-#define PIN_POWER_ENABLE    11
+#define POWER_ENABLE    11
 
 // Left motor
 #define SPEED_LEFT       6
@@ -34,17 +34,24 @@
 #define DIRECTION_LEFT_ENCODER    4
 
 // I2C address
-#define ADDR_I2C   12
+#define ADDR_I2C  12
 
 // Odometry config
-#define ENTRAXE     235 
-#define DIAMETER     35
+#define ENTRAXE        235 
+#define DIAMETER       35
 #define TICK_PER_TURN  512
 #define TICK_SPEED     1000  // Values : 500, 1000, 2000, 4000, 8000
 
-// Counters
+// Encoder wheels counters
 volatile long countRight = 0;
 volatile long countLeft = 0;
+
+// Global variables
+int x = 0;
+int y = 0;
+float theta = 0;
+int countLeft_previous = 0;
+int countRight_previous = 0;
 
 void setup() {
 
@@ -65,7 +72,7 @@ void setup() {
   pinMode(DIRECTION_RIGHT_ENCODER, INPUT);
   pinMode(DIRECTION_LEFT_ENCODER, INPUT);
 
-  digitalWrite(PIN_POWER_ENABLE, HIGH);
+  digitalWrite(POWER_ENABLE, HIGH);
 
   attachInterrupt(digitalPinToInterrupt(PULSE_RIGHT_ENCODER), countRightEncoder, FALLING);
   attachInterrupt(digitalPinToInterrupt(PULSE_LEFT_ENCODER), countLeftEncoder, FALLING);
@@ -90,6 +97,9 @@ void loop() {
     Serial.println();
   }
 
+  // Update position
+  update_position(countLeft, countRight);
+
   Serial.print("Right encoder count: ");
   Serial.println(countRight);
   Serial.print("Left encoder count: ");
@@ -101,6 +111,39 @@ void loop() {
   Serial.println(directionLeft);
 
   delay(1000);
+}
+
+void update_position(int countLeft, int countRight) {
+  // Calculate the distance traveled by each wheel
+  float distanceLeft = (countLeft - countLeft_previous) * 2 * PI * DIAMETER / TICK_PER_TURN;
+  float distanceRight = (countRight - countRight_previous) * 2 * PI * DIAMETER / TICK_PER_TURN;
+
+  // Calculate the average distance traveled by the robot
+  float distanceAverage = (distanceLeft + distanceRight) / 2;
+
+  // Calculate the angle turned by the robot
+  float angle = (distanceRight - distanceLeft) / ENTRAXE;
+
+  // Calculate the change in position of the robot
+  float delta_x = distanceAverage * cos(theta + angle / 2);
+  float delta_y = distanceAverage * sin(theta + angle / 2);
+  float delta_theta = angle;
+
+  // Update the position of the robot
+  x += delta_x;
+  y += delta_y;
+  theta += delta_theta;
+
+  // Update the previous count values
+  countLeft_previous = countLeft;
+  countRight_previous = countRight;
+
+  Serial.print("Current position: (");
+  Serial.print(x);
+  Serial.print(", ");
+  Serial.print(y);
+  Serial.print("), theta = ");
+  Serial.println(fmod(theta, PI));
 }
 
 // Function that detects and increament/decreament right wheel direction
@@ -134,12 +177,12 @@ void orderLeft(uint8_t direction, uint8_t speed) {
     break;
   case 1:
     // Forward
-    digitalWrite(DIRECTION_LEFT, LOW);
+    digitalWrite(DIRECTION_LEFT, HIGH);
     analogWrite(SPEED_LEFT, speed);
     break;
   case 2:
     // Backward
-    digitalWrite(DIRECTION_LEFT, HIGH);
+    digitalWrite(DIRECTION_LEFT, LOW);
     analogWrite(SPEED_LEFT, speed);
     break;
   }
@@ -155,12 +198,12 @@ void orderRight(uint8_t direction, uint8_t speed) {
     break;
   case 1:
     // Forward
-    digitalWrite(DIRECTION_RIGHT, LOW);
+    digitalWrite(DIRECTION_RIGHT, HIGH);
     analogWrite(SPEED_RIGHT, speed);
     break;
   case 2:
     // Backward
-    digitalWrite(DIRECTION_RIGHT, HIGH);
+    digitalWrite(DIRECTION_RIGHT, LOW);
     analogWrite(SPEED_RIGHT, speed);
     break;
   }
@@ -195,7 +238,7 @@ void recv(int numBytes) {
     Serial.print("rightDirection : ");
     Serial.println(rightDirection);
 #endif
-
+    update_position(countLeft, countRight);
     orderLeft(leftDirection, PWM_Left);
     orderRight(rightDirection, PWM_Right);
   }

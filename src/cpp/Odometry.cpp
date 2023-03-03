@@ -8,11 +8,14 @@
 #include <linux/i2c-dev.h>
 #include <linux/i2c.h>
 
+// Maximum speed
+#define MAX_SPEED   30
+
 const char* BOARD = "arduino:avr:nano"; // Replace with your board type
 const char* PORT = "/dev/ttyUSB0"; // Replace with your Arduino port name
 const char* I2C_BUS = "/dev/i2c-1"; // Replace with your I2C bus name
 const int ADDRESS = 0x0C; // Replace with your I2C address
-const char* FILENAME = "../ino/HelloWorld.ino"; // Replace with your arduino file
+const char* FILENAME = "../ino/ArduinoMotors.ino"; // Replace with your arduino file
 
 enum Direction {
   STOPPED = 0,
@@ -80,8 +83,8 @@ void setOrder(int leftOrder, int rightOrder) {
 
   // Send the data
   uint8_t data[4];
-  data[0] = (uint8_t)rightSpeed;
-  data[1] = (uint8_t)leftSpeed;
+  data[0] = (uint8_t)rightSpeed > MAX_SPEED ? MAX_SPEED : (uint8_t)rightSpeed;
+  data[1] = (uint8_t)leftSpeed > MAX_SPEED ? MAX_SPEED : (uint8_t)leftSpeed;
   data[2] = (uint8_t)rightDirection;
   data[3] = (uint8_t)leftDirection;
   std::cout << "[MOTOR DEBUG] Printing the content of data :" << std::endl;
