@@ -1,3 +1,14 @@
+/*
+   This program is used to control the motors for Kira
+   see https://github.com/imouflih/Kira
+
+   It uses an I2C bus to communicate with the RapsberryPi.
+   The board send a PWM value between -255 and 255 for each motors.
+
+   Last updated : February 26 2022
+   Author : Iliasse Mouflih
+*/
+
 #include <iostream>
 #include <cstring>
 #include <stdio.h>
