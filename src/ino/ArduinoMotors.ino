@@ -41,25 +41,22 @@
 #define TICK_PER_TURN 512 // number of ticks per wheel rotation
 
 // Control config
-#define TARGET_RADIUS 50 // mm
 #define THETA_TOLERANCE 0.08 // rad
-#define MAX_SPEED 20     // mm/s
-#define KP 0.1
 
 // Encoder wheels counters
 volatile long countRight = 0;
 volatile long countLeft = 0;
 
 // Global variables
-int x = 0;                   // x position of the robot
-int y = 0;                   // y position of the robot
+int16_t x = 0;                   // x position of the robot
+int16_t y = 0;                   // y position of the robot
 float theta = 0;             // orientation of the robot
-int countLeft_previous = 0;  // previous count of left encoder
-int countRight_previous = 0; // previous count of right encoder
+int16_t countLeft_previous = 0;  // previous count of left encoder
+int16_t countRight_previous = 0; // previous count of right encoder
 
 struct Position {
-  int x;
-  int y;
+  int16_t x;
+  int16_t y;
   float theta;
 };
 
@@ -100,11 +97,11 @@ void setup() {
 
 void loop() {
 
-  int directionRight = !digitalRead(DIRECTION_RIGHT_ENCODER);
-  int directionLeft = digitalRead(DIRECTION_LEFT_ENCODER);
+  int8_t directionRight = !digitalRead(DIRECTION_RIGHT_ENCODER);
+  int8_t directionLeft = digitalRead(DIRECTION_LEFT_ENCODER);
 
   //clear screen
-  for (int i = 0; i < 50; i++) {
+  for (int8_t i = 0; i < 50; i++) {
     Serial.println();
   }
 
@@ -124,17 +121,17 @@ void loop() {
   delay(1000);
 }
 
-void go_to(double x_target, double y_target) {
+void go_to(int16_t x_target, int16_t y_target) {
 
   // Update the current position
   Position position = update_position(countLeft, countRight);
-  int x_current = position.x;
-  int y_current = position.y;
+  int16_t x_current = position.x;
+  int16_t y_current = position.y;
   float angle_init = position.theta;
 
   // Calculate the distance and angle between the current position and target position
-  int dx = x_target - x_current;
-  int dy = y_target - y_current;
+  int16_t dx = x_target - x_current;
+  int16_t dy = y_target - y_current;
   float distance = sqrt(dx * dx + dy * dy);
   float angle = atan2(dy, dx);
   angle = fmod(angle, 4 * PI) < 0 ? fmod(angle, 4 * PI) + 4 * PI : fmod(angle, 4 * PI);
@@ -148,7 +145,7 @@ void go_to(double x_target, double y_target) {
   Serial.println(angle_init);
   delay(5000);
 
-  int speed = 15;
+  int8_t speed = 15;
 
   // Turn the robot towards the target position
   setTheta(angle);
@@ -205,7 +202,7 @@ void setTheta(float theta) {
 }
 
 // Function that update (x,y,theta) of the robot
-Position update_position(int countLeft, int countRight) {
+Position update_position(int16_t countLeft, int16_t countRight) {
 
   // Calculate the distance traveled by each wheel
   float distanceLeft = (countLeft - countLeft_previous) * 2 * PI * DIAMETER / TICK_PER_TURN;
@@ -248,13 +245,13 @@ Position update_position(int countLeft, int countRight) {
 
 // Function that detects and increament/decreament right wheel direction
 void countRightEncoder() {
-  int direction = !digitalRead(DIRECTION_RIGHT_ENCODER);
+  int8_t direction = !digitalRead(DIRECTION_RIGHT_ENCODER);
   countRight += direction ? -1 : 1;
 }
 
 // Function that detects and increament/decreament left wheel direction
 void countLeftEncoder() {
-  int direction = digitalRead(DIRECTION_LEFT_ENCODER);
+  int8_t direction = digitalRead(DIRECTION_LEFT_ENCODER);
   countLeft += direction ? -1 : 1;
 }
 
