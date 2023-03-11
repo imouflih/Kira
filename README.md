@@ -3,11 +3,11 @@
 ## Upload arduino's code
 
 1. ``` cd Documents/Kira/src/cpp ```
-2. ``` ./HelloWorld -u ```
+2. ``` ./Kira -u ```
 
 ## To start motors
 
-``` ./HelloWorld speedG speedD ```
+``` ./Kira speedG speedD ```
 
 ## to open arduino's screen
 
