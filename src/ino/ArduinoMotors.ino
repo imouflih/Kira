@@ -155,7 +155,7 @@ void go_to(double x_target, double y_target) {
 
   Serial.println("Placed to the target angle!! Going now to target x and y");
 
-  order(speed, speed);
+  orderMove(speed, speed);
 
   // Move the robot forward towards the target position
   while (distance > 30) {
@@ -194,7 +194,7 @@ void setTheta(float theta) {
   while (fmod(fabs(theta - theta_current), 4 * PI) > THETA_TOLERANCE) {
 
     // Rotate the robot, make sure that he always takes the shortest path
-    fabs(theta - theta_current) < 6.28 ? theta > theta_current ? order(-15, 15) : order(15, -15) : theta > theta_current ? order(15, -15) : order(-15, 15);
+    fabs(theta - theta_current) < 6.28 ? theta > theta_current ? orderMove(-15, 15) : orderMove(15, -15) : theta > theta_current ? orderMove(15, -15) : orderMove(-15, 15);
 
     // Update the current angle of the robot
     position = update_position(countLeft, countRight);
@@ -267,53 +267,15 @@ void stop() {
   digitalWrite(DIRECTION_RIGHT, LOW);
 }
 
+uint8_t computeDirection(int8_t speed) {
+  return (speed < 0) ? 2 : (speed > 0) ? 1 : 0;
+}
+
 // Function that send an order to the motors 
-void order(int speedLeft, int speedRight) {
-  int tmp = speedLeft;
-  speedLeft = speedRight;
-  speedRight = tmp;
-  if (speedLeft < 0) {
-    if (speedRight < 0) {
-      orderLeft(2, -speedLeft);
-      orderRight(2, -speedRight);
-    }
-    else if (speedRight > 0) {
-      orderLeft(2, -speedLeft);
-      orderRight(1, speedRight);
-    }
-    else {
-      orderLeft(2, -speedLeft);
-      orderRight(0, speedRight);
-    }
-  }
-  else if (speedLeft > 0) {
-    if (speedRight < 0) {
-      orderLeft(1, speedLeft);
-      orderRight(2, -speedRight);
-    }
-    else if (speedRight > 0) {
-      orderLeft(1, speedLeft);
-      orderRight(1, speedRight);
-    }
-    else {
-      orderLeft(1, speedLeft);
-      orderRight(0, speedRight);
-    }
-  }
-  else {
-    if (speedRight < 0) {
-      orderLeft(0, speedLeft);
-      orderRight(2, -speedRight);
-    }
-    else if (speedRight > 0) {
-      orderLeft(0, speedLeft);
-      orderRight(1, speedRight);
-    }
-    else {
-      orderLeft(0, speedLeft);
-      orderRight(0, speedRight);
-    }
-  }
+// Speed is between -128 and 127
+void orderMove(int8_t speedRight, int8_t speedLeft) { // to do : fix inversion
+  orderLeft(computeDirection(speedLeft), abs(speedLeft));
+  orderRight(computeDirection(speedRight), abs(speedRight));
 }
 
 // Function that send an order to the left motor
