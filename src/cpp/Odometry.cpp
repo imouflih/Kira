@@ -20,7 +20,7 @@
 #include <linux/i2c.h>
 
 // Maximum speed
-#define MAX_SPEED   30
+#define MAX_SPEED   100
 
 const char* BOARD = "arduino:avr:nano"; // Replace with your board type
 const char* PORT = "/dev/ttyUSB0"; // Replace with your Arduino port name
