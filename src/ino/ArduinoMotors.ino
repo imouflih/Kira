@@ -39,7 +39,7 @@
 #define LEFT 0
 #define RIGHT 1
 
-#define START_BYTE  0xA5
+#define START_BYTE  0x25
 #define STOP_BYTE   0x5A
 #define INIT_COUNTERS 0xA1
 
@@ -50,180 +50,161 @@ volatile long countLeft = 0;
 void setup() {
 
 #ifdef DEBUG
-  Serial.begin(9600);
+    Serial.begin(9600);
 #endif
 
-  // Setup the pins to OUTPUT
-  pinMode(SPEED_LEFT, OUTPUT);
-  pinMode(DIRECTION_LEFT, OUTPUT);
+    // Setup the pins to OUTPUT
+    pinMode(SPEED_LEFT, OUTPUT);
+    pinMode(DIRECTION_LEFT, OUTPUT);
 
-  pinMode(SPEED_RIGHT, OUTPUT);
-  pinMode(DIRECTION_RIGHT, OUTPUT);
+    pinMode(SPEED_RIGHT, OUTPUT);
+    pinMode(DIRECTION_RIGHT, OUTPUT);
 
-  pinMode(PULSE_RIGHT_ENCODER, INPUT);
-  pinMode(PULSE_LEFT_ENCODER, INPUT);
+    pinMode(PULSE_RIGHT_ENCODER, INPUT);
+    pinMode(PULSE_LEFT_ENCODER, INPUT);
 
-  pinMode(DIRECTION_RIGHT_ENCODER, INPUT);
-  pinMode(DIRECTION_LEFT_ENCODER, INPUT);
+    pinMode(DIRECTION_RIGHT_ENCODER, INPUT);
+    pinMode(DIRECTION_LEFT_ENCODER, INPUT);
 
-  digitalWrite(POWER_ENABLE, HIGH);   // enable motor power
+    digitalWrite(POWER_ENABLE, HIGH);   // enable motor power
 
-  attachInterrupt(digitalPinToInterrupt(PULSE_RIGHT_ENCODER), countRightEncoder, FALLING);
-  attachInterrupt(digitalPinToInterrupt(PULSE_LEFT_ENCODER), countLeftEncoder, FALLING);
+    attachInterrupt(digitalPinToInterrupt(PULSE_RIGHT_ENCODER), countRightEncoder, FALLING);
+    attachInterrupt(digitalPinToInterrupt(PULSE_LEFT_ENCODER), countLeftEncoder, FALLING);
 
-  // Make sure the motors are stopped
-  stop();
+    // Make sure the motors are stopped
+    stop();
 
-  // Start I2C
-  Wire.begin(ADDR_I2C);
+    // Start I2C
+    Wire.begin(ADDR_I2C);
 
-  // On request function
-  Wire.onRequest(sendData);
+    // On request function
+    Wire.onRequest(sendData);
 
-  // Add interrupt function
-  Wire.onReceive(recv);
+    // Add interrupt function
+    Wire.onReceive(recv);
 }
 
 void loop() {
-
-  // int8_t directionRight = !digitalRead(DIRECTION_RIGHT_ENCODER);
-  // int8_t directionLeft = digitalRead(DIRECTION_LEFT_ENCODER);
-
-  // //clear screen
-  // for (int8_t i = 0; i < 50; i++) {
-  //   Serial.println();
-  // }
-
-  // Serial.print("Right encoder count: ");
-  // Serial.println(countRight);
-  // Serial.print("Left encoder count: ");
-  // Serial.println(countLeft);
-
-  // Serial.print("Right encoder direction: ");
-  // Serial.println(directionRight);
-  // Serial.print("Left encoder direction: ");
-  // Serial.println(directionLeft);
-
-  // delay(1000);
+    // do nothing
 }
 
 void initCounters() {
-  countLeft = 0;
-  countRight = 0;
+    countLeft = 0;
+    countRight = 0;
 }
 
 // Function that detects and increament/decreament right wheel direction
 void countRightEncoder() {
-  int8_t direction = !digitalRead(DIRECTION_RIGHT_ENCODER);
-  countRight += direction ? -1 : 1;
+    int8_t direction = !digitalRead(DIRECTION_RIGHT_ENCODER);
+    countRight += direction ? -1 : 1;
 }
 
 // Function that detects and increament/decreament left wheel direction
 void countLeftEncoder() {
-  int8_t direction = digitalRead(DIRECTION_LEFT_ENCODER);
-  countLeft += direction ? -1 : 1;
+    int8_t direction = digitalRead(DIRECTION_LEFT_ENCODER);
+    countLeft += direction ? -1 : 1;
 }
 
 // Function that stop the motors
 void stop() {
-  analogWrite(SPEED_LEFT, LOW);
-  digitalWrite(DIRECTION_LEFT, LOW);
+    analogWrite(SPEED_LEFT, LOW);
+    digitalWrite(DIRECTION_LEFT, LOW);
 
-  analogWrite(SPEED_RIGHT, LOW);
-  digitalWrite(DIRECTION_RIGHT, LOW);
+    analogWrite(SPEED_RIGHT, LOW);
+    digitalWrite(DIRECTION_RIGHT, LOW);
 }
 
 // Function that returns the direction depending on the sign of the speed
 uint8_t computeDirection(int8_t speed) {
-  return (speed < 0) ? 2 : (speed > 0) ? 1 : 0;
+    return (speed < 0) ? 2 : (speed > 0) ? 1 : 0;
 }
 
 // Function that send an order to the motors 
 // Speed is between -128 and 127
 void orderMove(int8_t speedRight, int8_t speedLeft) { // to do : fix inversion
-  orderLeft(computeDirection(speedLeft), abs(speedLeft));
-  orderRight(computeDirection(speedRight), abs(speedRight));
+    orderLeft(computeDirection(speedLeft), abs(speedLeft));
+    orderRight(computeDirection(speedRight), abs(speedRight));
 }
 
 // Function that send an order to the left motor
 void orderLeft(uint8_t direction, uint8_t speed) {
-  switch (direction) {
-  case 0:
-    // Stopping motors
-    digitalWrite(DIRECTION_LEFT, LOW);
-    analogWrite(SPEED_LEFT, 0);
-    break;
-  case 1:
-    // Forward
-    digitalWrite(DIRECTION_LEFT, HIGH);
-    analogWrite(SPEED_LEFT, speed);
-    break;
-  case 2:
-    // Backward
-    digitalWrite(DIRECTION_LEFT, LOW);
-    analogWrite(SPEED_LEFT, speed);
-    break;
-  }
+    switch (direction) {
+    case 0:
+        // Stopping motors
+        digitalWrite(DIRECTION_LEFT, LOW);
+        analogWrite(SPEED_LEFT, 0);
+        break;
+    case 1:
+        // Forward
+        digitalWrite(DIRECTION_LEFT, HIGH);
+        analogWrite(SPEED_LEFT, speed);
+        break;
+    case 2:
+        // Backward
+        digitalWrite(DIRECTION_LEFT, LOW);
+        analogWrite(SPEED_LEFT, speed);
+        break;
+    }
 }
 
 // Function that send an order to the right motor
 void orderRight(uint8_t direction, uint8_t speed) {
-  switch (direction) {
-  case 0:
-    // Stopping motors
-    digitalWrite(DIRECTION_RIGHT, LOW);
-    analogWrite(SPEED_RIGHT, 0);
-    break;
-  case 1:
-    // Forward
-    digitalWrite(DIRECTION_RIGHT, HIGH);
-    analogWrite(SPEED_RIGHT, speed);
-    break;
-  case 2:
-    // Backward
-    digitalWrite(DIRECTION_RIGHT, LOW);
-    analogWrite(SPEED_RIGHT, speed);
-    break;
-  }
+    switch (direction) {
+    case 0:
+        // Stopping motors
+        digitalWrite(DIRECTION_RIGHT, LOW);
+        analogWrite(SPEED_RIGHT, 0);
+        break;
+    case 1:
+        // Forward
+        digitalWrite(DIRECTION_RIGHT, HIGH);
+        analogWrite(SPEED_RIGHT, speed);
+        break;
+    case 2:
+        // Backward
+        digitalWrite(DIRECTION_RIGHT, LOW);
+        analogWrite(SPEED_RIGHT, speed);
+        break;
+    }
 }
 
 void sendData() {
-  Wire.write(START_BYTE);
+    Wire.write(START_BYTE);
 
-  Wire.write(countLeft);
-  Wire.write(countLeft >> 8);
-  Wire.write(countLeft >> 16);
-  Wire.write(countLeft >> 24);
+    Wire.write(countLeft);
+    Wire.write(countLeft >> 8);
+    Wire.write(countLeft >> 16);
+    Wire.write(countLeft >> 24);
 
-  Wire.write(countRight);
-  Wire.write(countRight >> 8);
-  Wire.write(countRight >> 16);
-  Wire.write(countRight >> 24);
+    Wire.write(countRight);
+    Wire.write(countRight >> 8);
+    Wire.write(countRight >> 16);
+    Wire.write(countRight >> 24);
 
-  Wire.write(STOP_BYTE);
+    Wire.write(STOP_BYTE);
 }
 
 // Function that receive the bytes from the I2C
 void recv(int numBytes) {
-  if (numBytes == 4) {
-    int8_t speed_left = Wire.read() | (Wire.read() << 8);
-    int8_t speed_right = Wire.read() | (Wire.read() << 8);
+    if (numBytes == 4) {
+        int8_t speed_left = Wire.read() | (Wire.read() << 8);
+        int8_t speed_right = Wire.read() | (Wire.read() << 8);
 
-    Serial.print("speed left : ");
-    Serial.println(speed_left);
-    Serial.print("speed right : ");
-    Serial.println(speed_right);
+        // Serial.print("speed left : ");
+        // Serial.println(speed_left);
+        // Serial.print("speed right : ");
+        // Serial.println(speed_right);
 
-    orderMove(speed_right, speed_left);
-  }
-  else if (numBytes == 1) {
-    uint8_t data = Wire.read();
-    if (data == INIT_COUNTERS) {
-      initCounters();
-      Serial.println("Initialisation des counters!!");
+        orderMove(speed_right, speed_left);
     }
-  }
+    else if (numBytes == 1) {
+        uint8_t data = Wire.read();
+        if (data == INIT_COUNTERS) {
+            initCounters();
+            // Serial.println("Initialisation des compteurs!!");
+        }
+    }
 
-  Wire.flush();
-  while (Wire.available()) Wire.read();
+    Wire.flush();
+    while (Wire.available()) Wire.read();
 }
