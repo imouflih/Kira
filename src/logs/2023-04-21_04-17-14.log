@@ -1,0 +1,5 @@
+Initialization
+Order: MOVE_TO, x: 200, y: 400, angle: -6.3606e-44
+Order: FORWARD, x: 0, y: 0, angle: 0
+Order: BACKWARD, x: 0, y: 0, angle: 0
+Order: ROTATE, x: 0, y: 0, angle: 6.28

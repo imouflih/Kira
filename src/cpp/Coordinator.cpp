@@ -55,3 +55,23 @@ void Coordinator::stop() {
     std::cout << "Stop" << std::endl;
     this->motorsController.setMotorsSpeed(0, 0);
 }
+
+void Coordinator::rotate(float targetAngle) {
+    std::cout << "Rotate to " << targetAngle << " rad" << std::endl;
+    auto lambdaGetOrientation = [this]() { return this->getOrientation(); };
+    this->motorsController.rotate(targetAngle, lambdaGetOrientation);
+}
+
+void Coordinator::goForward() {
+    std::cout << "Go Forward" << std::endl;
+    auto lambdaGetSpeedCorrection = [this]() { return this->getSpeedCorrection(); };
+    auto lambdadoBeforeLinearMovement = [this]() { this->updateInitialCountersDifference(); };
+    this->motorsController.goForward(lambdaGetSpeedCorrection, lambdadoBeforeLinearMovement);
+}
+
+void Coordinator::goBackward() {
+    std::cout << "Go Backward" << std::endl;
+    auto lambdaGetSpeedCorrection = [this]() { return this->getSpeedCorrection(); };
+    auto lambdadoBeforeLinearMovement = [this]() { this->updateInitialCountersDifference(); };
+    this->motorsController.goBackward(lambdaGetSpeedCorrection, lambdadoBeforeLinearMovement);
+}

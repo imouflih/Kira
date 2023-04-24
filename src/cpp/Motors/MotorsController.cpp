@@ -80,3 +80,23 @@ void MotorsController::goToPosition(
 
     this->setMotorsSpeed(0, 0);
 }
+
+void MotorsController::goForward(
+    std::function<int()> getSpeedCorrection,
+    std::function<void()> doBeforeLinearMovement) {
+    doBeforeLinearMovement();
+    while (true) {
+        int speedCorrection = getSpeedCorrection();
+        this->setMotorsSpeed(MOUVEMENT_SPEED - speedCorrection, MOUVEMENT_SPEED + speedCorrection);
+    }
+}
+
+void MotorsController::goBackward(
+    std::function<int()> getSpeedCorrection,
+    std::function<void()> doBeforeLinearMovement) {
+    doBeforeLinearMovement();
+    while (true) {
+        int speedCorrection = getSpeedCorrection();
+        this->setMotorsSpeed(-MOUVEMENT_SPEED - speedCorrection, -MOUVEMENT_SPEED + speedCorrection);
+    }
+}

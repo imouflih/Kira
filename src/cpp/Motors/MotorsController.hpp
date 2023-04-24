@@ -12,6 +12,12 @@ public:
         std::function<float()> getCurrentAngle,
         std::function<int()> getSpeedCorrection,
         std::function<void()> doBeforeLinearMovement);
+    void goForward(
+        std::function<int()> getSpeedCorrection,
+        std::function<void()> doBeforeLinearMovement);
+    void goBackward(
+        std::function<int()> getSpeedCorrection,
+        std::function<void()> doBeforeLinearMovement);
 
 private:
     static const int MAX_SPEED;

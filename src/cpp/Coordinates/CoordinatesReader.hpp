@@ -1,11 +1,11 @@
 #include <string>
 #include <vector>
-#include <utility>
+#include <tuple>
 
 class CoordinatesReader {
 public:
     CoordinatesReader(const std::string& filename);
-    std::vector<std::pair<int, int>> getCoordinates() const;
+    std::vector<std::tuple<std::string, int, int, double>> getCoordinates() const;
 
 private:
     std::string filename;

@@ -7,6 +7,9 @@ public:
     void goToPosition(std::pair<int, int> targetPosition);
     void init();
     void stop();
+    void rotate(float targetAngle);
+    void goForward();
+    void goBackward();
 
 private:
     MotorsController motorsController;
