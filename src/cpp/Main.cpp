@@ -1,6 +1,7 @@
 #include "Coordinator.hpp"
 #include "../Commun/Logger/Logger.hpp"
 #include "Coordinates/CoordinatesReader.hpp"
+#include "Jack/Jack.hpp"
 #include <iostream>
 #include <unistd.h>
 #include <vector>
@@ -56,6 +57,7 @@ int main(int argc, char** argv) {
     Logger::getInstance();
     try {
         Coordinator coordinator = Coordinator();
+        Jack jack = Jack();
 
         if (argc == 2) {
             if (strcmp(argv[1], "-u") == 0)
@@ -77,6 +79,9 @@ int main(int argc, char** argv) {
         CoordinatesReader reader("./json/Coordinates.json");
 
         std::vector<std::tuple<std::string, int, int, double>> orders = reader.getCoordinates();
+        while (!jack.read()) {
+            printf("Waiting for jack to be removed!!\n");
+        }
         for (const auto& order : orders) {
             Order o = stringToOrder(std::get<0>(order));
             std::pair<int, int> targetPosition;
@@ -106,13 +111,6 @@ int main(int argc, char** argv) {
             }
             sleep(3);
         }
-        // for (const std::pair<int, int> targetPosition : coordinates) {
-        //     std::cout << "New Target :(" << targetPosition.first << ", " << targetPosition.second << ")" << std::endl;
-        //     coordinator.goToPosition(targetPosition);
-        // }
-        // coordinator.rotate(2 * M_PI);
-        // coordinator.goForward();
-        // coordinator.goBackward();
     }
     catch (const char* msg) {
         std::cerr << "Caught exception: " << msg << std::endl;

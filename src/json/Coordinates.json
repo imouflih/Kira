@@ -7,8 +7,5 @@
   {
     "order": "ROTATE",
     "angle": 6.28
-  },
-  {
-    "order": "FORWARD"
   }
 ]
