@@ -79,9 +79,10 @@ int main(int argc, char** argv) {
         CoordinatesReader reader("./json/Coordinates.json");
 
         std::vector<std::tuple<std::string, int, int, double>> orders = reader.getCoordinates();
-        while (!jack.read()) {
+        while (!jack.isJackRemoved()) {
             printf("Waiting for jack to be removed!!\n");
         }
+        sleep(1);
         for (const auto& order : orders) {
             Order o = stringToOrder(std::get<0>(order));
             std::pair<int, int> targetPosition;
@@ -109,7 +110,7 @@ int main(int argc, char** argv) {
                 std::cout << "Invalid order: " << std::get<0>(order) << std::endl;
                 break;
             }
-            sleep(3);
+            sleep(2);
         }
     }
     catch (const char* msg) {

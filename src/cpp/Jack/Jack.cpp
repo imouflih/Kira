@@ -11,7 +11,7 @@ Jack::Jack() {
     pullUpDnControl(JACK_PIN, PUD_UP);
 }
 
-int Jack::read() {
-    std::cout << "Reading Jack" << std::endl;
+int Jack::isJackRemoved() {
+    std::cout << "Checking if Jack is removed" << std::endl;
     return digitalRead(JACK_PIN);
 }

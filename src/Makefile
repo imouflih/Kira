@@ -11,11 +11,12 @@ LOGGERDIR = $(COMMUNDIR)/Logger
 COORDINATESDIR = $(SRCDIR)/Coordinates
 MOTORSDIR = $(SRCDIR)/Motors
 JACKDIR = $(SRCDIR)/Jack
+ARUDIR = $(SRCDIR)/ARU
 ENCODERWHEELSDIR = $(SRCDIR)/EncoderWheels
-INCLUDEDIRS = -I$(COMMUNDIR) -I$(MOTORSDIR) -I$(ENCODERWHEELSDIR) -I$(LOGGERDIR) -I$(COORDINATESDIR) -I$(JACKDIR)
+INCLUDEDIRS = -I$(COMMUNDIR) -I$(MOTORSDIR) -I$(ENCODERWHEELSDIR) -I$(LOGGERDIR) -I$(COORDINATESDIR) -I$(JACKDIR) -I$(ARUDIR)
 
 # Source and object files
-SRC = $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(COMMUNDIR)/*.cpp) $(wildcard $(MOTORSDIR)/*.cpp) $(wildcard $(ENCODERWHEELSDIR)/*.cpp) $(wildcard $(LOGGERDIR)/*.cpp) $(wildcard $(COORDINATESDIR)/*.cpp) $(wildcard $(JACKDIR)/*.cpp)
+SRC = $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(COMMUNDIR)/*.cpp) $(wildcard $(MOTORSDIR)/*.cpp) $(wildcard $(ENCODERWHEELSDIR)/*.cpp) $(wildcard $(LOGGERDIR)/*.cpp) $(wildcard $(COORDINATESDIR)/*.cpp) $(wildcard $(JACKDIR)/*.cpp) $(wildcard $(ARUDIR)/*.cpp)
 OBJ = $(SRC:.cpp=.o)
 LOGS = $(wildcard $(LOGSDIR)/*.log)
 

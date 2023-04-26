@@ -4,7 +4,7 @@
 class Jack {
 public:
     Jack();
-    int read();
+    int isJackRemoved();
 
 private:
     static const int JACK_PIN;
