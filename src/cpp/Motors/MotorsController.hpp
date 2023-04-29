@@ -6,6 +6,7 @@ public:
     MotorsController();
     void setMotorsSpeed(int speedLeft, int speedRight);
     void rotate(float targetAngle, std::function<float()> getCurrentAngle);
+    void rotateWithoutStopping(float targetAngle, std::function<float()> getCurrentAngle);
     void goToPosition(
         std::pair<float, float> targetPosition,
         std::function<std::pair<float, float>()> getCurrentPosition,

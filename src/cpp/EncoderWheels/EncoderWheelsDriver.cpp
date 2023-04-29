@@ -12,7 +12,7 @@ void EncoderWheelsDriver::initCounters() {
     this->writeData(&INIT_COUNTERS_MSG, sizeof(INIT_COUNTERS_MSG));
 }
 
-std::tuple<int, int, long> EncoderWheelsDriver::getCounters() {
+std::tuple<int, int, long> EncoderWheelsDriver::getCountersAndElapsedTime() {
     uint8_t data[14];
     this->readData(data, 14);
 

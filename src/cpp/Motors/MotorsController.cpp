@@ -1,5 +1,6 @@
 #include "MotorsController.hpp"
 #include <cmath>
+#include <iostream>
 
 const int MotorsController::MAX_SPEED = 80;
 const int MotorsController::MIN_SPEED = 7;
@@ -47,6 +48,28 @@ void MotorsController::rotate(float targetAngle, std::function<float()> getCurre
     this->setMotorsSpeed(0, 0); // Stop the robot
 }
 
+void MotorsController::rotateWithoutStopping(float targetAngle, std::function<float()> getCurrentAngle) {
+    std::cout << "rotateWithoutStopping has been called" << std::endl;
+    // Get the current angle of the robot
+    float currentAngle = getCurrentAngle();
+
+    // Rotate the robot, make sure that he always takes the shortest path
+    fabs(targetAngle - currentAngle) < 2 * M_PI ?
+        targetAngle > currentAngle ?
+        this->setMotorsSpeed(-ROTATION_SPEED, ROTATION_SPEED) :
+        this->setMotorsSpeed(ROTATION_SPEED, -ROTATION_SPEED) :
+        targetAngle > currentAngle ?
+        this->setMotorsSpeed(ROTATION_SPEED, -ROTATION_SPEED) :
+        this->setMotorsSpeed(-ROTATION_SPEED, ROTATION_SPEED);
+
+    // Continue adjusting the angle until it is within the specified tolerance
+    while (fmod(fabs(targetAngle - currentAngle), 4 * M_PI) > ROTATION_ANGLE_TOLERANCE) {
+
+        // Update the current angle of the robot
+        currentAngle = getCurrentAngle();
+    }
+}
+
 void MotorsController::goToPosition(
     std::pair<float, float> targetPosition,
     std::function<std::pair<float, float>()> getCurrentPosition,
@@ -55,6 +78,7 @@ void MotorsController::goToPosition(
     std::function<void()> doBeforeLinearMovement) {
 
     std::pair<float, float> currentPosition = getCurrentPosition();
+    float currentAngle = getCurrentAngle();
 
     // Calculate the distance between the current position and target position
     float dx = targetPosition.first - currentPosition.first;
@@ -76,6 +100,10 @@ void MotorsController::goToPosition(
         dx = targetPosition.first - currentPosition.first;
         dy = targetPosition.second - currentPosition.second;
         distance = sqrt(dx * dx + dy * dy);
+
+        if (fmod(fabs(dTheta - currentAngle), 4 * M_PI) > ROTATION_ANGLE_TOLERANCE) {
+            this->rotateWithoutStopping(dTheta, getCurrentAngle);
+        }
     }
 
     this->setMotorsSpeed(0, 0);

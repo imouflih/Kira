@@ -23,6 +23,7 @@ private:
     EncoderWheelsDriver driver;
 
     std::pair<int, int> previousCounters;
+    long previousElapsedTime;
     Coordinates coordinates;
 
     float calculateWheelDistance(int currentCounter, int previousCounter) const;
