@@ -1,12 +1,12 @@
 #include "MotorsController.hpp"
 #include <cmath>
 
-const int MotorsController::MAX_SPEED = 50;
+const int MotorsController::MAX_SPEED = 80;
 const int MotorsController::MIN_SPEED = 7;
-const int MotorsController::MOUVEMENT_SPEED = 45;
+const int MotorsController::MOUVEMENT_SPEED = 30;
 const int MotorsController::ROTATION_SPEED = 15;
 const float MotorsController::ROTATION_ANGLE_TOLERANCE = .03f;
-const int MotorsController::MOUVEMENT_TOLERANCE = 20;
+const int MotorsController::MOUVEMENT_TOLERANCE = 40;
 
 MotorsController::MotorsController(): driver(MotorsDriver()) {}
 

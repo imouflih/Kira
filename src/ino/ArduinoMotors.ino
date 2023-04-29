@@ -46,6 +46,7 @@
 // Encoder wheels counters
 volatile long countRight = 0;
 volatile long countLeft = 0;
+volatile long time;
 
 void setup() {
 
@@ -89,6 +90,7 @@ void loop() {
 }
 
 void initCounters() {
+    time = micros();
     countLeft = 0;
     countRight = 0;
 }
@@ -169,6 +171,8 @@ void orderRight(uint8_t direction, uint8_t speed) {
 }
 
 void sendData() {
+    time = micros();
+
     Wire.write(START_BYTE);
 
     Wire.write(countLeft);
@@ -180,6 +184,11 @@ void sendData() {
     Wire.write(countRight >> 8);
     Wire.write(countRight >> 16);
     Wire.write(countRight >> 24);
+
+    Wire.write(time);
+    Wire.write(time >> 8);
+    Wire.write(time >> 16);
+    Wire.write(time >> 24);
 
     Wire.write(STOP_BYTE);
 }

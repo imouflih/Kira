@@ -3,9 +3,5 @@
     "order": "MOVE_TO",
     "x": 500,
     "y": 0
-  },
-  {
-    "order": "ROTATE",
-    "angle": 6.28
   }
 ]

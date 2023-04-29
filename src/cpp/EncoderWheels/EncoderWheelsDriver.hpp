@@ -5,7 +5,7 @@ class EncoderWheelsDriver: GenericDriver {
 public:
     EncoderWheelsDriver();
     void initCounters();
-    std::pair<int, int> getCounters();
+    std::tuple<int, int, long> getCounters();
 
 private:
     static const uint8_t INIT_COUNTERS_MSG;
