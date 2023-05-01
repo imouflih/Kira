@@ -1,0 +1,2189 @@
+Initialization
+Moving to (400, 800)
+GO TO POSITION : 400 , 800
+Counters : (0,0)
+getCurrentPosition : (0,0)
+Counters : (0,0)
+getOrientation : 0
+setMotorsSpeed to driver : 15,-15
+Counters : (0,0)
+getOrientation : 0
+Counters : (0,0)
+getOrientation : 0
+Counters : (0,0)
+getOrientation : 0
+Counters : (0,2)
+getOrientation : 0.00365544
+Counters : (0,4)
+getOrientation : 0.00731089
+Counters : (-3,7)
+getOrientation : 0.0182772
+Counters : (-7,10)
+getOrientation : 0.0310713
+Counters : (-11,13)
+getOrientation : 0.0438653
+Counters : (-14,17)
+getOrientation : 0.0566594
+Counters : (-18,21)
+getOrientation : 0.0712811
+Counters : (-22,25)
+getOrientation : 0.0859029
+Counters : (-27,30)
+getOrientation : 0.10418
+Counters : (-31,34)
+getOrientation : 0.118802
+Counters : (-36,38)
+getOrientation : 0.135251
+Counters : (-40,42)
+getOrientation : 0.149873
+Counters : (-45,47)
+getOrientation : 0.16815
+Counters : (-50,51)
+getOrientation : 0.1846
+Counters : (-55,56)
+getOrientation : 0.202877
+Counters : (-60,61)
+getOrientation : 0.221154
+Counters : (-65,66)
+getOrientation : 0.239432
+Counters : (-70,71)
+getOrientation : 0.257709
+Counters : (-75,76)
+getOrientation : 0.275986
+Counters : (-81,81)
+getOrientation : 0.296091
+Counters : (-86,87)
+getOrientation : 0.316196
+Counters : (-92,93)
+getOrientation : 0.338129
+Counters : (-97,98)
+getOrientation : 0.356406
+Counters : (-102,103)
+getOrientation : 0.374683
+Counters : (-108,109)
+getOrientation : 0.396616
+Counters : (-113,114)
+getOrientation : 0.414893
+Counters : (-118,119)
+getOrientation : 0.43317
+Counters : (-123,125)
+getOrientation : 0.453275
+Counters : (-129,130)
+getOrientation : 0.47338
+Counters : (-135,136)
+getOrientation : 0.495313
+Counters : (-140,141)
+getOrientation : 0.51359
+Counters : (-146,147)
+getOrientation : 0.535523
+Counters : (-151,152)
+getOrientation : 0.5538
+Counters : (-156,158)
+getOrientation : 0.573905
+Counters : (-162,163)
+getOrientation : 0.59401
+Counters : (-168,169)
+getOrientation : 0.615942
+Counters : (-173,174)
+getOrientation : 0.63422
+Counters : (-179,180)
+getOrientation : 0.656152
+Counters : (-184,186)
+getOrientation : 0.676257
+Counters : (-190,191)
+getOrientation : 0.696362
+Counters : (-195,197)
+getOrientation : 0.716467
+Counters : (-201,202)
+getOrientation : 0.736572
+Counters : (-206,208)
+getOrientation : 0.756677
+Counters : (-212,214)
+getOrientation : 0.77861
+Counters : (-217,220)
+getOrientation : 0.798715
+Counters : (-222,225)
+getOrientation : 0.816992
+Counters : (-228,231)
+getOrientation : 0.838924
+Counters : (-234,237)
+getOrientation : 0.860857
+Counters : (-239,243)
+getOrientation : 0.880962
+Counters : (-245,248)
+getOrientation : 0.901067
+Counters : (-251,254)
+getOrientation : 0.923
+Counters : (-256,260)
+getOrientation : 0.943105
+Counters : (-262,266)
+getOrientation : 0.965037
+Counters : (-268,271)
+getOrientation : 0.985142
+Counters : (-273,277)
+getOrientation : 1.00525
+Counters : (-279,283)
+getOrientation : 1.02718
+Counters : (-285,289)
+getOrientation : 1.04911
+Counters : (-290,295)
+getOrientation : 1.06922
+Counters : (-296,301)
+getOrientation : 1.09115
+setMotorsSpeed to driver : 0,0
+getInitialCountersDifference : -613
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (-317,322)
+getCurrentPosition : (0.769999,0.583344)
+ditance : 893.561, previousDistance : 894.427
+getSpeedCorrection : -4
+setMotorsSpeed to driver : 41,49
+Counters : (-322,333)
+getCurrentPosition : (1.25782,1.77598)
+ditance : 892.276, previousDistance : 893.561
+getSpeedCorrection : -5
+setMotorsSpeed to driver : 40,50
+Counters : (-307,354)
+getCurrentPosition : (4.04026,8.98919)
+ditance : 884.58, previousDistance : 892.276
+getSpeedCorrection : -5
+setMotorsSpeed to driver : 40,50
+Counters : (-289,377)
+getCurrentPosition : (7.12641,17.2357)
+ditance : 875.825, previousDistance : 884.58
+getSpeedCorrection : -6
+setMotorsSpeed to driver : 39,50
+Counters : (-279,399)
+getCurrentPosition : (9.43484,23.7086)
+ditance : 869.005, previousDistance : 875.825
+getSpeedCorrection : -7
+setMotorsSpeed to driver : 38,50
+Counters : (-264,422)
+getCurrentPosition : (12.0352,31.444)
+ditance : 860.927, previousDistance : 869.005
+getSpeedCorrection : -7
+setMotorsSpeed to driver : 38,50
+Counters : (-232,447)
+getCurrentPosition : (15.925,43.0507)
+ditance : 848.814, previousDistance : 860.927
+getSpeedCorrection : -6
+setMotorsSpeed to driver : 39,50
+Counters : (-199,469)
+getCurrentPosition : (19.8621,54.1869)
+ditance : 837.103, previousDistance : 848.814
+getSpeedCorrection : -5
+setMotorsSpeed to driver : 40,50
+Counters : (-163,491)
+getCurrentPosition : (24.2812,65.8326)
+ditance : 824.722, previousDistance : 837.103
+getSpeedCorrection : -4
+setMotorsSpeed to driver : 41,49
+Counters : (-126,515)
+getCurrentPosition : (29.2295,77.9622)
+ditance : 811.671, previousDistance : 824.722
+getSpeedCorrection : -2
+setMotorsSpeed to driver : 43,47
+Counters : (-88,542)
+getCurrentPosition : (34.7846,90.7685)
+ditance : 797.742, previousDistance : 811.671
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (-54,568)
+getCurrentPosition : (40.1168,102.499)
+ditance : 784.872, previousDistance : 797.742
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (-23,590)
+getCurrentPosition : (44.9873,112.786)
+ditance : 773.496, previousDistance : 784.872
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (6,614)
+getCurrentPosition : (49.989,123.011)
+ditance : 762.117, previousDistance : 773.496
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (38,642)
+getCurrentPosition : (55.7464,134.538)
+ditance : 749.233, previousDistance : 762.117
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (67,670)
+getCurrentPosition : (61.2659,145.464)
+ditance : 736.992, previousDistance : 749.233
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (96,702)
+getCurrentPosition : (67.1513,157.168)
+ditance : 723.893, previousDistance : 736.992
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (125,734)
+getCurrentPosition : (72.9724,168.904)
+ditance : 710.795, previousDistance : 723.893
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (154,765)
+getCurrentPosition : (78.6453,180.473)
+ditance : 697.913, previousDistance : 710.795
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (182,795)
+getCurrentPosition : (84.0882,191.677)
+ditance : 685.461, previousDistance : 697.913
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (209,827)
+getCurrentPosition : (89.552,203.109)
+ditance : 672.797, previousDistance : 685.461
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (235,856)
+getCurrentPosition : (94.5672,213.803)
+ditance : 660.996, previousDistance : 672.797
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (263,885)
+getCurrentPosition : (99.7243,224.905)
+ditance : 648.768, previousDistance : 660.996
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (294,913)
+getCurrentPosition : (105.083,236.387)
+ditance : 636.11, previousDistance : 648.768
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (324,940)
+getCurrentPosition : (110.321,247.451)
+ditance : 623.879, previousDistance : 636.11
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (356,968)
+getCurrentPosition : (115.91,259.061)
+ditance : 611.001, previousDistance : 623.879
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (387,995)
+getCurrentPosition : (121.393,270.245)
+ditance : 598.55, previousDistance : 611.001
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (417,1026)
+getCurrentPosition : (127.193,281.992)
+ditance : 585.454, previousDistance : 598.55
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (446,1055)
+getCurrentPosition : (132.697,293.165)
+ditance : 573.003, previousDistance : 585.454
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (475,1086)
+getCurrentPosition : (138.37,304.735)
+ditance : 560.123, previousDistance : 573.003
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (501,1116)
+getCurrentPosition : (143.606,315.562)
+ditance : 548.104, previousDistance : 560.123
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (529,1148)
+getCurrentPosition : (149.13,327.203)
+ditance : 535.232, previousDistance : 548.104
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (557,1177)
+getCurrentPosition : (154.328,338.286)
+ditance : 523.006, previousDistance : 535.232
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (587,1205)
+getCurrentPosition : (159.627,349.558)
+ditance : 510.565, previousDistance : 523.006
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (617,1234)
+getCurrentPosition : (165.049,361.01)
+ditance : 497.91, previousDistance : 510.565
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (647,1263)
+getCurrentPosition : (170.492,372.452)
+ditance : 485.254, previousDistance : 497.91
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (677,1292)
+getCurrentPosition : (175.955,383.885)
+ditance : 472.597, previousDistance : 485.254
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (706,1323)
+getCurrentPosition : (181.501,395.516)
+ditance : 459.728, previousDistance : 472.597
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (735,1352)
+getCurrentPosition : (186.841,406.769)
+ditance : 447.289, previousDistance : 459.728
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (764,1383)
+getCurrentPosition : (192.345,418.42)
+ditance : 434.424, previousDistance : 447.289
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (792,1413)
+getCurrentPosition : (197.623,429.702)
+ditance : 421.992, previousDistance : 434.424
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (823,1442)
+getCurrentPosition : (203.084,441.373)
+ditance : 409.132, previousDistance : 421.992
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (854,1469)
+getCurrentPosition : (208.424,452.626)
+ditance : 396.699, previousDistance : 409.132
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (885,1497)
+getCurrentPosition : (213.929,464.038)
+ditance : 384.048, previousDistance : 396.699
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (916,1525)
+getCurrentPosition : (219.497,475.42)
+ditance : 371.394, previousDistance : 384.048
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (946,1554)
+getCurrentPosition : (225.107,486.781)
+ditance : 358.739, previousDistance : 371.394
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (974,1584)
+getCurrentPosition : (230.611,497.955)
+ditance : 346.3, previousDistance : 358.739
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1003,1614)
+getCurrentPosition : (236.179,509.337)
+ditance : 333.65, previousDistance : 346.3
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1031,1644)
+getCurrentPosition : (241.622,520.541)
+ditance : 321.218, previousDistance : 333.65
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1059,1674)
+getCurrentPosition : (247.024,531.764)
+ditance : 308.791, previousDistance : 321.218
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1087,1704)
+getCurrentPosition : (252.385,543.008)
+ditance : 296.37, previousDistance : 308.791
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (1114,1733)
+getCurrentPosition : (257.521,553.882)
+ditance : 284.384, previousDistance : 296.37
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (1143,1761)
+getCurrentPosition : (262.739,564.955)
+ditance : 272.189, previousDistance : 284.384
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (1173,1789)
+getCurrentPosition : (268.079,576.208)
+ditance : 259.78, previousDistance : 272.189
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1203,1817)
+getCurrentPosition : (273.461,587.442)
+ditance : 247.373, previousDistance : 259.78
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1233,1844)
+getCurrentPosition : (278.799,598.457)
+ditance : 235.179, previousDistance : 247.373
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1264,1873)
+getCurrentPosition : (284.472,610.027)
+ditance : 222.343, previousDistance : 235.179
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (1293,1901)
+getCurrentPosition : (289.892,621.003)
+ditance : 210.152, previousDistance : 222.343
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (1323,1931)
+getCurrentPosition : (295.607,632.552)
+ditance : 197.324, previousDistance : 210.152
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1351,1961)
+getCurrentPosition : (301.111,643.725)
+ditance : 184.934, previousDistance : 197.324
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1379,1992)
+getCurrentPosition : (306.658,655.117)
+ditance : 172.347, previousDistance : 184.934
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1406,2022)
+getCurrentPosition : (311.957,666.152)
+ditance : 160.208, previousDistance : 172.347
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1435,2052)
+getCurrentPosition : (317.4,677.594)
+ditance : 147.668, previousDistance : 160.208
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (1463,2080)
+getCurrentPosition : (322.556,688.46)
+ditance : 135.79, previousDistance : 147.668
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1493,2108)
+getCurrentPosition : (327.917,699.703)
+ditance : 123.513, previousDistance : 135.79
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1522,2137)
+getCurrentPosition : (333.298,710.936)
+ditance : 111.272, previousDistance : 123.513
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1551,2167)
+getCurrentPosition : (338.762,722.368)
+ditance : 98.8775, previousDistance : 111.272
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1580,2196)
+getCurrentPosition : (344.123,733.612)
+ditance : 86.7737, previousDistance : 98.8775
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1609,2227)
+getCurrentPosition : (349.647,745.253)
+ditance : 74.3818, previousDistance : 86.7737
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (1638,2257)
+getCurrentPosition : (355.048,756.715)
+ditance : 62.4042, previousDistance : 74.3818
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (1667,2289)
+getCurrentPosition : (360.589,768.586)
+ditance : 50.3995, previousDistance : 62.4042
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (1695,2319)
+getCurrentPosition : (365.805,779.896)
+ditance : 39.6664, previousDistance : 50.3995
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (1725,2347)
+getCurrentPosition : (371.022,791.207)
+ditance : 30.2826, previousDistance : 39.6664
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (1756,2372)
+getCurrentPosition : (376.138,802.091)
+ditance : 23.9531, previousDistance : 30.2826
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1788,2400)
+getCurrentPosition : (381.727,813.702)
+ditance : 22.8399, previousDistance : 23.9531
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (1819,2427)
+getCurrentPosition : (387.21,824.886)
+ditance : 27.9799, previousDistance : 22.8399
+setMotorsSpeed to driver : 0,0
+The robot depaced the point, ditance : 27.9799, previousDistance : 22.8399
+setMotorsSpeed to driver : 0,0
+Moving to (1000, 0)
+GO TO POSITION : 1000 , 0
+Counters : (1843,2450)
+getCurrentPosition : (391.696,833.928)
+Counters : (1854,2461)
+getOrientation : 1.10943
+setMotorsSpeed to driver : -15,15
+Counters : (1867,2473)
+getOrientation : 1.1076
+Counters : (1874,2479)
+getOrientation : 1.10577
+Counters : (1876,2481)
+getOrientation : 1.10577
+Counters : (1878,2483)
+getOrientation : 1.10577
+Counters : (1878,2484)
+getOrientation : 1.1076
+Counters : (1879,2484)
+getOrientation : 1.10577
+Counters : (1881,2484)
+getOrientation : 1.10212
+Counters : (1883,2484)
+getOrientation : 1.09846
+Counters : (1888,2483)
+getOrientation : 1.08749
+Counters : (1893,2479)
+getOrientation : 1.07105
+Counters : (1898,2474)
+getOrientation : 1.05277
+Counters : (1902,2468)
+getOrientation : 1.03449
+Counters : (1907,2461)
+getOrientation : 1.01256
+Counters : (1912,2453)
+getOrientation : 0.988798
+Counters : (1917,2445)
+getOrientation : 0.965037
+Counters : (1922,2437)
+getOrientation : 0.941277
+Counters : (1927,2430)
+getOrientation : 0.919344
+Counters : (1934,2423)
+getOrientation : 0.893756
+Counters : (1942,2416)
+getOrientation : 0.866341
+Counters : (1948,2412)
+getOrientation : 0.848063
+Counters : (1954,2408)
+getOrientation : 0.829786
+Counters : (1959,2403)
+getOrientation : 0.811509
+Counters : (1963,2397)
+getOrientation : 0.793232
+Counters : (1968,2391)
+getOrientation : 0.773127
+Counters : (1974,2386)
+getOrientation : 0.753022
+Counters : (1980,2380)
+getOrientation : 0.731089
+Counters : (1986,2373)
+getOrientation : 0.707329
+Counters : (1991,2367)
+getOrientation : 0.687224
+Counters : (1997,2362)
+getOrientation : 0.667119
+Counters : (2003,2356)
+getOrientation : 0.645186
+Counters : (2008,2350)
+getOrientation : 0.625081
+Counters : (2013,2345)
+getOrientation : 0.606804
+Counters : (2019,2339)
+getOrientation : 0.584871
+Counters : (2024,2333)
+getOrientation : 0.564766
+Counters : (2029,2327)
+getOrientation : 0.544661
+Counters : (2035,2322)
+getOrientation : 0.524556
+Counters : (2040,2316)
+getOrientation : 0.504452
+Counters : (2046,2311)
+getOrientation : 0.484347
+Counters : (2051,2305)
+getOrientation : 0.464242
+Counters : (2056,2300)
+getOrientation : 0.445964
+Counters : (2061,2295)
+getOrientation : 0.427687
+Counters : (2067,2290)
+getOrientation : 0.407582
+Counters : (2072,2284)
+getOrientation : 0.387477
+Counters : (2078,2279)
+getOrientation : 0.367372
+Counters : (2083,2273)
+getOrientation : 0.347267
+Counters : (2089,2267)
+getOrientation : 0.325335
+Counters : (2094,2261)
+getOrientation : 0.30523
+Counters : (2100,2256)
+getOrientation : 0.285125
+Counters : (2118,2238)
+getOrientation : 0.219327
+Counters : (2123,2233)
+getOrientation : 0.20105
+Counters : (2128,2227)
+getOrientation : 0.180945
+Counters : (2134,2222)
+getOrientation : 0.16084
+Counters : (2140,2216)
+getOrientation : 0.138907
+Counters : (2146,2210)
+getOrientation : 0.116974
+Counters : (2151,2205)
+getOrientation : 0.0986972
+Counters : (2157,2199)
+getOrientation : 0.0767646
+Counters : (2162,2194)
+getOrientation : 0.0584873
+Counters : (2168,2188)
+getOrientation : 0.0365547
+Counters : (2174,2182)
+getOrientation : 0.014622
+Counters : (2180,2176)
+getOrientation : 12.5591
+Counters : (2185,2171)
+getOrientation : 12.5408
+Counters : (2191,2165)
+getOrientation : 12.5189
+Counters : (2196,2160)
+getOrientation : 12.5006
+Counters : (2201,2154)
+getOrientation : 12.4805
+Counters : (2206,2149)
+getOrientation : 12.4622
+Counters : (2212,2143)
+getOrientation : 12.4403
+Counters : (2217,2138)
+getOrientation : 12.422
+Counters : (2222,2133)
+getOrientation : 12.4037
+Counters : (2228,2128)
+getOrientation : 12.3836
+Counters : (2233,2123)
+getOrientation : 12.3653
+Counters : (2239,2117)
+getOrientation : 12.3434
+Counters : (2244,2111)
+getOrientation : 12.3233
+Counters : (2250,2106)
+getOrientation : 12.3032
+Counters : (2255,2100)
+getOrientation : 12.2831
+Counters : (2261,2095)
+getOrientation : 12.263
+Counters : (2266,2089)
+getOrientation : 12.2429
+Counters : (2272,2083)
+getOrientation : 12.2209
+Counters : (2278,2077)
+getOrientation : 12.199
+Counters : (2284,2072)
+getOrientation : 12.1789
+Counters : (2289,2066)
+getOrientation : 12.1588
+Counters : (2295,2060)
+getOrientation : 12.1369
+Counters : (2300,2055)
+getOrientation : 12.1186
+Counters : (2306,2049)
+getOrientation : 12.0966
+Counters : (2312,2043)
+getOrientation : 12.0747
+Counters : (2317,2038)
+getOrientation : 12.0564
+Counters : (2322,2032)
+getOrientation : 12.0363
+Counters : (2328,2027)
+getOrientation : 12.0162
+Counters : (2333,2021)
+getOrientation : 11.9961
+Counters : (2339,2016)
+getOrientation : 11.976
+Counters : (2344,2010)
+getOrientation : 11.9559
+Counters : (2350,2005)
+getOrientation : 11.9358
+Counters : (2355,2000)
+getOrientation : 11.9175
+Counters : (2361,1994)
+getOrientation : 11.8956
+Counters : (2366,1989)
+getOrientation : 11.8773
+Counters : (2372,1983)
+getOrientation : 11.8554
+Counters : (2378,1977)
+getOrientation : 11.8334
+Counters : (2383,1971)
+getOrientation : 11.8133
+Counters : (2389,1966)
+getOrientation : 11.7932
+Counters : (2394,1960)
+getOrientation : 11.7731
+Counters : (2400,1955)
+getOrientation : 11.753
+Counters : (2405,1949)
+getOrientation : 11.7329
+Counters : (2411,1944)
+getOrientation : 11.7128
+Counters : (2416,1938)
+getOrientation : 11.6927
+Counters : (2421,1933)
+getOrientation : 11.6744
+Counters : (2427,1927)
+getOrientation : 11.6525
+setMotorsSpeed to driver : 0,0
+getInitialCountersDifference : 517
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (2448,1905)
+getCurrentPosition : (396.734,846.778)
+ditance : 1039.69, previousDistance : 1032.22
+getSpeedCorrection : 4
+setMotorsSpeed to driver : 49,41
+Counters : (2459,1897)
+getCurrentPosition : (397.077,846.232)
+ditance : 1039.05, previousDistance : 1039.69
+getSpeedCorrection : 5
+setMotorsSpeed to driver : 50,40
+Counters : (2480,1902)
+getCurrentPosition : (399.895,841.412)
+ditance : 1033.49, previousDistance : 1039.05
+getSpeedCorrection : 7
+setMotorsSpeed to driver : 50,38
+Counters : (2505,1909)
+getCurrentPosition : (403.177,835.374)
+ditance : 1026.67, previousDistance : 1033.49
+getSpeedCorrection : 9
+setMotorsSpeed to driver : 50,36
+Counters : (2529,1917)
+getCurrentPosition : (406.27,829.237)
+ditance : 1019.88, previousDistance : 1026.67
+getSpeedCorrection : 10
+setMotorsSpeed to driver : 50,35
+Counters : (2556,1927)
+getCurrentPosition : (409.631,822.037)
+ditance : 1012.07, previousDistance : 1019.88
+getSpeedCorrection : 12
+setMotorsSpeed to driver : 50,33
+Counters : (2583,1943)
+getCurrentPosition : (413.321,813.572)
+ditance : 1003.04, previousDistance : 1012.07
+getSpeedCorrection : 12
+setMotorsSpeed to driver : 50,33
+Counters : (2609,1970)
+getCurrentPosition : (417.774,803.097)
+ditance : 991.943, previousDistance : 1003.04
+getSpeedCorrection : 12
+setMotorsSpeed to driver : 50,33
+Counters : (2631,2003)
+getCurrentPosition : (422.514,792.278)
+ditance : 980.405, previousDistance : 991.943
+getSpeedCorrection : 10
+setMotorsSpeed to driver : 50,35
+Counters : (2644,2037)
+getCurrentPosition : (426.833,783.155)
+ditance : 970.491, previousDistance : 980.405
+getSpeedCorrection : 8
+setMotorsSpeed to driver : 50,37
+Counters : (2659,2074)
+getCurrentPosition : (432.005,773.257)
+ditance : 959.451, previousDistance : 970.491
+getSpeedCorrection : 6
+setMotorsSpeed to driver : 50,39
+Counters : (2675,2109)
+getCurrentPosition : (437.437,763.746)
+ditance : 948.571, previousDistance : 959.451
+getSpeedCorrection : 4
+setMotorsSpeed to driver : 49,41
+Counters : (2695,2144)
+getCurrentPosition : (443.61,753.677)
+ditance : 936.802, previousDistance : 948.571
+getSpeedCorrection : 3
+setMotorsSpeed to driver : 48,42
+Counters : (2716,2178)
+getCurrentPosition : (450.04,743.768)
+ditance : 925.012, previousDistance : 936.802
+getSpeedCorrection : 2
+setMotorsSpeed to driver : 47,43
+Counters : (2739,2213)
+getCurrentPosition : (457.057,733.477)
+ditance : 912.565, previousDistance : 925.012
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (2764,2247)
+getCurrentPosition : (464.395,723.147)
+ditance : 899.897, previousDistance : 912.565
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (2789,2279)
+getCurrentPosition : (471.629,713.272)
+ditance : 887.656, previousDistance : 899.897
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (2817,2310)
+getCurrentPosition : (479.21,703.12)
+ditance : 874.986, previousDistance : 887.656
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (2845,2339)
+getCurrentPosition : (486.57,693.338)
+ditance : 862.745, previousDistance : 874.986
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (2875,2367)
+getCurrentPosition : (494.05,683.378)
+ditance : 850.289, previousDistance : 862.745
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (2904,2396)
+getCurrentPosition : (501.511,673.405)
+ditance : 837.833, previousDistance : 850.289
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (2933,2423)
+getCurrentPosition : (508.698,663.762)
+ditance : 825.807, previousDistance : 837.833
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (2963,2450)
+getCurrentPosition : (515.968,653.913)
+ditance : 813.566, previousDistance : 825.807
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (2994,2476)
+getCurrentPosition : (523.166,644.012)
+ditance : 801.325, previousDistance : 813.566
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3023,2504)
+getCurrentPosition : (530.31,634.071)
+ditance : 789.085, previousDistance : 801.325
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3052,2531)
+getCurrentPosition : (537.301,624.286)
+ditance : 777.061, previousDistance : 789.085
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3081,2561)
+getCurrentPosition : (544.658,613.97)
+ditance : 764.392, previousDistance : 777.061
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3109,2590)
+getCurrentPosition : (551.783,604.016)
+ditance : 752.153, previousDistance : 764.392
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3138,2620)
+getCurrentPosition : (559.177,593.727)
+ditance : 739.484, previousDistance : 752.153
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3166,2648)
+getCurrentPosition : (566.204,583.967)
+ditance : 727.458, previousDistance : 739.484
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3194,2679)
+getCurrentPosition : (573.636,573.705)
+ditance : 714.789, previousDistance : 727.458
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3222,2708)
+getCurrentPosition : (580.852,563.816)
+ditance : 702.548, previousDistance : 714.789
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3250,2736)
+getCurrentPosition : (587.951,554.108)
+ditance : 690.522, previousDistance : 702.548
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3278,2764)
+getCurrentPosition : (595.049,544.4)
+ditance : 678.496, previousDistance : 690.522
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3308,2793)
+getCurrentPosition : (602.518,534.165)
+ditance : 665.826, previousDistance : 678.496
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3335,2820)
+getCurrentPosition : (609.346,524.791)
+ditance : 654.23, previousDistance : 665.826
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3364,2850)
+getCurrentPosition : (616.815,514.556)
+ditance : 641.56, previousDistance : 654.23
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3393,2879)
+getCurrentPosition : (624.167,504.501)
+ditance : 629.104, previousDistance : 641.56
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (3421,2909)
+getCurrentPosition : (631.537,494.46)
+ditance : 616.648, previousDistance : 629.104
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (3448,2939)
+getCurrentPosition : (638.825,484.625)
+ditance : 604.407, previousDistance : 616.648
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (3477,2967)
+getCurrentPosition : (646.132,474.803)
+ditance : 592.166, previousDistance : 604.407
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (3505,2995)
+getCurrentPosition : (653.301,465.147)
+ditance : 580.14, previousDistance : 592.166
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (3535,3022)
+getCurrentPosition : (660.571,455.299)
+ditance : 567.899, previousDistance : 580.14
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3564,3050)
+getCurrentPosition : (667.805,445.424)
+ditance : 555.658, previousDistance : 567.899
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3595,3078)
+getCurrentPosition : (675.256,435.175)
+ditance : 542.988, previousDistance : 555.658
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3624,3105)
+getCurrentPosition : (682.283,425.415)
+ditance : 530.964, previousDistance : 542.988
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3654,3134)
+getCurrentPosition : (689.658,415.112)
+ditance : 518.296, previousDistance : 530.964
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3682,3163)
+getCurrentPosition : (696.784,405.159)
+ditance : 506.057, previousDistance : 518.296
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3713,3194)
+getCurrentPosition : (704.544,394.339)
+ditance : 492.745, previousDistance : 506.057
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3741,3223)
+getCurrentPosition : (711.687,384.398)
+ditance : 480.506, previousDistance : 492.745
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3770,3252)
+getCurrentPosition : (718.966,374.29)
+ditance : 468.053, previousDistance : 480.506
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3799,3282)
+getCurrentPosition : (726.379,364.014)
+ditance : 455.385, previousDistance : 468.053
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3828,3310)
+getCurrentPosition : (733.54,354.087)
+ditance : 443.146, previousDistance : 455.385
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3857,3338)
+getCurrentPosition : (740.684,344.146)
+ditance : 430.908, previousDistance : 443.146
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3887,3367)
+getCurrentPosition : (748.059,333.843)
+ditance : 418.241, previousDistance : 430.908
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3914,3395)
+getCurrentPosition : (754.935,324.239)
+ditance : 406.433, previousDistance : 418.241
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3942,3425)
+getCurrentPosition : (762.213,314.131)
+ditance : 393.981, previousDistance : 406.433
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (3971,3455)
+getCurrentPosition : (769.645,303.868)
+ditance : 381.313, previousDistance : 393.981
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4000,3485)
+getCurrentPosition : (777.095,293.62)
+ditance : 368.645, previousDistance : 381.313
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4029,3514)
+getCurrentPosition : (784.429,283.551)
+ditance : 356.191, previousDistance : 368.645
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4056,3543)
+getCurrentPosition : (791.527,273.843)
+ditance : 344.167, previousDistance : 356.191
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4083,3572)
+getCurrentPosition : (798.661,264.161)
+ditance : 332.142, previousDistance : 344.167
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (4110,3602)
+getCurrentPosition : (805.967,254.339)
+ditance : 319.902, previousDistance : 332.142
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (4138,3631)
+getCurrentPosition : (813.309,244.544)
+ditance : 307.661, previousDistance : 319.902
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (4167,3658)
+getCurrentPosition : (820.513,234.915)
+ditance : 295.636, previousDistance : 307.661
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (4196,3686)
+getCurrentPosition : (827.819,225.093)
+ditance : 283.395, previousDistance : 295.636
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (4225,3714)
+getCurrentPosition : (835.107,215.258)
+ditance : 271.156, previousDistance : 283.395
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (4255,3743)
+getCurrentPosition : (842.633,205.064)
+ditance : 258.487, previousDistance : 271.156
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4285,3771)
+getCurrentPosition : (850.003,195.022)
+ditance : 246.034, previousDistance : 258.487
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4313,3798)
+getCurrentPosition : (856.966,185.481)
+ditance : 234.227, previousDistance : 246.034
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4341,3827)
+getCurrentPosition : (864.182,175.593)
+ditance : 221.99, previousDistance : 234.227
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4367,3855)
+getCurrentPosition : (871.044,166.244)
+ditance : 210.397, previousDistance : 221.99
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (4396,3885)
+getCurrentPosition : (878.569,156.05)
+ditance : 197.73, previousDistance : 210.397
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (4424,3913)
+getCurrentPosition : (885.721,146.381)
+ditance : 185.707, previousDistance : 197.73
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (4453,3942)
+getCurrentPosition : (893.128,136.367)
+ditance : 173.256, previousDistance : 185.707
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4484,3968)
+getCurrentPosition : (900.362,126.492)
+ditance : 161.022, previousDistance : 173.256
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4514,3995)
+getCurrentPosition : (907.523,116.564)
+ditance : 148.792, previousDistance : 161.022
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4544,4024)
+getCurrentPosition : (914.899,106.262)
+ditance : 136.139, previousDistance : 148.792
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4573,4054)
+getCurrentPosition : (922.274,95.9586)
+ditance : 123.488, previousDistance : 136.139
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4601,4083)
+getCurrentPosition : (929.418,86.018)
+ditance : 111.27, previousDistance : 123.488
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4633,4115)
+getCurrentPosition : (937.449,74.864)
+ditance : 97.5564, previousDistance : 111.27
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4661,4145)
+getCurrentPosition : (944.745,64.769)
+ditance : 85.1357, previousDistance : 97.5564
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4688,4174)
+getCurrentPosition : (951.826,55.0479)
+ditance : 73.1505, previousDistance : 85.1357
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4717,4203)
+getCurrentPosition : (959.178,44.993)
+ditance : 60.752, previousDistance : 73.1505
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4746,4230)
+getCurrentPosition : (966.258,35.2719)
+ditance : 48.8118, previousDistance : 60.752
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4774,4258)
+getCurrentPosition : (973.321,25.5378)
+ditance : 36.9315, previousDistance : 48.8118
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4802,4286)
+getCurrentPosition : (980.384,15.8038)
+ditance : 25.1902, previousDistance : 36.9315
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4831,4317)
+getCurrentPosition : (987.97,5.38835)
+ditance : 13.1812, previousDistance : 25.1902
+setMotorsSpeed to driver : 0,0
+Moving to (1500, 0)
+GO TO POSITION : 1500 , 0
+Counters : (4847,4335)
+getCurrentPosition : (992.291,-0.497996)
+Counters : (4858,4347)
+getOrientation : 11.6324
+setMotorsSpeed to driver : 15,-15
+Counters : (4872,4362)
+getOrientation : 11.6342
+Counters : (4878,4369)
+getOrientation : 11.6361
+Counters : (4883,4374)
+getOrientation : 11.6361
+Counters : (4886,4379)
+getOrientation : 11.6397
+Counters : (4888,4383)
+getOrientation : 11.6434
+Counters : (4890,4387)
+getOrientation : 11.647
+Counters : (4891,4390)
+getOrientation : 11.6507
+Counters : (4891,4392)
+getOrientation : 11.6543
+Counters : (4889,4393)
+getOrientation : 11.6598
+Counters : (4885,4395)
+getOrientation : 11.6708
+Counters : (4882,4399)
+getOrientation : 11.6836
+Counters : (4879,4403)
+getOrientation : 11.6964
+Counters : (4874,4407)
+getOrientation : 11.7128
+Counters : (4869,4411)
+getOrientation : 11.7293
+Counters : (4863,4415)
+getOrientation : 11.7476
+Counters : (4858,4420)
+getOrientation : 11.7658
+Counters : (4852,4425)
+getOrientation : 11.7859
+Counters : (4847,4430)
+getOrientation : 11.8042
+Counters : (4842,4436)
+getOrientation : 11.8243
+Counters : (4837,4441)
+getOrientation : 11.8426
+Counters : (4831,4447)
+getOrientation : 11.8645
+Counters : (4826,4452)
+getOrientation : 11.8828
+Counters : (4821,4458)
+getOrientation : 11.9029
+Counters : (4816,4464)
+getOrientation : 11.923
+Counters : (4811,4469)
+getOrientation : 11.9413
+Counters : (4805,4475)
+getOrientation : 11.9632
+Counters : (4800,4480)
+getOrientation : 11.9815
+Counters : (4794,4486)
+getOrientation : 12.0034
+Counters : (4789,4491)
+getOrientation : 12.0217
+Counters : (4783,4497)
+getOrientation : 12.0436
+Counters : (4778,4502)
+getOrientation : 12.0619
+Counters : (4773,4508)
+getOrientation : 12.082
+Counters : (4768,4514)
+getOrientation : 12.1021
+Counters : (4762,4519)
+getOrientation : 12.1222
+Counters : (4757,4525)
+getOrientation : 12.1423
+Counters : (4752,4530)
+getOrientation : 12.1606
+Counters : (4746,4536)
+getOrientation : 12.1826
+Counters : (4741,4542)
+getOrientation : 12.2027
+Counters : (4735,4547)
+getOrientation : 12.2228
+Counters : (4730,4553)
+getOrientation : 12.2429
+Counters : (4724,4558)
+getOrientation : 12.263
+Counters : (4719,4563)
+getOrientation : 12.2812
+Counters : (4714,4569)
+getOrientation : 12.3014
+Counters : (4709,4574)
+getOrientation : 12.3196
+Counters : (4704,4580)
+getOrientation : 12.3397
+Counters : (4700,4585)
+getOrientation : 12.3562
+Counters : (4694,4590)
+getOrientation : 12.3763
+Counters : (4689,4595)
+getOrientation : 12.3946
+Counters : (4684,4600)
+getOrientation : 12.4128
+Counters : (4679,4606)
+getOrientation : 12.433
+Counters : (4674,4612)
+getOrientation : 12.4531
+Counters : (4668,4617)
+getOrientation : 12.4732
+Counters : (4663,4622)
+getOrientation : 12.4914
+Counters : (4658,4628)
+getOrientation : 12.5115
+Counters : (4653,4633)
+getOrientation : 12.5298
+Counters : (4648,4639)
+getOrientation : 12.5499
+Counters : (4643,4644)
+getOrientation : 0.00183427
+setMotorsSpeed to driver : 0,0
+getInitialCountersDifference : -17
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (4623,4664)
+getCurrentPosition : (1006.33,-17.7062)
+ditance : 493.986, previousDistance : 507.709
+getSpeedCorrection : -3
+setMotorsSpeed to driver : 42,48
+Counters : (4619,4674)
+getCurrentPosition : (1007.61,-17.5933)
+ditance : 492.7, previousDistance : 493.986
+getSpeedCorrection : -4
+setMotorsSpeed to driver : 41,49
+Counters : (4637,4690)
+getCurrentPosition : (1014.88,-16.8737)
+ditance : 485.413, previousDistance : 492.7
+getSpeedCorrection : -3
+setMotorsSpeed to driver : 42,48
+Counters : (4657,4706)
+getCurrentPosition : (1022.58,-16.1541)
+ditance : 477.695, previousDistance : 485.413
+getSpeedCorrection : -3
+setMotorsSpeed to driver : 42,48
+Counters : (4674,4718)
+getCurrentPosition : (1028.78,-15.6253)
+ditance : 471.475, previousDistance : 477.695
+getSpeedCorrection : -2
+setMotorsSpeed to driver : 43,47
+Counters : (4705,4733)
+getCurrentPosition : (1038.64,-14.9757)
+ditance : 461.602, previousDistance : 471.475
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4740,4753)
+getCurrentPosition : (1050.44,-14.5332)
+ditance : 449.79, previousDistance : 461.602
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (4771,4777)
+getCurrentPosition : (1062.25,-14.3281)
+ditance : 437.98, previousDistance : 449.79
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (4805,4808)
+getCurrentPosition : (1076.21,-14.2132)
+ditance : 424.025, previousDistance : 437.98
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (4835,4839)
+getCurrentPosition : (1089.31,-14.1293)
+ditance : 410.93, previousDistance : 424.025
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (4861,4868)
+getCurrentPosition : (1101.12,-14.0105)
+ditance : 399.122, previousDistance : 410.93
+getSpeedCorrection : 1
+setMotorsSpeed to driver : 46,44
+Counters : (4885,4898)
+getCurrentPosition : (1112.72,-13.7984)
+ditance : 387.526, previousDistance : 399.122
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4911,4929)
+getCurrentPosition : (1124.96,-13.4516)
+ditance : 375.286, previousDistance : 387.526
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4938,4959)
+getCurrentPosition : (1137.19,-13.0153)
+ditance : 363.045, previousDistance : 375.286
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (4966,4989)
+getCurrentPosition : (1149.63,-12.5145)
+ditance : 350.589, previousDistance : 363.045
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (4995,5019)
+getCurrentPosition : (1162.29,-11.9704)
+ditance : 337.918, previousDistance : 350.589
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5022,5049)
+getCurrentPosition : (1174.52,-11.4)
+ditance : 325.678, previousDistance : 337.918
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5051,5078)
+getCurrentPosition : (1186.96,-10.7855)
+ditance : 313.223, previousDistance : 325.678
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5079,5108)
+getCurrentPosition : (1199.4,-10.1482)
+ditance : 300.769, previousDistance : 313.223
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5107,5138)
+getCurrentPosition : (1211.84,-9.46552)
+ditance : 288.316, previousDistance : 300.769
+getSpeedCorrection : -2
+setMotorsSpeed to driver : 43,47
+Counters : (5135,5167)
+getCurrentPosition : (1224.06,-8.76107)
+ditance : 276.079, previousDistance : 288.316
+getSpeedCorrection : -2
+setMotorsSpeed to driver : 43,47
+Counters : (5163,5195)
+getCurrentPosition : (1236.07,-8.058)
+ditance : 264.057, previousDistance : 276.079
+getSpeedCorrection : -2
+setMotorsSpeed to driver : 43,47
+Counters : (5192,5222)
+getCurrentPosition : (1248.07,-7.37688)
+ditance : 252.035, previousDistance : 264.057
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5223,5248)
+getCurrentPosition : (1260.3,-6.76179)
+ditance : 239.797, previousDistance : 252.035
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5253,5275)
+getCurrentPosition : (1272.53,-6.23609)
+ditance : 227.557, previousDistance : 239.797
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (5284,5303)
+getCurrentPosition : (1285.19,-5.76137)
+ditance : 214.887, previousDistance : 227.557
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (5313,5331)
+getCurrentPosition : (1297.42,-5.34746)
+ditance : 202.646, previousDistance : 214.887
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (5344,5362)
+getCurrentPosition : (1310.73,-4.90941)
+ditance : 189.332, previousDistance : 202.646
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (5372,5391)
+getCurrentPosition : (1322.97,-4.4955)
+ditance : 177.091, previousDistance : 189.332
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (5402,5423)
+getCurrentPosition : (1336.27,-4.0088)
+ditance : 163.777, previousDistance : 177.091
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5430,5454)
+getCurrentPosition : (1348.93,-3.48779)
+ditance : 151.108, previousDistance : 163.777
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5459,5483)
+getCurrentPosition : (1361.38,-2.9415)
+ditance : 138.655, previousDistance : 151.108
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5489,5511)
+getCurrentPosition : (1373.82,-2.41796)
+ditance : 126.202, previousDistance : 138.655
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (5520,5539)
+getCurrentPosition : (1386.48,-1.94324)
+ditance : 113.534, previousDistance : 126.202
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (5549,5567)
+getCurrentPosition : (1398.72,-1.52933)
+ditance : 101.295, previousDistance : 113.534
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (5579,5597)
+getCurrentPosition : (1411.6,-1.1054)
+ditance : 88.4116, previousDistance : 101.295
+getSpeedCorrection : 0
+setMotorsSpeed to driver : 45,45
+Counters : (5606,5627)
+getCurrentPosition : (1423.83,-0.669134)
+ditance : 76.1742, previousDistance : 88.4116
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5634,5657)
+getCurrentPosition : (1436.27,-0.168336)
+ditance : 63.7257, previousDistance : 76.1742
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5661,5687)
+getCurrentPosition : (1448.5,0.379711)
+ditance : 51.498, previousDistance : 63.7257
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5689,5717)
+getCurrentPosition : (1460.94,0.994224)
+ditance : 39.0684, previousDistance : 51.498
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5717,5747)
+getCurrentPosition : (1473.38,1.65421)
+ditance : 26.6687, previousDistance : 39.0684
+getSpeedCorrection : -1
+setMotorsSpeed to driver : 44,46
+Counters : (5746,5776)
+getCurrentPosition : (1485.82,2.33693)
+ditance : 14.3713, previousDistance : 26.6687
+setMotorsSpeed to driver : 0,0
+Rotating by 6.28 radians
+Rotate to 6.28 rad
+Counters : (5763,5793)
+getOrientation : 0.0548382
+setMotorsSpeed to driver : 15,-15
+Counters : (5780,5809)
+getOrientation : 0.0530105
+Counters : (5791,5818)
+getOrientation : 0.049355
+Counters : (5798,5825)
+getOrientation : 0.049355
+Counters : (5803,5829)
+getOrientation : 0.0475273
+Counters : (5806,5833)
+getOrientation : 0.049355
+Counters : (5809,5836)
+getOrientation : 0.049355
+Counters : (5811,5839)
+getOrientation : 0.0511828
+Counters : (5812,5841)
+getOrientation : 0.0530105
+Counters : (5812,5843)
+getOrientation : 0.0566659
+Counters : (5810,5844)
+getOrientation : 0.0621491
+Counters : (5808,5846)
+getOrientation : 0.06946
+Counters : (5805,5849)
+getOrientation : 0.0804263
+Counters : (5801,5853)
+getOrientation : 0.0950481
+Counters : (5797,5858)
+getOrientation : 0.111498
+Counters : (5793,5862)
+getOrientation : 0.126119
+Counters : (5787,5867)
+getOrientation : 0.146224
+Counters : (5782,5871)
+getOrientation : 0.162674
+Counters : (5776,5876)
+getOrientation : 0.182779
+Counters : (5770,5882)
+getOrientation : 0.204711
+Counters : (5765,5888)
+getOrientation : 0.224816
+Counters : (5760,5894)
+getOrientation : 0.244921
+Counters : (5755,5900)
+getOrientation : 0.265026
+Counters : (5750,5906)
+getOrientation : 0.285131
+Counters : (5745,5912)
+getOrientation : 0.305236
+Counters : (5741,5917)
+getOrientation : 0.321686
+Counters : (5736,5923)
+getOrientation : 0.341791
+Counters : (5731,5928)
+getOrientation : 0.360068
+Counters : (5726,5934)
+getOrientation : 0.380173
+Counters : (5720,5939)
+getOrientation : 0.400278
+Counters : (5714,5945)
+getOrientation : 0.42221
+Counters : (5708,5950)
+getOrientation : 0.442315
+Counters : (5703,5956)
+getOrientation : 0.46242
+Counters : (5697,5962)
+getOrientation : 0.484353
+Counters : (5692,5967)
+getOrientation : 0.50263
+Counters : (5687,5973)
+getOrientation : 0.522735
+Counters : (5682,5978)
+getOrientation : 0.541012
+Counters : (5678,5984)
+getOrientation : 0.55929
+Counters : (5673,5990)
+getOrientation : 0.579394
+Counters : (5668,5995)
+getOrientation : 0.597672
+Counters : (5663,6001)
+getOrientation : 0.617777
+Counters : (5658,6006)
+getOrientation : 0.636054
+Counters : (5653,6012)
+getOrientation : 0.656159
+Counters : (5648,6018)
+getOrientation : 0.676264
+Counters : (5643,6023)
+getOrientation : 0.694541
+Counters : (5639,6028)
+getOrientation : 0.71099
+Counters : (5634,6034)
+getOrientation : 0.731095
+Counters : (5630,6039)
+getOrientation : 0.747545
+Counters : (5625,6044)
+getOrientation : 0.765822
+Counters : (5619,6049)
+getOrientation : 0.785927
+Counters : (5614,6055)
+getOrientation : 0.806032
+Counters : (5609,6060)
+getOrientation : 0.824309
+Counters : (5604,6065)
+getOrientation : 0.842587
+Counters : (5599,6070)
+getOrientation : 0.860864
+Counters : (5595,6076)
+getOrientation : 0.879141
+Counters : (5590,6081)
+getOrientation : 0.897418
+Counters : (5585,6087)
+getOrientation : 0.917523
+Counters : (5580,6092)
+getOrientation : 0.9358
+Counters : (5575,6098)
+getOrientation : 0.955905
+Counters : (5570,6104)
+getOrientation : 0.97601
+Counters : (5565,6109)
+getOrientation : 0.994287
+Counters : (5560,6115)
+getOrientation : 1.01439
+Counters : (5555,6120)
+getOrientation : 1.03267
+Counters : (5550,6126)
+getOrientation : 1.05277
+Counters : (5545,6131)
+getOrientation : 1.07105
+Counters : (5540,6136)
+getOrientation : 1.08933
+Counters : (5535,6142)
+getOrientation : 1.10943
+Counters : (5530,6147)
+getOrientation : 1.12771
+Counters : (5525,6153)
+getOrientation : 1.14782
+Counters : (5520,6158)
+getOrientation : 1.16609
+Counters : (5514,6164)
+getOrientation : 1.18803
+Counters : (5509,6169)
+getOrientation : 1.2063
+Counters : (5504,6175)
+getOrientation : 1.22641
+Counters : (5499,6180)
+getOrientation : 1.24468
+Counters : (5495,6186)
+getOrientation : 1.26296
+Counters : (5489,6191)
+getOrientation : 1.28307
+Counters : (5484,6196)
+getOrientation : 1.30134
+Counters : (5479,6202)
+getOrientation : 1.32145
+Counters : (5474,6208)
+getOrientation : 1.34155
+Counters : (5469,6213)
+getOrientation : 1.35983
+Counters : (5464,6218)
+getOrientation : 1.37811
+Counters : (5459,6224)
+getOrientation : 1.39821
+Counters : (5454,6229)
+getOrientation : 1.41649
+Counters : (5449,6235)
+getOrientation : 1.43659
+Counters : (5443,6240)
+getOrientation : 1.4567
+Counters : (5438,6246)
+getOrientation : 1.4768
+Counters : (5433,6251)
+getOrientation : 1.49508
+Counters : (5428,6256)
+getOrientation : 1.51336
+Counters : (5422,6262)
+getOrientation : 1.53529
+Counters : (5417,6267)
+getOrientation : 1.55357
+Counters : (5412,6273)
+getOrientation : 1.57367
+Counters : (5407,6278)
+getOrientation : 1.59195
+Counters : (5402,6284)
+getOrientation : 1.61206
+Counters : (5397,6289)
+getOrientation : 1.63033
+Counters : (5392,6295)
+getOrientation : 1.65044
+Counters : (5387,6301)
+getOrientation : 1.67054
+Counters : (5382,6306)
+getOrientation : 1.68882
+Counters : (5376,6311)
+getOrientation : 1.70892
+Counters : (5371,6317)
+getOrientation : 1.72903
+Counters : (5367,6322)
+getOrientation : 1.74548
+Counters : (5362,6328)
+getOrientation : 1.76558
+Counters : (5357,6333)
+getOrientation : 1.78386
+Counters : (5352,6338)
+getOrientation : 1.80214
+Counters : (5347,6344)
+getOrientation : 1.82224
+Counters : (5342,6349)
+getOrientation : 1.84052
+Counters : (5336,6355)
+getOrientation : 1.86245
+Counters : (5331,6361)
+getOrientation : 1.88256
+Counters : (5326,6366)
+getOrientation : 1.90084
+Counters : (5321,6371)
+getOrientation : 1.91911
+Counters : (5315,6377)
+getOrientation : 1.94104
+Counters : (5311,6383)
+getOrientation : 1.95932
+Counters : (5305,6388)
+getOrientation : 1.97943
+Counters : (5300,6394)
+getOrientation : 1.99953
+Counters : (5295,6400)
+getOrientation : 2.01964
+Counters : (5289,6406)
+getOrientation : 2.04157
+Counters : (5284,6411)
+getOrientation : 2.05985
+Counters : (5278,6417)
+getOrientation : 2.08178
+Counters : (5273,6423)
+getOrientation : 2.10188
+Counters : (5268,6429)
+getOrientation : 2.12199
+Counters : (5262,6435)
+getOrientation : 2.14392
+Counters : (5257,6441)
+getOrientation : 2.16403
+Counters : (5251,6447)
+getOrientation : 2.18596
+Counters : (5246,6453)
+getOrientation : 2.20606
+Counters : (5240,6459)
+getOrientation : 2.228
+Counters : (5235,6465)
+getOrientation : 2.2481
+Counters : (5229,6470)
+getOrientation : 2.26821
+Counters : (5224,6476)
+getOrientation : 2.28831
+Counters : (5219,6482)
+getOrientation : 2.30842
+Counters : (5213,6488)
+getOrientation : 2.33035
+Counters : (5208,6494)
+getOrientation : 2.35045
+Counters : (5202,6500)
+getOrientation : 2.37239
+Counters : (5196,6506)
+getOrientation : 2.39432
+Counters : (5191,6511)
+getOrientation : 2.4126
+Counters : (5185,6517)
+getOrientation : 2.43453
+Counters : (5180,6523)
+getOrientation : 2.45463
+Counters : (5174,6528)
+getOrientation : 2.47474
+Counters : (5169,6534)
+getOrientation : 2.49484
+Counters : (5164,6540)
+getOrientation : 2.51495
+Counters : (5159,6545)
+getOrientation : 2.53323
+Counters : (5154,6551)
+getOrientation : 2.55333
+Counters : (5148,6556)
+getOrientation : 2.57343
+Counters : (5143,6562)
+getOrientation : 2.59354
+Counters : (5138,6567)
+getOrientation : 2.61182
+Counters : (5133,6573)
+getOrientation : 2.63192
+Counters : (5128,6578)
+getOrientation : 2.6502
+Counters : (5123,6584)
+getOrientation : 2.6703
+Counters : (5118,6589)
+getOrientation : 2.68858
+Counters : (5113,6595)
+getOrientation : 2.70869
+Counters : (5108,6601)
+getOrientation : 2.72879
+Counters : (5103,6606)
+getOrientation : 2.74707
+Counters : (5098,6612)
+getOrientation : 2.76717
+Counters : (5093,6617)
+getOrientation : 2.78545
+Counters : (5088,6622)
+getOrientation : 2.80373
+Counters : (5083,6628)
+getOrientation : 2.82383
+Counters : (5078,6634)
+getOrientation : 2.84394
+Counters : (5073,6639)
+getOrientation : 2.86221
+Counters : (5068,6645)
+getOrientation : 2.88232
+Counters : (5063,6650)
+getOrientation : 2.9006
+Counters : (5057,6656)
+getOrientation : 2.92253
+Counters : (5052,6661)
+getOrientation : 2.94081
+Counters : (5047,6667)
+getOrientation : 2.96091
+Counters : (5042,6673)
+getOrientation : 2.98102
+Counters : (5037,6678)
+getOrientation : 2.99929
+Counters : (5031,6684)
+getOrientation : 3.02123
+Counters : (5026,6690)
+getOrientation : 3.04133
+Counters : (5021,6695)
+getOrientation : 3.05961
+Counters : (5016,6701)
+getOrientation : 3.07971
+Counters : (5010,6706)
+getOrientation : 3.09982
+Counters : (5004,6712)
+getOrientation : 3.12175
+Counters : (4999,6717)
+getOrientation : 3.14003
+Counters : (4994,6723)
+getOrientation : 3.16013
+Counters : (4989,6728)
+getOrientation : 3.17841
+Counters : (4983,6734)
+getOrientation : 3.20034
+Counters : (4978,6740)
+getOrientation : 3.22045
+Counters : (4972,6746)
+getOrientation : 3.24238
+Counters : (4967,6751)
+getOrientation : 3.26066
+Counters : (4962,6757)
+getOrientation : 3.28076
+Counters : (4957,6762)
+getOrientation : 3.29904
+Counters : (4952,6768)
+getOrientation : 3.31914
+Counters : (4947,6773)
+getOrientation : 3.33742
+Counters : (4941,6779)
+getOrientation : 3.35935
+Counters : (4936,6784)
+getOrientation : 3.37763
+Counters : (4931,6790)
+getOrientation : 3.39774
+Counters : (4926,6795)
+getOrientation : 3.41601
+Counters : (4921,6801)
+getOrientation : 3.43612
+Counters : (4916,6806)
+getOrientation : 3.45439
+Counters : (4911,6812)
+getOrientation : 3.4745
+Counters : (4906,6817)
+getOrientation : 3.49278
+Counters : (4901,6822)
+getOrientation : 3.51105
+Counters : (4896,6828)
+getOrientation : 3.53116
+Counters : (4891,6834)
+getOrientation : 3.55126
+Counters : (4885,6839)
+getOrientation : 3.57137
+Counters : (4880,6844)
+getOrientation : 3.58965
+Counters : (4875,6849)
+getOrientation : 3.60792
+Counters : (4870,6855)
+getOrientation : 3.62803
+Counters : (4865,6860)
+getOrientation : 3.6463
+Counters : (4861,6865)
+getOrientation : 3.66275
+Counters : (4856,6870)
+getOrientation : 3.68103
+Counters : (4852,6875)
+getOrientation : 3.69748
+Counters : (4847,6880)
+getOrientation : 3.71576
+Counters : (4842,6885)
+getOrientation : 3.73404
+Counters : (4838,6891)
+getOrientation : 3.75231
+Counters : (4833,6896)
+getOrientation : 3.77059
+Counters : (4829,6901)
+getOrientation : 3.78704
+Counters : (4824,6905)
+getOrientation : 3.80349
+Counters : (4820,6910)
+getOrientation : 3.81994
+Counters : (4815,6916)
+getOrientation : 3.84004
+Counters : (4810,6921)
+getOrientation : 3.85832
+Counters : (4805,6926)
+getOrientation : 3.8766
+Counters : (4800,6932)
+getOrientation : 3.8967
+Counters : (4795,6937)
+getOrientation : 3.91498
+Counters : (4790,6942)
+getOrientation : 3.93326
+Counters : (4785,6948)
+getOrientation : 3.95336
+Counters : (4780,6953)
+getOrientation : 3.97164
+Counters : (4774,6959)
+getOrientation : 3.99357
+Counters : (4769,6964)
+getOrientation : 4.01185
+Counters : (4764,6969)
+getOrientation : 4.03013
+Counters : (4759,6975)
+getOrientation : 4.05023
+Counters : (4755,6980)
+getOrientation : 4.06668
+Counters : (4750,6986)
+getOrientation : 4.08678
+Counters : (4745,6991)
+getOrientation : 4.10506
+Counters : (4740,6997)
+getOrientation : 4.12517
+Counters : (4735,7002)
+getOrientation : 4.14344
+Counters : (4730,7007)
+getOrientation : 4.16172
+Counters : (4725,7012)
+getOrientation : 4.18
+Counters : (4720,7018)
+getOrientation : 4.2001
+Counters : (4715,7023)
+getOrientation : 4.21838
+Counters : (4710,7028)
+getOrientation : 4.23666
+Counters : (4705,7034)
+getOrientation : 4.25676
+Counters : (4701,7039)
+getOrientation : 4.27321
+Counters : (4696,7044)
+getOrientation : 4.29149
+Counters : (4691,7050)
+getOrientation : 4.31159
+Counters : (4685,7055)
+getOrientation : 4.3317
+Counters : (4680,7061)
+getOrientation : 4.3518
+Counters : (4675,7066)
+getOrientation : 4.37008
+Counters : (4670,7072)
+getOrientation : 4.39019
+Counters : (4665,7077)
+getOrientation : 4.40846
+Counters : (4660,7083)
+getOrientation : 4.42857
+Counters : (4654,7088)
+getOrientation : 4.44867
+Counters : (4649,7093)
+getOrientation : 4.46695
+Counters : (4644,7099)
+getOrientation : 4.48705
+Counters : (4639,7104)
+getOrientation : 4.50533
+Counters : (4635,7109)
+getOrientation : 4.52178
+Counters : (4630,7115)
+getOrientation : 4.54189
+Counters : (4625,7120)
+getOrientation : 4.56016
+Counters : (4620,7125)
+getOrientation : 4.57844
+Counters : (4615,7130)
+getOrientation : 4.59672
+Counters : (4610,7136)
+getOrientation : 4.61682
+Counters : (4605,7141)
+getOrientation : 4.6351
+Counters : (4600,7146)
+getOrientation : 4.65338
+Counters : (4595,7152)
+getOrientation : 4.67348
+Counters : (4590,7157)
+getOrientation : 4.69176
+Counters : (4585,7162)
+getOrientation : 4.71004
+Counters : (4580,7167)
+getOrientation : 4.72831
+Counters : (4575,7172)
+getOrientation : 4.74659
+Counters : (4571,7178)
+getOrientation : 4.76487
+Counters : (4566,7183)
+getOrientation : 4.78314
+Counters : (4561,7188)
+getOrientation : 4.80142
+Counters : (4556,7194)
+getOrientation : 4.82153
+Counters : (4551,7199)
+getOrientation : 4.8398
+Counters : (4546,7204)
+getOrientation : 4.85808
+Counters : (4542,7209)
+getOrientation : 4.87453
+Counters : (4538,7214)
+getOrientation : 4.89098
+Counters : (4533,7219)
+getOrientation : 4.90926
+Counters : (4529,7224)
+getOrientation : 4.92571
+Counters : (4524,7228)
+getOrientation : 4.94216
+Counters : (4519,7233)
+getOrientation : 4.96043
+Counters : (4515,7238)
+getOrientation : 4.97688
+Counters : (4510,7244)
+getOrientation : 4.99699
+Counters : (4505,7248)
+getOrientation : 5.01344
+Counters : (4500,7253)
+getOrientation : 5.03171
+Counters : (4495,7258)
+getOrientation : 5.04999
+Counters : (4491,7263)
+getOrientation : 5.06644
+Counters : (4486,7269)
+getOrientation : 5.08655
+Counters : (4481,7274)
+getOrientation : 5.10482
+Counters : (4475,7279)
+getOrientation : 5.12493
+Counters : (4471,7284)
+getOrientation : 5.14138
+Counters : (4465,7290)
+getOrientation : 5.16331
+Counters : (4460,7295)
+getOrientation : 5.18159
+Counters : (4455,7301)
+getOrientation : 5.20169
+Counters : (4450,7306)
+getOrientation : 5.21997
+Counters : (4445,7312)
+getOrientation : 5.24007
+Counters : (4441,7317)
+getOrientation : 5.25652
+Counters : (4436,7322)
+getOrientation : 5.2748
+Counters : (4431,7327)
+getOrientation : 5.29308
+Counters : (4426,7332)
+getOrientation : 5.31135
+Counters : (4421,7337)
+getOrientation : 5.32963
+Counters : (4415,7343)
+getOrientation : 5.35156
+Counters : (4411,7348)
+getOrientation : 5.36801
+Counters : (4406,7353)
+getOrientation : 5.38629
+Counters : (4401,7358)
+getOrientation : 5.40457
+Counters : (4397,7362)
+getOrientation : 5.41919
+Counters : (4393,7367)
+getOrientation : 5.43564
+Counters : (4387,7372)
+getOrientation : 5.45574
+Counters : (4383,7377)
+getOrientation : 5.47219
+Counters : (4378,7383)
+getOrientation : 5.4923
+Counters : (4373,7388)
+getOrientation : 5.51058
+Counters : (4368,7393)
+getOrientation : 5.52885
+Counters : (4363,7398)
+getOrientation : 5.54713
+Counters : (4358,7404)
+getOrientation : 5.56723
+Counters : (4353,7410)
+getOrientation : 5.58734
+Counters : (4349,7415)
+getOrientation : 5.60379
+Counters : (4344,7420)
+getOrientation : 5.62207
+Counters : (4339,7425)
+getOrientation : 5.64034
+Counters : (4335,7430)
+getOrientation : 5.65679
+Counters : (4330,7436)
+getOrientation : 5.6769
+Counters : (4325,7441)
+getOrientation : 5.69518
+Counters : (4320,7446)
+getOrientation : 5.71345
+Counters : (4315,7452)
+getOrientation : 5.73356
+Counters : (4310,7458)
+getOrientation : 5.75366
+Counters : (4305,7463)
+getOrientation : 5.77194
+Counters : (4301,7468)
+getOrientation : 5.78839
+Counters : (4296,7473)
+getOrientation : 5.80667
+Counters : (4291,7478)
+getOrientation : 5.82494
+Counters : (4285,7484)
+getOrientation : 5.84688
+Counters : (4280,7489)
+getOrientation : 5.86515
+Counters : (4276,7494)
+getOrientation : 5.8816
+Counters : (4271,7499)
+getOrientation : 5.89988
+Counters : (4266,7504)
+getOrientation : 5.91816
+Counters : (4261,7510)
+getOrientation : 5.93826
+Counters : (4257,7515)
+getOrientation : 5.95471
+Counters : (4252,7520)
+getOrientation : 5.97299
+Counters : (4248,7525)
+getOrientation : 5.98944
+Counters : (4243,7530)
+getOrientation : 6.00771
+Counters : (4238,7535)
+getOrientation : 6.02599
+Counters : (4233,7540)
+getOrientation : 6.04427
+Counters : (4229,7545)
+getOrientation : 6.06072
+Counters : (4224,7551)
+getOrientation : 6.08082
+Counters : (4219,7556)
+getOrientation : 6.0991
+Counters : (4213,7561)
+getOrientation : 6.11921
+Counters : (4209,7566)
+getOrientation : 6.13565
+Counters : (4204,7572)
+getOrientation : 6.15576
+Counters : (4199,7577)
+getOrientation : 6.17404
+Counters : (4194,7582)
+getOrientation : 6.19231
+Counters : (4189,7588)
+getOrientation : 6.21242
+Counters : (4183,7594)
+getOrientation : 6.23435
+Counters : (4178,7599)
+getOrientation : 6.25263
+setMotorsSpeed to driver : 0,0

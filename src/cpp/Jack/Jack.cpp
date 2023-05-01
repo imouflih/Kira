@@ -12,6 +12,6 @@ Jack::Jack() {
 }
 
 int Jack::isJackRemoved() {
-    std::cout << "Checking if Jack is removed" << std::endl;
+    // std::cout << "Checking if Jack is removed" << std::endl;
     return digitalRead(JACK_PIN);
 }

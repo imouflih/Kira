@@ -110,7 +110,7 @@ int main(int argc, char** argv) {
                 std::cout << "Invalid order: " << std::get<0>(order) << std::endl;
                 break;
             }
-            sleep(2);
+            // sleep(2);
         }
     }
     catch (const char* msg) {

@@ -1,7 +1,21 @@
 [
   {
     "order": "MOVE_TO",
+    "x": 400,
+    "y": 800
+  },
+  {
+    "order": "MOVE_TO",
     "x": 1000,
     "y": 0
+  },
+  {
+    "order": "MOVE_TO",
+    "x": 1500,
+    "y": 0
+  },
+  {
+    "order": "ROTATE",
+    "angle": 6.28
   }
 ]

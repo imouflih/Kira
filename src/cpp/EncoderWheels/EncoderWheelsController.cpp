@@ -1,7 +1,6 @@
 #include "EncoderWheelsController.hpp"
 #include <cmath>
 #include <iostream>
-#include <tuple>
 
 const unsigned short EncoderWheelsController::ENTRAXE = 235;
 const unsigned short EncoderWheelsController::DIAMETER = 35;
@@ -11,7 +10,6 @@ const float EncoderWheelsController::PROPORTIONAL_GAIN = .1f;
 EncoderWheelsController::EncoderWheelsController(Coordinates initialCoordinates):
     driver(EncoderWheelsDriver()),
     previousCounters(std::make_pair(0, 0)),
-    previousElapsedTime(0),
     coordinates(initialCoordinates) {}
 
 EncoderWheelsController::Coordinates::Coordinates(std::pair<float, float> position, float orientationAngle):
@@ -23,11 +21,9 @@ void EncoderWheelsController::initCounters() {
 }
 
 EncoderWheelsController::Coordinates EncoderWheelsController::updateAndGetCoordinates() {
-    std::pair<int, int> counters = std::make_pair(std::get<0>(this->driver.getCountersAndElapsedTime()), std::get<1>(this->driver.getCountersAndElapsedTime()));
-    long elapsedTime = std::get<2>(this->driver.getCountersAndElapsedTime());
+    std::pair<int, int> counters = this->driver.getCounters();
 
     std::cout << "Counters : (" << counters.first << "," << counters.second << ")" << std::endl;
-    std::cout << "Elapsed time : " << elapsedTime << std::endl;
 
     float distanceLeft = calculateWheelDistance(counters.first, this->previousCounters.first);
     float distanceRight = calculateWheelDistance(counters.second, this->previousCounters.second);
@@ -38,7 +34,6 @@ EncoderWheelsController::Coordinates EncoderWheelsController::updateAndGetCoordi
     updateCoordinates(distanceAverage, angle);
 
     this->previousCounters = counters;
-    this->previousElapsedTime = elapsedTime;
 
     return this->coordinates;
 }
@@ -73,12 +68,12 @@ float EncoderWheelsController::normalizeOrientationAngle(float angle) const {
 }
 
 int EncoderWheelsController::getCountersDifference() {
-    std::pair<int, int> counters = std::make_pair(std::get<0>(this->driver.getCountersAndElapsedTime()), std::get<1>(this->driver.getCountersAndElapsedTime()));
+    std::pair<int, int> counters = this->driver.getCounters();
     return counters.first - counters.second;
 }
 
 int EncoderWheelsController::computeWheelsCorrection(int differenceCounts) {
-    std::pair<int, int> counters = std::make_pair(std::get<0>(this->driver.getCountersAndElapsedTime()), std::get<1>(this->driver.getCountersAndElapsedTime()));
+    std::pair<int, int> counters = this->driver.getCounters();
 
     // Calculate the error between left and right encoder counts
     int error = counters.first - counters.second - differenceCounts;

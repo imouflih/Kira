@@ -2,12 +2,12 @@
 #include <cmath>
 #include <iostream>
 
-const int MotorsController::MAX_SPEED = 80;
+const int MotorsController::MAX_SPEED = 50;
 const int MotorsController::MIN_SPEED = 7;
-const int MotorsController::MOUVEMENT_SPEED = 30;
+const int MotorsController::MOUVEMENT_SPEED = 45;
 const int MotorsController::ROTATION_SPEED = 15;
-const float MotorsController::ROTATION_ANGLE_TOLERANCE = .03f;
-const int MotorsController::MOUVEMENT_TOLERANCE = 40;
+const float MotorsController::ROTATION_ANGLE_TOLERANCE = .02f;
+const int MotorsController::MOUVEMENT_TOLERANCE = 20;
 
 MotorsController::MotorsController(): driver(MotorsDriver()) {}
 
@@ -48,28 +48,6 @@ void MotorsController::rotate(float targetAngle, std::function<float()> getCurre
     this->setMotorsSpeed(0, 0); // Stop the robot
 }
 
-void MotorsController::rotateWithoutStopping(float targetAngle, std::function<float()> getCurrentAngle) {
-    std::cout << "rotateWithoutStopping has been called" << std::endl;
-    // Get the current angle of the robot
-    float currentAngle = getCurrentAngle();
-
-    // Rotate the robot, make sure that he always takes the shortest path
-    fabs(targetAngle - currentAngle) < 2 * M_PI ?
-        targetAngle > currentAngle ?
-        this->setMotorsSpeed(-ROTATION_SPEED, ROTATION_SPEED) :
-        this->setMotorsSpeed(ROTATION_SPEED, -ROTATION_SPEED) :
-        targetAngle > currentAngle ?
-        this->setMotorsSpeed(ROTATION_SPEED, -ROTATION_SPEED) :
-        this->setMotorsSpeed(-ROTATION_SPEED, ROTATION_SPEED);
-
-    // Continue adjusting the angle until it is within the specified tolerance
-    while (fmod(fabs(targetAngle - currentAngle), 4 * M_PI) > ROTATION_ANGLE_TOLERANCE) {
-
-        // Update the current angle of the robot
-        currentAngle = getCurrentAngle();
-    }
-}
-
 void MotorsController::goToPosition(
     std::pair<float, float> targetPosition,
     std::function<std::pair<float, float>()> getCurrentPosition,
@@ -78,7 +56,6 @@ void MotorsController::goToPosition(
     std::function<void()> doBeforeLinearMovement) {
 
     std::pair<float, float> currentPosition = getCurrentPosition();
-    float currentAngle = getCurrentAngle();
 
     // Calculate the distance between the current position and target position
     float dx = targetPosition.first - currentPosition.first;
@@ -88,7 +65,12 @@ void MotorsController::goToPosition(
     dTheta = fmod(dTheta, 4 * M_PI) < 0 ? fmod(dTheta, 4 * M_PI) + 4 * M_PI : fmod(dTheta, 4 * M_PI);
 
     this->rotate(dTheta, getCurrentAngle);
+
+    float previousDistance = distance;
+    int i = 0;
+
     doBeforeLinearMovement();
+
     // Move the robot forward towards the target position
     while (distance > MOUVEMENT_TOLERANCE) {
         int speedCorrection = getSpeedCorrection();
@@ -101,9 +83,15 @@ void MotorsController::goToPosition(
         dy = targetPosition.second - currentPosition.second;
         distance = sqrt(dx * dx + dy * dy);
 
-        if (fmod(fabs(dTheta - currentAngle), 4 * M_PI) > ROTATION_ANGLE_TOLERANCE) {
-            this->rotateWithoutStopping(dTheta, getCurrentAngle);
+        std::cout << "ditance : " << distance << ", previousDistance : " << previousDistance << std::endl;
+        if (distance > previousDistance && i > 0) {
+            this->setMotorsSpeed(0, 0);
+            std::cout << "The robot depaced the point, ditance : " << distance << ", previousDistance : " << previousDistance << std::endl;
+            break;
         }
+
+        previousDistance = distance;
+        i++;
     }
 
     this->setMotorsSpeed(0, 0);
