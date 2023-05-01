@@ -7,7 +7,7 @@ ToggleLED::ToggleLED() {
         std::cout << "Erreur d'initialisation de wiringPi!" << std::endl;
         exit(-1);
     }
-    pinMode(TOGGLE_LED_PIN, INPUT);
+    pinMode(TOGGLE_LED_PIN, OUTPUT);
 }
 
 void ToggleLED::TurnOn() {

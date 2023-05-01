@@ -2,11 +2,16 @@
 #include "../Commun/Logger/Logger.hpp"
 #include "Coordinates/CoordinatesReader.hpp"
 #include "Jack/Jack.hpp"
+#include "EmergencyButton/EmergencyButton.hpp"
+#include "ToggleLED/ToggleLED.hpp"
 #include <iostream>
 #include <unistd.h>
 #include <vector>
 #include <cstring>
 #include <cmath>
+#include <thread>
+#include <mutex>
+#include <chrono>
 
 const char* ARDUINO_BOARD = "arduino:avr:nano";
 const char* ARDUINO_PORT = "/dev/ttyUSB0";
@@ -19,6 +24,25 @@ enum Order {
     ROTATE,
     INVALID
 };
+
+void checkEmergencyButton(EmergencyButton& emergencyButton, Coordinator& coordinator, ToggleLED& toggleLED, std::mutex& mtx) {
+    while (true) {
+        // Use the isARUpressed function from the ARU class
+        if (emergencyButton.isEmergencyButtonPressed()) {
+            coordinator.stop();
+            toggleLED.TurnOff();
+            exit(0);
+        };
+
+        // Update the global emergency button state
+        std::unique_lock<std::mutex> lock(mtx);
+        lock.unlock();
+
+        // Sleep for a short duration to prevent excessive CPU usage
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+}
+
 
 Order stringToOrder(const std::string& order) {
     if (order == "MOVE_TO") {
@@ -55,9 +79,14 @@ int upload() {
 
 int main(int argc, char** argv) {
     Logger::getInstance();
+
     try {
         Coordinator coordinator = Coordinator();
         Jack jack = Jack();
+        EmergencyButton emergencyButton = EmergencyButton();
+        ToggleLED toggleLED = ToggleLED();
+        std::mutex mtx;
+        std::thread emergencyButtonThread(checkEmergencyButton, std::ref(emergencyButton), std::ref(coordinator), std::ref(toggleLED), std::ref(mtx));
 
         if (argc == 2) {
             if (strcmp(argv[1], "-u") == 0)
@@ -77,12 +106,13 @@ int main(int argc, char** argv) {
         coordinator.init();
 
         CoordinatesReader reader("./json/Coordinates.json");
-
         std::vector<std::tuple<std::string, int, int, double>> orders = reader.getCoordinates();
-        while (!jack.isJackRemoved()) {
-            printf("Waiting for jack to be removed!!\n");
-        }
-        sleep(1);
+
+        toggleLED.TurnOn();
+        std::cout << "Checking if the Jack is removed" << std::endl;
+        while (!jack.isJackRemoved()) {}
+        std::cout << "The Jack is removed, The Robot is going to start" << std::endl;
+        sleep(0.1);
         for (const auto& order : orders) {
             Order o = stringToOrder(std::get<0>(order));
             std::pair<int, int> targetPosition;
@@ -112,6 +142,7 @@ int main(int argc, char** argv) {
             }
             // sleep(2);
         }
+        toggleLED.TurnOff();
     }
     catch (const char* msg) {
         std::cerr << "Caught exception: " << msg << std::endl;
