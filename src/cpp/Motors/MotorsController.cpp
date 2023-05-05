@@ -1,15 +1,16 @@
 #include "MotorsController.hpp"
 #include <cmath>
 #include <iostream>
+#include <unistd.h>
 
-const int MotorsController::MAX_SPEED = 50;
+const int MotorsController::MAX_SPEED = 120;
 const int MotorsController::MIN_SPEED = 7;
-const int MotorsController::MOUVEMENT_SPEED = 45;
+const int MotorsController::MOUVEMENT_SPEED = 100;
 const int MotorsController::ROTATION_SPEED = 15;
 const float MotorsController::ROTATION_ANGLE_TOLERANCE = .02f;
 const int MotorsController::MOUVEMENT_TOLERANCE = 20;
 
-MotorsController::MotorsController(): driver(MotorsDriver()) {}
+MotorsController::MotorsController() : driver(MotorsDriver()) {}
 
 void MotorsController::setMotorsSpeed(int speedLeft, int speedRight) {
     // make sure speed doesn't exceed the max and min speed
@@ -29,20 +30,26 @@ void MotorsController::rotate(float targetAngle, std::function<float()> getCurre
     // Get the current angle of the robot
     float currentAngle = getCurrentAngle();
 
-    // Rotate the robot, make sure that he always takes the shortest path
-    fabs(targetAngle - currentAngle) < 2 * M_PI ?
-        targetAngle > currentAngle ?
-        this->setMotorsSpeed(-ROTATION_SPEED, ROTATION_SPEED) :
-        this->setMotorsSpeed(ROTATION_SPEED, -ROTATION_SPEED) :
-        targetAngle > currentAngle ?
-        this->setMotorsSpeed(ROTATION_SPEED, -ROTATION_SPEED) :
+    // Calculate the angle difference
+    float angleDifference = std::fmod(targetAngle - currentAngle + 8 * M_PI, 4 * M_PI);
+
+    // Check if the angle difference is within the tolerance
+    if (angleDifference < ROTATION_ANGLE_TOLERANCE || angleDifference >(4 * M_PI - ROTATION_ANGLE_TOLERANCE)) {
+        return;
+    }
+
+    // Rotate the robot, make sure that it always takes the shortest path
+    if (angleDifference < 2 * M_PI) {
         this->setMotorsSpeed(-ROTATION_SPEED, ROTATION_SPEED);
+    }
+    else {
+        this->setMotorsSpeed(ROTATION_SPEED, -ROTATION_SPEED);
+    }
 
     // Continue adjusting the angle until it is within the specified tolerance
-    while (fmod(fabs(targetAngle - currentAngle), 4 * M_PI) > ROTATION_ANGLE_TOLERANCE) {
-
-        // Update the current angle of the robot
+    while ((std::abs(std::fmod(targetAngle - currentAngle + 8 * M_PI, 4 * M_PI))) > ROTATION_ANGLE_TOLERANCE) {
         currentAngle = getCurrentAngle();
+        std::cout << "The error is : " << (std::abs(std::fmod(targetAngle - currentAngle + 8 * M_PI, 4 * M_PI))) << std::endl;
     }
 
     this->setMotorsSpeed(0, 0); // Stop the robot
@@ -68,13 +75,34 @@ void MotorsController::goToPosition(
 
     float previousDistance = distance;
     int i = 0;
-
+    sleep(0.3);
     doBeforeLinearMovement();
+
+    // Speed ramp-up variables
+    const int rampUpSteps = 10;
+    const int speedIncrement = MOUVEMENT_SPEED / rampUpSteps;
+    int currentSpeed = speedIncrement;
 
     // Move the robot forward towards the target position
     while (distance > MOUVEMENT_TOLERANCE) {
         int speedCorrection = getSpeedCorrection();
-        this->setMotorsSpeed(MOUVEMENT_SPEED - speedCorrection, MOUVEMENT_SPEED + speedCorrection);
+
+        // Ramp-up speed
+        if (i < 2 * rampUpSteps) {
+            this->setMotorsSpeed(currentSpeed - speedCorrection, currentSpeed + speedCorrection);
+            currentSpeed += speedIncrement / 2.5;
+        }
+        else if (distance < 300) {
+            this->setMotorsSpeed(currentSpeed - speedCorrection, currentSpeed + speedCorrection);
+            currentSpeed -= speedIncrement;
+            if (currentSpeed < 25) {
+                currentSpeed = 25;
+            }
+        }
+        else {
+            this->setMotorsSpeed(MOUVEMENT_SPEED - speedCorrection, MOUVEMENT_SPEED + speedCorrection);
+        }
+
         // Update the current position
         currentPosition = getCurrentPosition();
 
@@ -84,7 +112,7 @@ void MotorsController::goToPosition(
         distance = sqrt(dx * dx + dy * dy);
 
         std::cout << "ditance : " << distance << ", previousDistance : " << previousDistance << std::endl;
-        if (distance > previousDistance && i > 0) {
+        if (distance > previousDistance && i > 1) {
             this->setMotorsSpeed(0, 0);
             std::cout << "The robot depaced the point, ditance : " << distance << ", previousDistance : " << previousDistance << std::endl;
             break;
@@ -96,6 +124,7 @@ void MotorsController::goToPosition(
 
     this->setMotorsSpeed(0, 0);
 }
+
 
 void MotorsController::goForward(
     std::function<int()> getSpeedCorrection,

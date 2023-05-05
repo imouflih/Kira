@@ -10,7 +10,7 @@
 #include <cstring>
 #include <cmath>
 #include <thread>
-#include <mutex>
+#include <atomic>
 #include <chrono>
 
 const char* ARDUINO_BOARD = "arduino:avr:nano";
@@ -25,24 +25,20 @@ enum Order {
     INVALID
 };
 
-void checkEmergencyButton(EmergencyButton& emergencyButton, Coordinator& coordinator, ToggleLED& toggleLED, std::mutex& mtx) {
-    while (true) {
+void checkEmergencyButton(EmergencyButton& emergencyButton, Coordinator& coordinator, ToggleLED& toggleLED, std::atomic_bool& emergencyButtonPressed, std::atomic_bool& stopThread) {
+    while (!stopThread.load()) {
         // Use the isARUpressed function from the ARU class
         if (emergencyButton.isEmergencyButtonPressed()) {
-            coordinator.stop();
+            emergencyButtonPressed.store(true);
             toggleLED.TurnOff();
+            coordinator.stop();
             exit(0);
         };
-
-        // Update the global emergency button state
-        std::unique_lock<std::mutex> lock(mtx);
-        lock.unlock();
 
         // Sleep for a short duration to prevent excessive CPU usage
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
-
 
 Order stringToOrder(const std::string& order) {
     if (order == "MOVE_TO") {
@@ -79,14 +75,15 @@ int upload() {
 
 int main(int argc, char** argv) {
     Logger::getInstance();
+    std::atomic_bool stopThread(false);
 
     try {
         Coordinator coordinator = Coordinator();
         Jack jack = Jack();
         EmergencyButton emergencyButton = EmergencyButton();
         ToggleLED toggleLED = ToggleLED();
-        std::mutex mtx;
-        std::thread emergencyButtonThread(checkEmergencyButton, std::ref(emergencyButton), std::ref(coordinator), std::ref(toggleLED), std::ref(mtx));
+        std::atomic_bool emergencyButtonPressed(false);
+        std::thread emergencyButtonThread(checkEmergencyButton, std::ref(emergencyButton), std::ref(coordinator), std::ref(toggleLED), std::ref(emergencyButtonPressed), std::ref(stopThread));
 
         if (argc == 2) {
             if (strcmp(argv[1], "-u") == 0)
@@ -114,6 +111,9 @@ int main(int argc, char** argv) {
         std::cout << "The Jack is removed, The Robot is going to start" << std::endl;
         sleep(0.1);
         for (const auto& order : orders) {
+            if (emergencyButtonPressed.load()) {
+                break;
+            }
             Order o = stringToOrder(std::get<0>(order));
             std::pair<int, int> targetPosition;
             targetPosition.first = std::get<1>(order);
@@ -133,7 +133,7 @@ int main(int argc, char** argv) {
                 coordinator.goBackward();
                 break;
             case ROTATE:
-                std::cout << "Rotating by " << angle << " radians" << std::endl;
+                std::cout << "Rotating to " << angle << " radians" << std::endl;
                 coordinator.rotate(angle);
                 break;
             default:
@@ -143,6 +143,8 @@ int main(int argc, char** argv) {
             // sleep(2);
         }
         toggleLED.TurnOff();
+        stopThread.store(true);
+        emergencyButtonThread.join();
     }
     catch (const char* msg) {
         std::cerr << "Caught exception: " << msg << std::endl;
