@@ -8,7 +8,7 @@ const int MotorsController::MIN_SPEED = 7;
 const int MotorsController::MOUVEMENT_SPEED = 100;
 const int MotorsController::ROTATION_SPEED = 15;
 const float MotorsController::ROTATION_ANGLE_TOLERANCE = .02f;
-const int MotorsController::MOUVEMENT_TOLERANCE = 20;
+const int MotorsController::MOUVEMENT_TOLERANCE = 25;
 
 MotorsController::MotorsController() : driver(MotorsDriver()) {}
 
@@ -31,15 +31,15 @@ void MotorsController::rotate(float targetAngle, std::function<float()> getCurre
     float currentAngle = getCurrentAngle();
 
     // Calculate the angle difference
-    float angleDifference = std::fmod(targetAngle - currentAngle + 8 * M_PI, 4 * M_PI);
+    float angleDifference = std::fmod(targetAngle - currentAngle + 4 * M_PI, 2 * M_PI);
 
     // Check if the angle difference is within the tolerance
-    if (angleDifference < ROTATION_ANGLE_TOLERANCE || angleDifference >(4 * M_PI - ROTATION_ANGLE_TOLERANCE)) {
+    if (angleDifference < ROTATION_ANGLE_TOLERANCE || angleDifference >(2 * M_PI - ROTATION_ANGLE_TOLERANCE)) {
         return;
     }
 
     // Rotate the robot, make sure that it always takes the shortest path
-    if (angleDifference < 2 * M_PI) {
+    if (angleDifference < M_PI) {
         this->setMotorsSpeed(-ROTATION_SPEED, ROTATION_SPEED);
     }
     else {
@@ -47,9 +47,9 @@ void MotorsController::rotate(float targetAngle, std::function<float()> getCurre
     }
 
     // Continue adjusting the angle until it is within the specified tolerance
-    while ((std::abs(std::fmod(targetAngle - currentAngle + 8 * M_PI, 4 * M_PI))) > ROTATION_ANGLE_TOLERANCE) {
+    while ((std::abs(std::fmod(targetAngle - currentAngle + 4 * M_PI, 2 * M_PI))) > ROTATION_ANGLE_TOLERANCE) {
         currentAngle = getCurrentAngle();
-        std::cout << "The error is : " << (std::abs(std::fmod(targetAngle - currentAngle + 8 * M_PI, 4 * M_PI))) << std::endl;
+        std::cout << "The error is : " << (std::abs(std::fmod(targetAngle - currentAngle + 4 * M_PI, 2 * M_PI))) << std::endl;
     }
 
     this->setMotorsSpeed(0, 0); // Stop the robot

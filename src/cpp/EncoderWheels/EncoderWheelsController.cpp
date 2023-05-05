@@ -7,12 +7,12 @@ const unsigned short EncoderWheelsController::DIAMETER = 35;
 const unsigned short EncoderWheelsController::TICK_PER_TURN = 512;
 const float EncoderWheelsController::PROPORTIONAL_GAIN = .1f;
 
-EncoderWheelsController::EncoderWheelsController(Coordinates initialCoordinates):
+EncoderWheelsController::EncoderWheelsController(Coordinates initialCoordinates) :
     driver(EncoderWheelsDriver()),
     previousCounters(std::make_pair(0, 0)),
     coordinates(initialCoordinates) {}
 
-EncoderWheelsController::Coordinates::Coordinates(std::pair<float, float> position, float orientationAngle):
+EncoderWheelsController::Coordinates::Coordinates(std::pair<float, float> position, float orientationAngle) :
     position(position),
     orientationAngle(orientationAngle) {}
 
@@ -57,14 +57,14 @@ void EncoderWheelsController::updateCoordinates(float distanceAverage, float ang
 
     this->coordinates.position.first += delta_x;
     this->coordinates.position.second += delta_y;
-    this->coordinates.orientationAngle += delta_theta;
+    this->coordinates.orientationAngle += delta_theta / 2;
 
     this->coordinates.orientationAngle = normalizeOrientationAngle(this->coordinates.orientationAngle);
 }
 
 float EncoderWheelsController::normalizeOrientationAngle(float angle) const {
-    float normalizedAngle = fmod(angle, 4 * M_PI);
-    return (normalizedAngle < 0) ? (normalizedAngle + 4 * M_PI) : normalizedAngle;
+    float normalizedAngle = fmod(angle, 2 * M_PI);
+    return (normalizedAngle < 0) ? (normalizedAngle + 2 * M_PI) : normalizedAngle;
 }
 
 int EncoderWheelsController::getCountersDifference() {
