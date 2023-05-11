@@ -4,6 +4,7 @@
 #include "Jack/Jack.hpp"
 #include "EmergencyButton/EmergencyButton.hpp"
 #include "ToggleLED/ToggleLED.hpp"
+#include "Actuators/Actuators.hpp"
 #include <iostream>
 #include <unistd.h>
 #include <vector>
@@ -22,12 +23,16 @@ enum Order {
     FORWARD,
     BACKWARD,
     ROTATE,
+    TRANSLATOR,
+    ELEVATOR,
+    RIGHT_CLAMP,
+    LEFT_CLAMP,
     INVALID
 };
 
 void checkEmergencyButton(EmergencyButton& emergencyButton, Coordinator& coordinator, ToggleLED& toggleLED, std::atomic_bool& emergencyButtonPressed, std::atomic_bool& stopThread) {
     while (!stopThread.load()) {
-        // Use the isARUpressed function from the ARU class
+        // Use the isARUpressed function from the EmergencyButton class
         if (emergencyButton.isEmergencyButtonPressed()) {
             emergencyButtonPressed.store(true);
             toggleLED.TurnOff();
@@ -52,6 +57,18 @@ Order stringToOrder(const std::string& order) {
     }
     else if (order == "ROTATE") {
         return ROTATE;
+    }
+    else if (order == "TRANSLATOR") {
+        return TRANSLATOR;
+    }
+    else if (order == "ELEVATOR") {
+        return ELEVATOR;
+    }
+    else if (order == "RIGHT_CLAMP") {
+        return RIGHT_CLAMP;
+    }
+    else if (order == "LEFT_CLAMP") {
+        return LEFT_CLAMP;
     }
     else {
         return INVALID;
@@ -82,8 +99,15 @@ int main(int argc, char** argv) {
         Jack jack = Jack();
         EmergencyButton emergencyButton = EmergencyButton();
         ToggleLED toggleLED = ToggleLED();
+
         std::atomic_bool emergencyButtonPressed(false);
         std::thread emergencyButtonThread(checkEmergencyButton, std::ref(emergencyButton), std::ref(coordinator), std::ref(toggleLED), std::ref(emergencyButtonPressed), std::ref(stopThread));
+
+        // Define our actuators
+        Actuators leftClamp(1);
+        Actuators rightClamp(2);
+        Actuators translator(3);
+        Actuators elevator(4);
 
         if (argc == 2) {
             if (strcmp(argv[1], "-u") == 0)
@@ -100,16 +124,21 @@ int main(int argc, char** argv) {
             }
             return 0;
         }
+
         coordinator.init();
 
         CoordinatesReader reader("./json/Coordinates.json");
         std::vector<std::tuple<std::string, int, int, double>> orders = reader.getCoordinates();
 
+        // Turn on the toggle led and wait for jack to be re
         toggleLED.TurnOn();
         std::cout << "Checking if the Jack is removed" << std::endl;
-        while (!jack.isJackRemoved()) {}
+        while (!jack.isJackRemoved()) {
+            usleep(100'000);
+        }
         std::cout << "The Jack is removed, The Robot is going to start" << std::endl;
-        sleep(0.1);
+        usleep(100'000);
+
         for (const auto& order : orders) {
             if (emergencyButtonPressed.load()) {
                 break;
@@ -131,17 +160,35 @@ int main(int argc, char** argv) {
             case BACKWARD:
                 std::cout << "Moving backward" << std::endl;
                 coordinator.goBackward();
+                sleep(5);
+                coordinator.stop();
                 break;
             case ROTATE:
                 std::cout << "Rotating to " << angle << " radians" << std::endl;
                 coordinator.rotate(angle);
                 break;
+            case TRANSLATOR:
+                std::cout << "Action to do : Moving the Horizental Translator " << std::endl;
+                translator.setGoalPosition(angle);
+                break;
+            case ELEVATOR:
+                std::cout << "Action to do : Moving  the ELEVATOR " << angle << std::endl;
+                elevator.setGoalPosition(angle);
+                break;
+            case RIGHT_CLAMP:
+                std::cout << "Action to do : Moving the RIGHT_CLAMP " << std::endl;
+                rightClamp.setGoalPosition(angle);
+                break;
+            case LEFT_CLAMP:
+                std::cout << "Action to do : Moving the LEFT_CLAMP " << std::endl;
+                leftClamp.setGoalPosition(angle);
+                break;
             default:
                 std::cout << "Invalid order: " << std::get<0>(order) << std::endl;
                 break;
             }
-            // sleep(2);
         }
+
         toggleLED.TurnOff();
         stopThread.store(true);
         emergencyButtonThread.join();

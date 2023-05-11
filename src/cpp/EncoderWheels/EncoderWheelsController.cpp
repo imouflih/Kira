@@ -2,7 +2,7 @@
 #include <cmath>
 #include <iostream>
 
-const unsigned short EncoderWheelsController::ENTRAXE = 235;
+const unsigned short EncoderWheelsController::ENTRAXE = 280;
 const unsigned short EncoderWheelsController::DIAMETER = 35;
 const unsigned short EncoderWheelsController::TICK_PER_TURN = 512;
 const float EncoderWheelsController::PROPORTIONAL_GAIN = .1f;

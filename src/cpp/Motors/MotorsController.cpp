@@ -112,7 +112,7 @@ void MotorsController::goToPosition(
         distance = sqrt(dx * dx + dy * dy);
 
         std::cout << "ditance : " << distance << ", previousDistance : " << previousDistance << std::endl;
-        if (distance > previousDistance && i > 1) {
+        if (distance > previousDistance + 1 && i > 1) {
             this->setMotorsSpeed(0, 0);
             std::cout << "The robot depaced the point, ditance : " << distance << ", previousDistance : " << previousDistance << std::endl;
             break;
@@ -139,9 +139,10 @@ void MotorsController::goForward(
 void MotorsController::goBackward(
     std::function<int()> getSpeedCorrection,
     std::function<void()> doBeforeLinearMovement) {
-    doBeforeLinearMovement();
-    while (true) {
-        int speedCorrection = getSpeedCorrection();
-        this->setMotorsSpeed(-MOUVEMENT_SPEED - speedCorrection, -MOUVEMENT_SPEED + speedCorrection);
-    }
+    // doBeforeLinearMovement();
+    // while (true) {
+    //     int speedCorrection = getSpeedCorrection();
+    //     this->setMotorsSpeed(-MOUVEMENT_SPEED - speedCorrection, -MOUVEMENT_SPEED + speedCorrection);
+    // }
+    this->setMotorsSpeed(-35,-35);
 }

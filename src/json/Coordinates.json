@@ -1,26 +1,10 @@
 [
     {
-        "order": "MOVE_TO",
-        "x": 1500,
-        "y": 0
+        "order": "ELEVATOR",
+        "angle": 180
     },
     {
-        "order": "MOVE_TO",
-        "x": 1500,
-        "y": 1500
-    },
-    {
-        "order": "MOVE_TO",
-        "x": 0,
-        "y": 0
-    },
-    {
-        "order": "MOVE_TO",
-        "x": 0,
-        "y": 0
-    },
-    {
-        "order": "ROTATE",
-        "angle": 0
+        "order": "TRANSLATOR",
+        "angle": 875
     }
 ]

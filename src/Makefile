@@ -1,7 +1,7 @@
 # Compiler settings
 CXX = g++
 CXXFLAGS = -Wall -std=c++14 -fconcepts-ts
-LDFLAGS = -lwiringPi -lpthread
+LDFLAGS = -lwiringPi -lpthread -L/home/pi/Documents/DynamixelSDK/DynamixelSDK/c++/build/linux_sbc -ldxl_sbc_cpp
 
 # Directories
 SRCDIR = cpp
@@ -13,11 +13,12 @@ MOTORSDIR = $(SRCDIR)/Motors
 JACKDIR = $(SRCDIR)/Jack
 EMERGENCYBUTTONDIR = $(SRCDIR)/EmergencyButton
 TOGGLELEDDIR = $(SRCDIR)/ToggleLED
+ACTUATORSDIR = $(SRCDIR)/Actuators
 ENCODERWHEELSDIR = $(SRCDIR)/EncoderWheels
-INCLUDEDIRS = -I$(COMMUNDIR) -I$(MOTORSDIR) -I$(ENCODERWHEELSDIR) -I$(LOGGERDIR) -I$(COORDINATESDIR) -I$(JACKDIR) -I$(EMERGENCYBUTTONDIR) -I$(TOGGLELEDDIR)
+INCLUDEDIRS = -I$(COMMUNDIR) -I$(MOTORSDIR) -I$(ENCODERWHEELSDIR) -I$(LOGGERDIR) -I$(COORDINATESDIR) -I$(JACKDIR) -I$(EMERGENCYBUTTONDIR) -I$(TOGGLELEDDIR) -I$(ACTUATORSDIR)
 
 # Source and object files
-SRC = $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(COMMUNDIR)/*.cpp) $(wildcard $(MOTORSDIR)/*.cpp) $(wildcard $(ENCODERWHEELSDIR)/*.cpp) $(wildcard $(LOGGERDIR)/*.cpp) $(wildcard $(COORDINATESDIR)/*.cpp) $(wildcard $(JACKDIR)/*.cpp) $(wildcard $(EMERGENCYBUTTONDIR)/*.cpp) $(wildcard $(TOGGLELEDDIR)/*.cpp)
+SRC = $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(COMMUNDIR)/*.cpp) $(wildcard $(MOTORSDIR)/*.cpp) $(wildcard $(ENCODERWHEELSDIR)/*.cpp) $(wildcard $(LOGGERDIR)/*.cpp) $(wildcard $(COORDINATESDIR)/*.cpp) $(wildcard $(JACKDIR)/*.cpp) $(wildcard $(EMERGENCYBUTTONDIR)/*.cpp) $(wildcard $(TOGGLELEDDIR)/*.cpp) $(wildcard $(ACTUATORSDIR)/*.cpp)
 OBJ = $(SRC:.cpp=.o)
 LOGS = $(wildcard $(LOGSDIR)/*.log)
 
