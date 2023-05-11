@@ -1,0 +1,38 @@
+[
+    {
+        "order": "MOVE_TO",
+        "x": 3000,
+        "y": 0,
+        "angle": 0
+    },
+    {
+        "order": "BACKWARD \"",
+        "x": 3000,
+        "y": 0,
+        "angle": 0
+    },
+    {
+        "order": "MOVE_TO",
+        "x": 1000,
+        "y": -1000,
+        "angle": 0
+    },
+    {
+        "order": "MOVE_TO",
+        "x": 4400,
+        "y": -1000,
+        "angle": 0
+    },
+    {
+        "order": "BACKWARD",
+        "x": 0,
+        "y": 0,
+        "angle": 0
+    },
+    {
+        "order": "MOVE_TO",
+        "x": 0,
+        "y": 0,
+        "angle": 0
+    }
+]
