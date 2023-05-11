@@ -69,7 +69,7 @@ void MotorsController::goToPosition(
     float dy = targetPosition.second - currentPosition.second;
     float distance = sqrt(dx * dx + dy * dy);
     float dTheta = atan2(dy, dx);
-    dTheta = fmod(dTheta, 4 * M_PI) < 0 ? fmod(dTheta, 4 * M_PI) + 4 * M_PI : fmod(dTheta, 4 * M_PI);
+    dTheta = fmod(dTheta, 2 * M_PI) < 0 ? fmod(dTheta, 2 * M_PI) + 4 * M_PI : fmod(dTheta, 2 * M_PI);
 
     this->rotate(dTheta, getCurrentAngle);
 
@@ -125,6 +125,77 @@ void MotorsController::goToPosition(
     this->setMotorsSpeed(0, 0);
 }
 
+void MotorsController::goToPositionBackward(
+    std::pair<float, float> targetPosition,
+    std::function<std::pair<float, float>()> getCurrentPosition,
+    std::function<float()> getCurrentAngle,
+    std::function<int()> getSpeedCorrection,
+    std::function<void()> doBeforeLinearMovement) {
+
+    std::pair<float, float> currentPosition = getCurrentPosition();
+
+    // Calculate the distance between the current position and target position
+    float dx = targetPosition.first - currentPosition.first;
+    float dy = targetPosition.second - currentPosition.second;
+    float distance = sqrt(dx * dx + dy * dy);
+    float dTheta = atan2(dy, dx) + M_PI;
+    dTheta = fmod(dTheta, 2 * M_PI) < 0 ? fmod(dTheta, 2 * M_PI) + 2 * M_PI : fmod(dTheta, 2 * M_PI);
+
+    this->rotate(dTheta, getCurrentAngle);
+
+    float previousDistance = distance;
+    int i = 0;
+    sleep(0.3);
+    doBeforeLinearMovement();
+
+    // Speed ramp-up variables
+    const int rampUpSteps = 10;
+    const int speedIncrement = MOUVEMENT_SPEED / rampUpSteps;
+    int currentSpeed = speedIncrement;
+
+    // Move the robot backward towards the target position
+    while (distance > MOUVEMENT_TOLERANCE) {
+        int speedCorrection = getSpeedCorrection();
+
+        // Ramp-up speed
+        if (i < 2 * rampUpSteps) {
+            this->setMotorsSpeed(-currentSpeed - speedCorrection, -currentSpeed + speedCorrection);
+            currentSpeed += speedIncrement / 2.5;
+        }
+        else if (distance < 300) {
+            this->setMotorsSpeed(-currentSpeed - speedCorrection, -currentSpeed + speedCorrection);
+            currentSpeed -= speedIncrement;
+            if (currentSpeed < 25) {
+                currentSpeed = 25;
+            }
+        }
+        else {
+            this->setMotorsSpeed(-MOUVEMENT_SPEED - speedCorrection, -MOUVEMENT_SPEED + speedCorrection);
+        }
+
+        // Update the current position
+        currentPosition = getCurrentPosition();
+
+        // Calculate the new distance and angle to the target position
+        dx = targetPosition.first - currentPosition.first;
+        dy = targetPosition.second - currentPosition.second;
+        distance = sqrt(dx * dx + dy * dy);
+
+        std::cout << "distance : " << distance << ", previousDistance : " << previousDistance << std::endl;
+        if (distance > previousDistance + 1 && i > 1) {
+            this->setMotorsSpeed(0, 0);
+            std::cout << "The robot depaced the point, distance : " << distance << ", previousDistance : " << previousDistance << std::endl;
+            break;
+        }
+
+        previousDistance = distance;
+        i++;
+    }
+
+    this->setMotorsSpeed(0, 0);
+}
+
+
 
 void MotorsController::goForward(
     std::function<int()> getSpeedCorrection,
@@ -144,5 +215,5 @@ void MotorsController::goBackward(
     //     int speedCorrection = getSpeedCorrection();
     //     this->setMotorsSpeed(-MOUVEMENT_SPEED - speedCorrection, -MOUVEMENT_SPEED + speedCorrection);
     // }
-    this->setMotorsSpeed(-35,-35);
+    this->setMotorsSpeed(-35, -35);
 }

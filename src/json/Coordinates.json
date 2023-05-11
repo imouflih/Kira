@@ -4,7 +4,8 @@
         "angle": 180
     },
     {
-        "order": "TRANSLATOR",
-        "angle": 875
+        "order": "MOVE_TO_BACKWARD",
+        "x": -1500,
+        "y": 1500
     }
 ]

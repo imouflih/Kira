@@ -20,6 +20,7 @@ const char* ARDUINO_FILENAME = "./ino/ArduinoMotors.ino";
 
 enum Order {
     MOVE_TO,
+    MOVE_TO_BACKWARD,
     FORWARD,
     BACKWARD,
     ROTATE,
@@ -48,6 +49,9 @@ void checkEmergencyButton(EmergencyButton& emergencyButton, Coordinator& coordin
 Order stringToOrder(const std::string& order) {
     if (order == "MOVE_TO") {
         return MOVE_TO;
+    }
+    else if (order == "MOVE_TO_BACKWARD") {
+        return MOVE_TO_BACKWARD;
     }
     else if (order == "FORWARD") {
         return FORWARD;
@@ -152,6 +156,10 @@ int main(int argc, char** argv) {
             case MOVE_TO:
                 std::cout << "Moving to (" << targetPosition.first << ", " << targetPosition.second << ")" << std::endl;
                 coordinator.goToPosition(targetPosition);
+                break;
+            case MOVE_TO_BACKWARD:
+                std::cout << "Moving to (" << targetPosition.first << ", " << targetPosition.second << ")" << std::endl;
+                coordinator.goToPositionBackward(targetPosition);
                 break;
             case FORWARD:
                 std::cout << "Moving forward" << std::endl;

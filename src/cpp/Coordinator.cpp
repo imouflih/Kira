@@ -1,7 +1,7 @@
 #include "Coordinator.hpp"
 #include <iostream>
 
-Coordinator::Coordinator():
+Coordinator::Coordinator() :
     motorsController(MotorsController()),
     encoderWheelsController(EncoderWheelsController()),
     initialCountersDifference(0) {}
@@ -39,6 +39,22 @@ void Coordinator::goToPosition(std::pair<int, int> targetPosition) {
     auto lambdadoBeforeLinearMovement = [this]() { this->updateInitialCountersDifference(); };
 
     this->motorsController.goToPosition(
+        targetPosition,
+        lambdaGetCurrentPosition,
+        lambdaGetOrientation,
+        lambdaGetSpeedCorrection,
+        lambdadoBeforeLinearMovement);
+}
+
+void Coordinator::goToPositionBackward(std::pair<int, int> targetPosition) {
+
+    std::cout << "GO TO POSITION IN BACKWARD : " << targetPosition.first << " , " << targetPosition.second << std::endl;
+    auto lambdaGetCurrentPosition = [this]() { return this->getCurrentPosition(); };
+    auto lambdaGetOrientation = [this]() { return this->getOrientation(); };
+    auto lambdaGetSpeedCorrection = [this]() { return this->getSpeedCorrection(); };
+    auto lambdadoBeforeLinearMovement = [this]() { this->updateInitialCountersDifference(); };
+
+    this->motorsController.goToPositionBackward(
         targetPosition,
         lambdaGetCurrentPosition,
         lambdaGetOrientation,

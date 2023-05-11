@@ -5,6 +5,7 @@ class Coordinator {
 public:
     Coordinator();
     void goToPosition(std::pair<int, int> targetPosition);
+    void goToPositionBackward(std::pair<int, int> targetPosition);
     void init();
     void stop();
     void rotate(float targetAngle);
