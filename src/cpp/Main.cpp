@@ -163,13 +163,11 @@ int main(int argc, char** argv) {
                 break;
             case FORWARD:
                 std::cout << "Moving forward" << std::endl;
-                coordinator.goForward();
+                coordinator.goForward(angle);
                 break;
             case BACKWARD:
                 std::cout << "Moving backward" << std::endl;
-                coordinator.goBackward();
-                sleep(5);
-                coordinator.stop();
+                coordinator.goBackward(angle);
                 break;
             case ROTATE:
                 std::cout << "Rotating to " << angle << " radians" << std::endl;
@@ -178,6 +176,7 @@ int main(int argc, char** argv) {
             case TRANSLATOR:
                 std::cout << "Action to do : Moving the Horizental Translator " << std::endl;
                 translator.setGoalPosition(angle);
+                sleep(3);
                 break;
             case ELEVATOR:
                 std::cout << "Action to do : Moving  the ELEVATOR " << angle << std::endl;

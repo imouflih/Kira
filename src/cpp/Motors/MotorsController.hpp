@@ -20,10 +20,12 @@ public:
         std::function<void()> doBeforeLinearMovement);
     void goForward(
         std::function<int()> getSpeedCorrection,
-        std::function<void()> doBeforeLinearMovement);
+        std::function<void()> doBeforeLinearMovement,
+        int duration);
     void goBackward(
         std::function<int()> getSpeedCorrection,
-        std::function<void()> doBeforeLinearMovement);
+        std::function<void()> doBeforeLinearMovement,
+        int duration);
 
 private:
     static const int MAX_SPEED;

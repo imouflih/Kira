@@ -2,6 +2,7 @@
 #include <cmath>
 #include <iostream>
 #include <unistd.h>
+#include <chrono>
 
 const int MotorsController::MAX_SPEED = 120;
 const int MotorsController::MIN_SPEED = 7;
@@ -145,7 +146,7 @@ void MotorsController::goToPositionBackward(
 
     float previousDistance = distance;
     int i = 0;
-    sleep(0.3);
+    usleep(300000);
     doBeforeLinearMovement();
 
     // Speed ramp-up variables
@@ -199,21 +200,90 @@ void MotorsController::goToPositionBackward(
 
 void MotorsController::goForward(
     std::function<int()> getSpeedCorrection,
-    std::function<void()> doBeforeLinearMovement) {
+    std::function<void()> doBeforeLinearMovement,
+    int duration) {
+
     doBeforeLinearMovement();
+
+    // Speed ramp-up variables
+    const int rampUpSteps = 10;
+    const int speedIncrement = MOUVEMENT_SPEED / rampUpSteps;
+    int currentSpeed = speedIncrement;
+    int i = 0;
+
+    // get start time
+    auto start = std::chrono::system_clock::now();
+
     while (true) {
+        // get current time
+        auto now = std::chrono::system_clock::now();
+        // calculate elapsed time in seconds
+        auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(now - start).count();
+
+        // if elapsed time is greater than or equal to the desired duration, break the loop
+        if (elapsed >= duration) {
+            break;
+        }
+
         int speedCorrection = getSpeedCorrection();
         this->setMotorsSpeed(MOUVEMENT_SPEED - speedCorrection, MOUVEMENT_SPEED + speedCorrection);
+        // Ramp-up speed
+        if (i < 2 * rampUpSteps) {
+            this->setMotorsSpeed(currentSpeed - speedCorrection, currentSpeed + speedCorrection);
+            currentSpeed += speedIncrement / 3.5;
+        }
+        else {
+            this->setMotorsSpeed(MOUVEMENT_SPEED - speedCorrection, MOUVEMENT_SPEED + speedCorrection);
+        }
+
+        i++;
     }
+
+    // Stop the motors after moving forward for the specified duration
+    this->setMotorsSpeed(0, 0);
 }
 
 void MotorsController::goBackward(
     std::function<int()> getSpeedCorrection,
-    std::function<void()> doBeforeLinearMovement) {
-    // doBeforeLinearMovement();
-    // while (true) {
-    //     int speedCorrection = getSpeedCorrection();
-    //     this->setMotorsSpeed(-MOUVEMENT_SPEED - speedCorrection, -MOUVEMENT_SPEED + speedCorrection);
-    // }
-    this->setMotorsSpeed(-35, -35);
+    std::function<void()> doBeforeLinearMovement,
+    int duration) {
+
+    doBeforeLinearMovement();
+
+    // Speed ramp-up variables
+    const int rampUpSteps = 10;
+    const int speedIncrement = MOUVEMENT_SPEED / rampUpSteps;
+    int currentSpeed = speedIncrement;
+    int i = 0;
+
+    // get start time
+    auto start = std::chrono::system_clock::now();
+
+    while (true) {
+        // get current time
+        auto now = std::chrono::system_clock::now();
+        // calculate elapsed time in seconds
+        auto elapsed = std::chrono::duration_cast<std::chrono::seconds>(now - start).count();
+
+        // if elapsed time is greater than or equal to the desired duration, break the loop
+        if (elapsed >= duration) {
+            break;
+        }
+
+        int speedCorrection = getSpeedCorrection();
+        this->setMotorsSpeed(-MOUVEMENT_SPEED - speedCorrection, -MOUVEMENT_SPEED + speedCorrection);
+        // Ramp-up speed
+        if (i < 2 * rampUpSteps) {
+            this->setMotorsSpeed(-currentSpeed - speedCorrection, -currentSpeed + speedCorrection);
+            currentSpeed += speedIncrement / 3.5;
+        }
+        else {
+            this->setMotorsSpeed(-MOUVEMENT_SPEED - speedCorrection, -MOUVEMENT_SPEED + speedCorrection);
+        }
+
+        i++;
+    }
+
+    // Stop the motors after moving forward for the specified duration
+    this->setMotorsSpeed(0, 0);
 }

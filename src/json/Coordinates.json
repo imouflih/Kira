@@ -4,8 +4,11 @@
         "angle": 180
     },
     {
-        "order": "MOVE_TO_BACKWARD",
-        "x": -1500,
-        "y": 1500
+        "order": "BACKWARD",
+        "angle": 3
+    },
+    {
+        "order": "FORWARD",
+        "angle": 3
     }
 ]

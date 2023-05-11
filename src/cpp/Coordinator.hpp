@@ -9,8 +9,8 @@ public:
     void init();
     void stop();
     void rotate(float targetAngle);
-    void goForward();
-    void goBackward();
+    void goForward(int duration);
+    void goBackward(int duration);
 
 private:
     MotorsController motorsController;
