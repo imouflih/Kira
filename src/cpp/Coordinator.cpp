@@ -1,6 +1,8 @@
 #include "Coordinator.hpp"
 #include <iostream>
 
+const int Coordinator::MOUVEMENT_SPEED = 100;
+
 Coordinator::Coordinator() :
     motorsController(MotorsController()),
     encoderWheelsController(EncoderWheelsController()),
@@ -30,7 +32,7 @@ void Coordinator::updateInitialCountersDifference() {
     std::cout << "getInitialCountersDifference : " << initialCountersDifference << std::endl;
 }
 
-void Coordinator::goToPosition(std::pair<int, int> targetPosition) {
+void Coordinator::goToPosition(std::pair<int, int> targetPosition, int mouvementSpeed) {
 
     std::cout << "GO TO POSITION : " << targetPosition.first << " , " << targetPosition.second << std::endl;
     auto lambdaGetCurrentPosition = [this]() { return this->getCurrentPosition(); };
@@ -43,10 +45,11 @@ void Coordinator::goToPosition(std::pair<int, int> targetPosition) {
         lambdaGetCurrentPosition,
         lambdaGetOrientation,
         lambdaGetSpeedCorrection,
-        lambdadoBeforeLinearMovement);
+        lambdadoBeforeLinearMovement,
+        mouvementSpeed);
 }
 
-void Coordinator::goToPositionBackward(std::pair<int, int> targetPosition) {
+void Coordinator::goToPositionBackward(std::pair<int, int> targetPosition, int mouvementSpeed) {
 
     std::cout << "GO TO POSITION IN BACKWARD : " << targetPosition.first << " , " << targetPosition.second << std::endl;
     auto lambdaGetCurrentPosition = [this]() { return this->getCurrentPosition(); };
@@ -59,7 +62,8 @@ void Coordinator::goToPositionBackward(std::pair<int, int> targetPosition) {
         lambdaGetCurrentPosition,
         lambdaGetOrientation,
         lambdaGetSpeedCorrection,
-        lambdadoBeforeLinearMovement);
+        lambdadoBeforeLinearMovement,
+        mouvementSpeed);
 }
 
 void Coordinator::init() {

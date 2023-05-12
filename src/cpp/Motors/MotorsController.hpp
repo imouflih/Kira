@@ -11,13 +11,15 @@ public:
         std::function<std::pair<float, float>()> getCurrentPosition,
         std::function<float()> getCurrentAngle,
         std::function<int()> getSpeedCorrection,
-        std::function<void()> doBeforeLinearMovement);
+        std::function<void()> doBeforeLinearMovement,
+        int mouvementSpeed);
     void goToPositionBackward(
         std::pair<float, float> targetPosition,
         std::function<std::pair<float, float>()> getCurrentPosition,
         std::function<float()> getCurrentAngle,
         std::function<int()> getSpeedCorrection,
-        std::function<void()> doBeforeLinearMovement);
+        std::function<void()> doBeforeLinearMovement,
+        int mouvementSpeed);
     void goForward(
         std::function<int()> getSpeedCorrection,
         std::function<void()> doBeforeLinearMovement,

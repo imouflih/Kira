@@ -61,7 +61,8 @@ void MotorsController::goToPosition(
     std::function<std::pair<float, float>()> getCurrentPosition,
     std::function<float()> getCurrentAngle,
     std::function<int()> getSpeedCorrection,
-    std::function<void()> doBeforeLinearMovement) {
+    std::function<void()> doBeforeLinearMovement,
+    int mouvementSpeed) {
 
     std::pair<float, float> currentPosition = getCurrentPosition();
 
@@ -81,7 +82,7 @@ void MotorsController::goToPosition(
 
     // Speed ramp-up variables
     const int rampUpSteps = 10;
-    const int speedIncrement = MOUVEMENT_SPEED / rampUpSteps;
+    const int speedIncrement = mouvementSpeed / rampUpSteps;
     int currentSpeed = speedIncrement;
 
     // Move the robot forward towards the target position
@@ -91,7 +92,7 @@ void MotorsController::goToPosition(
         // Ramp-up speed
         if (i < 2 * rampUpSteps) {
             this->setMotorsSpeed(currentSpeed - speedCorrection, currentSpeed + speedCorrection);
-            currentSpeed += speedIncrement / 2.5;
+            currentSpeed += speedIncrement / 3.5;
         }
         else if (distance < 300) {
             this->setMotorsSpeed(currentSpeed - speedCorrection, currentSpeed + speedCorrection);
@@ -101,7 +102,7 @@ void MotorsController::goToPosition(
             }
         }
         else {
-            this->setMotorsSpeed(MOUVEMENT_SPEED - speedCorrection, MOUVEMENT_SPEED + speedCorrection);
+            this->setMotorsSpeed(mouvementSpeed - speedCorrection, mouvementSpeed + speedCorrection);
         }
 
         // Update the current position
@@ -131,7 +132,8 @@ void MotorsController::goToPositionBackward(
     std::function<std::pair<float, float>()> getCurrentPosition,
     std::function<float()> getCurrentAngle,
     std::function<int()> getSpeedCorrection,
-    std::function<void()> doBeforeLinearMovement) {
+    std::function<void()> doBeforeLinearMovement,
+    int mouvementSpeed) {
 
     std::pair<float, float> currentPosition = getCurrentPosition();
 
@@ -151,7 +153,7 @@ void MotorsController::goToPositionBackward(
 
     // Speed ramp-up variables
     const int rampUpSteps = 10;
-    const int speedIncrement = MOUVEMENT_SPEED / rampUpSteps;
+    const int speedIncrement = mouvementSpeed / rampUpSteps;
     int currentSpeed = speedIncrement;
 
     // Move the robot backward towards the target position
@@ -161,7 +163,7 @@ void MotorsController::goToPositionBackward(
         // Ramp-up speed
         if (i < 2 * rampUpSteps) {
             this->setMotorsSpeed(-currentSpeed - speedCorrection, -currentSpeed + speedCorrection);
-            currentSpeed += speedIncrement / 2.5;
+            currentSpeed += speedIncrement / 3.5;
         }
         else if (distance < 300) {
             this->setMotorsSpeed(-currentSpeed - speedCorrection, -currentSpeed + speedCorrection);
@@ -171,7 +173,7 @@ void MotorsController::goToPositionBackward(
             }
         }
         else {
-            this->setMotorsSpeed(-MOUVEMENT_SPEED - speedCorrection, -MOUVEMENT_SPEED + speedCorrection);
+            this->setMotorsSpeed(-mouvementSpeed - speedCorrection, -mouvementSpeed + speedCorrection);
         }
 
         // Update the current position
