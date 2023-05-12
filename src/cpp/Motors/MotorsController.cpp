@@ -77,6 +77,7 @@ void MotorsController::goToPosition(
 
     float previousDistance = distance;
     int i = 0;
+    int j = 0;
     sleep(0.3);
     doBeforeLinearMovement();
 
@@ -97,8 +98,8 @@ void MotorsController::goToPosition(
         else if (distance < 300) {
             this->setMotorsSpeed(currentSpeed - speedCorrection, currentSpeed + speedCorrection);
             currentSpeed -= speedIncrement;
-            if (currentSpeed < 25) {
-                currentSpeed = 25;
+            if (currentSpeed < 35) {
+                currentSpeed = 35;
             }
         }
         else {
@@ -113,15 +114,28 @@ void MotorsController::goToPosition(
         dy = targetPosition.second - currentPosition.second;
         distance = sqrt(dx * dx + dy * dy);
 
-        std::cout << "ditance : " << distance << ", previousDistance : " << previousDistance << std::endl;
+        std::cout << "distance : " << distance << ", previousDistance : " << previousDistance << std::endl;
         if (distance > previousDistance + 1 && i > 1) {
             this->setMotorsSpeed(0, 0);
-            std::cout << "The robot depaced the point, ditance : " << distance << ", previousDistance : " << previousDistance << std::endl;
+            std::cout << "The robot depaced the point, distance : " << distance << ", previousDistance : " << previousDistance << std::endl;
             break;
         }
 
         previousDistance = distance;
         i++;
+        j++;
+
+        float currentAngle = getCurrentAngle();
+        float diff = std::fmod((currentAngle - dTheta + 3 * M_PI), (2 * M_PI)) - M_PI;
+
+        if (((diff > 1) || (diff < -1)) && j > 30) {
+            this->setMotorsSpeed(0, 0);
+            usleep(500000);
+            std::cout << "The robot went out of his trajectory" << std::endl;
+            this->rotate(dTheta, getCurrentAngle);
+            usleep(100000);
+            doBeforeLinearMovement();
+        }
     }
 
     this->setMotorsSpeed(0, 0);
@@ -148,6 +162,7 @@ void MotorsController::goToPositionBackward(
 
     float previousDistance = distance;
     int i = 0;
+    int j = 0;
     usleep(300000);
     doBeforeLinearMovement();
 
@@ -193,6 +208,19 @@ void MotorsController::goToPositionBackward(
 
         previousDistance = distance;
         i++;
+        j++;
+
+        float currentAngle = getCurrentAngle();
+        float diff = std::fmod((currentAngle - dTheta + 3 * M_PI), (2 * M_PI)) - M_PI;
+
+        if (((diff > 1) || (diff < -1)) && j > 30) {
+            this->setMotorsSpeed(0, 0);
+            usleep(500000);
+            std::cout << "The robot went out of his trajectory" << std::endl;
+            this->rotate(dTheta + M_PI, getCurrentAngle);
+            usleep(100000);
+            doBeforeLinearMovement();
+        }
     }
 
     this->setMotorsSpeed(0, 0);
