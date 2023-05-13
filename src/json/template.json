@@ -1,0 +1,57 @@
+[
+    {
+        "order": "",
+        "x": 0,
+        "y": 0,
+        "angle": 0.0,
+        "time": 0,
+        "actuatorPosition": 0,
+        "mouvementSpeed": 0
+    },
+    {
+        "order": "RIGHT_CLAMP",
+        "actuatorPosition": 0
+    },
+    {
+        "order": "LEFT_CLAMP",
+        "actuatorPosition": 0
+    },
+    {
+        "order": "TRANSLATOR",
+        "actuatorPosition": 0
+    },
+    {
+        "order": "MOVE_TO",
+        "x": 0,
+        "y": 0
+    },
+    {
+        "order": "MOVE_TO_BACKWARD",
+        "x": 0,
+        "y": 0
+    },
+    {
+        "order": "MOVE_TO_AND_MODIFY_SPEED",
+        "x": 0,
+        "y": 0,
+        "mouvementSpeed": 0
+    },
+    {
+        "order": "MOVE_TO_BACKWARD_AND_MODIFY_SPEED",
+        "x": 0,
+        "y": 0,
+        "mouvementSpeed": 0
+    },
+    {
+        "order": "FORWARD",
+        "time": 0
+    },
+    {
+        "order": "BACKWARD",
+        "time": 0
+    },
+    {
+        "order": "ROTATE",
+        "angle": 0.0
+    }
+]

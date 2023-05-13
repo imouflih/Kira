@@ -1,14 +1,12 @@
 [
     {
         "order": "ELEVATOR",
-        "angle": 180
+        "actuatorPosition": 180
     },
     {
-        "order": "BACKWARD",
-        "angle": 3
-    },
-    {
-        "order": "FORWARD",
-        "angle": 3
+        "order": "MOVE_TO_AND_MODIFY_SPEED",
+        "x": -1000,
+        "y": 0,
+        "mouvementSpeed": 55
     }
 ]
