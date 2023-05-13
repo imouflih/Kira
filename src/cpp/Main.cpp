@@ -21,6 +21,8 @@ const char* ARDUINO_FILENAME = "./ino/ArduinoMotors.ino";
 enum Order {
     MOVE_TO,
     MOVE_TO_BACKWARD,
+    MOVE_TO_AND_MODIFY_SPEED,
+    MOVE_TO_BACKWARD_AND_MODIFY_SPEED,
     FORWARD,
     BACKWARD,
     ROTATE,
@@ -52,6 +54,12 @@ Order stringToOrder(const std::string& order) {
     }
     else if (order == "MOVE_TO_BACKWARD") {
         return MOVE_TO_BACKWARD;
+    }
+    else if (order == "MOVE_TO_AND_MODIFY_SPEED") {
+        return MOVE_TO_AND_MODIFY_SPEED;
+    }
+    else if (order == "MOVE_TO_BACKWARD_AND_MODIFY_SPEED") {
+        return MOVE_TO_BACKWARD_AND_MODIFY_SPEED;
     }
     else if (order == "FORWARD") {
         return FORWARD;
@@ -133,7 +141,7 @@ int main(int argc, char** argv) {
         coordinator.init();
 
         CoordinatesReader reader("./json/Coordinates.json");
-        std::vector<std::tuple<std::string, int, int, double>> orders = reader.getCoordinates();
+        std::vector<std::tuple<std::string, int, int, float, int, int, int>> orders = reader.getCoordinates();
 
         // Turn on the toggle led and wait for jack to be re
         toggleLED.TurnOn();
@@ -152,7 +160,10 @@ int main(int argc, char** argv) {
             std::pair<int, int> targetPosition;
             targetPosition.first = std::get<1>(order);
             targetPosition.second = std::get<2>(order);
-            double angle = std::get<3>(order);
+            float angle = std::get<3>(order);
+            int time = std::get<4>(order);
+            int actuatorPosition = std::get<5>(order);
+            int mouvementSpeed = std::get<6>(order);
             switch (o) {
             case MOVE_TO:
                 std::cout << "Moving to (" << targetPosition.first << ", " << targetPosition.second << ")" << std::endl;
@@ -162,13 +173,23 @@ int main(int argc, char** argv) {
                 std::cout << "Moving to (" << targetPosition.first << ", " << targetPosition.second << ")" << std::endl;
                 coordinator.goToPositionBackward(targetPosition);
                 break;
+            case MOVE_TO_AND_MODIFY_SPEED:
+                std::cout << "New speed : " << mouvementSpeed << std::endl;
+                std::cout << "Moving to (" << targetPosition.first << ", " << targetPosition.second << ")" << std::endl;
+                coordinator.goToPosition(targetPosition, mouvementSpeed);
+                break;
+            case MOVE_TO_BACKWARD_AND_MODIFY_SPEED:
+                std::cout << "New speed : " << mouvementSpeed << std::endl;
+                std::cout << "Moving to (" << targetPosition.first << ", " << targetPosition.second << ")" << std::endl;
+                coordinator.goToPositionBackward(targetPosition, mouvementSpeed);
+                break;
             case FORWARD:
                 std::cout << "Moving forward" << std::endl;
-                coordinator.goForward(angle);
+                coordinator.goForward(time);
                 break;
             case BACKWARD:
                 std::cout << "Moving backward" << std::endl;
-                coordinator.goBackward(angle);
+                coordinator.goBackward(time);
                 break;
             case ROTATE:
                 std::cout << "Rotating to " << angle << " radians" << std::endl;
@@ -176,20 +197,19 @@ int main(int argc, char** argv) {
                 break;
             case TRANSLATOR:
                 std::cout << "Action to do : Moving the Horizental Translator " << std::endl;
-                translator.setGoalPosition(angle);
-                sleep(3);
+                translator.setGoalPosition(actuatorPosition);
                 break;
             case ELEVATOR:
                 std::cout << "Action to do : Moving  the ELEVATOR " << angle << std::endl;
-                elevator.setGoalPosition(angle);
+                elevator.setGoalPosition(actuatorPosition);
                 break;
             case RIGHT_CLAMP:
                 std::cout << "Action to do : Moving the RIGHT_CLAMP " << std::endl;
-                rightClamp.setGoalPosition(angle);
+                rightClamp.setGoalPosition(actuatorPosition);
                 break;
             case LEFT_CLAMP:
                 std::cout << "Action to do : Moving the LEFT_CLAMP " << std::endl;
-                leftClamp.setGoalPosition(angle);
+                leftClamp.setGoalPosition(actuatorPosition);
                 break;
             default:
                 std::cout << "Invalid order: " << std::get<0>(order) << std::endl;

@@ -226,8 +226,6 @@ void MotorsController::goToPositionBackward(
     this->setMotorsSpeed(0, 0);
 }
 
-
-
 void MotorsController::goForward(
     std::function<int()> getSpeedCorrection,
     std::function<void()> doBeforeLinearMovement,

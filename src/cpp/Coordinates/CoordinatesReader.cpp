@@ -5,19 +5,20 @@
 #include <iostream>
 #include <iomanip>
 
-CoordinatesReader::CoordinatesReader(const std::string& filename): filename(filename) {}
+CoordinatesReader::CoordinatesReader(const std::string& filename) : filename(filename) {}
 
-std::vector<std::tuple<std::string, int, int, double>> CoordinatesReader::getCoordinates() const {
+std::vector<std::tuple<std::string, int, int, float, int, int, int>> CoordinatesReader::getCoordinates() const {
     std::ifstream input_file(filename);
     if (!input_file.is_open()) {
         throw std::runtime_error("Failed to open file: " + filename);
     }
 
-    std::vector<std::tuple<std::string, int, int, double>> orders;
+    std::vector<std::tuple<std::string, int, int, float, int, int, int>> orders;
     std::string line;
     std::string order;
     int x, y;
-    double angle;
+    float angle;
+    int time, actuatorPosition, mouvementSpeed;
 
     while (std::getline(input_file, line)) {
         if (line.find("order") != std::string::npos) {
@@ -36,11 +37,26 @@ std::vector<std::tuple<std::string, int, int, double>> CoordinatesReader::getCoo
             std::stringstream ss(line.substr(line.find(':') + 1));
             ss >> angle;
         }
+        else if (line.find("time") != std::string::npos) {
+            std::stringstream ss(line.substr(line.find(':') + 1));
+            ss >> time;
+        }
+        else if (line.find("actuatorPosition") != std::string::npos) {
+            std::stringstream ss(line.substr(line.find(':') + 1));
+            ss >> actuatorPosition;
+        }
+        else if (line.find("mouvementSpeed") != std::string::npos) {
+            std::stringstream ss(line.substr(line.find(':') + 1));
+            ss >> mouvementSpeed;
+        }
         else if (line.find('}') != std::string::npos) {
-            orders.emplace_back(order, x, y, angle);
+            orders.emplace_back(order, x, y, angle, time, actuatorPosition, mouvementSpeed);
             x = 0;
             y = 0;
             angle = 0.0;
+            time = 0;
+            actuatorPosition = 0;
+            mouvementSpeed = 0;
         }
     }
 
