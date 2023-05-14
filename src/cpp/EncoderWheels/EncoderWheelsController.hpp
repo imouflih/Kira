@@ -9,7 +9,7 @@ public:
         float orientationAngle;
     };
     EncoderWheelsController(Coordinates initialCoordinates = Coordinates(std::make_pair(.0f, .0f), .0f));
-    void initCounters();
+    void init();
     Coordinates updateAndGetCoordinates();
     int getCountersDifference();
     int computeWheelsCorrection(int differenceCounts);

@@ -6,6 +6,7 @@ const int Coordinator::MOUVEMENT_SPEED = 100;
 Coordinator::Coordinator() :
     motorsController(MotorsController()),
     encoderWheelsController(EncoderWheelsController()),
+    lidarController(LidarController()),
     initialCountersDifference(0) {}
 
 std::pair<float, float> Coordinator::getCurrentPosition() {
@@ -32,6 +33,14 @@ void Coordinator::updateInitialCountersDifference() {
     std::cout << "getInitialCountersDifference : " << initialCountersDifference << std::endl;
 }
 
+bool Coordinator::obstacleIsClose() {
+    bool obstacleIsClose = this->lidarController.checkIfObstacleIsClose();
+    if (obstacleIsClose) {
+        std::cout << "Warning!! An obstacle is close" << std::endl;
+    }
+    return obstacleIsClose;
+}
+
 void Coordinator::goToPosition(std::pair<int, int> targetPosition, int mouvementSpeed) {
 
     std::cout << "GO TO POSITION : " << targetPosition.first << " , " << targetPosition.second << std::endl;
@@ -39,6 +48,7 @@ void Coordinator::goToPosition(std::pair<int, int> targetPosition, int mouvement
     auto lambdaGetOrientation = [this]() { return this->getOrientation(); };
     auto lambdaGetSpeedCorrection = [this]() { return this->getSpeedCorrection(); };
     auto lambdadoBeforeLinearMovement = [this]() { this->updateInitialCountersDifference(); };
+    auto lambdadoObstacleIsClose = [this]() { return this->obstacleIsClose(); };
 
     this->motorsController.goToPosition(
         targetPosition,
@@ -46,6 +56,7 @@ void Coordinator::goToPosition(std::pair<int, int> targetPosition, int mouvement
         lambdaGetOrientation,
         lambdaGetSpeedCorrection,
         lambdadoBeforeLinearMovement,
+        lambdadoObstacleIsClose,
         mouvementSpeed);
 }
 
@@ -68,7 +79,8 @@ void Coordinator::goToPositionBackward(std::pair<int, int> targetPosition, int m
 
 void Coordinator::init() {
     std::cout << "Initialization" << std::endl;
-    this->encoderWheelsController.initCounters();
+    this->encoderWheelsController.init();
+    this->lidarController.init();
 }
 
 void Coordinator::stop() {
@@ -83,14 +95,14 @@ void Coordinator::rotate(float targetAngle) {
 }
 
 void Coordinator::goForward(int duration) {
-    std::cout << "Go Forward" << std::endl;
+    std::cout << "Go Forward for : " << duration << std::endl;
     auto lambdaGetSpeedCorrection = [this]() { return this->getSpeedCorrection(); };
     auto lambdadoBeforeLinearMovement = [this]() { this->updateInitialCountersDifference(); };
     this->motorsController.goForward(lambdaGetSpeedCorrection, lambdadoBeforeLinearMovement, duration);
 }
 
 void Coordinator::goBackward(int duration) {
-    std::cout << "Go Backward" << std::endl;
+    std::cout << "Go Backward for : " << duration << std::endl;
     auto lambdaGetSpeedCorrection = [this]() { return this->getSpeedCorrection(); };
     auto lambdadoBeforeLinearMovement = [this]() { this->updateInitialCountersDifference(); };
     this->motorsController.goBackward(lambdaGetSpeedCorrection, lambdadoBeforeLinearMovement, duration);

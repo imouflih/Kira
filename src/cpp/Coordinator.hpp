@@ -1,5 +1,6 @@
 #include "../Motors/MotorsController.hpp"
 #include "../EncoderWheels/EncoderWheelsController.hpp"
+#include "../Lidar/LidarController.hpp"
 
 class Coordinator {
 public:
@@ -17,10 +18,12 @@ private:
 
     MotorsController motorsController;
     EncoderWheelsController encoderWheelsController;
+    LidarController lidarController;
     int initialCountersDifference;
 
     std::pair<float, float> getCurrentPosition();
     float getOrientation();
     int getSpeedCorrection();
     void updateInitialCountersDifference();
+    bool obstacleIsClose();
 };

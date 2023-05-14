@@ -16,7 +16,7 @@ EncoderWheelsController::Coordinates::Coordinates(std::pair<float, float> positi
     position(position),
     orientationAngle(orientationAngle) {}
 
-void EncoderWheelsController::initCounters() {
+void EncoderWheelsController::init() {
     this->driver.initCounters();
 }
 

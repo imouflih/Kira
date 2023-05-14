@@ -62,6 +62,7 @@ void MotorsController::goToPosition(
     std::function<float()> getCurrentAngle,
     std::function<int()> getSpeedCorrection,
     std::function<void()> doBeforeLinearMovement,
+    std::function<bool()> obstacleIsClose,
     int mouvementSpeed) {
 
     std::pair<float, float> currentPosition = getCurrentPosition();
@@ -88,6 +89,11 @@ void MotorsController::goToPosition(
 
     // Move the robot forward towards the target position
     while (distance > MOUVEMENT_TOLERANCE) {
+        if (obstacleIsClose()) {
+            this->setMotorsSpeed(0, 0);
+            continue;
+        }
+
         int speedCorrection = getSpeedCorrection();
 
         // Ramp-up speed

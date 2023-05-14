@@ -184,11 +184,11 @@ int main(int argc, char** argv) {
                 coordinator.goToPositionBackward(targetPosition, mouvementSpeed);
                 break;
             case FORWARD:
-                std::cout << "Moving forward" << std::endl;
+                std::cout << "Moving forward for : " << time << " secondes" << std::endl;
                 coordinator.goForward(time);
                 break;
             case BACKWARD:
-                std::cout << "Moving backward" << std::endl;
+                std::cout << "Moving backward for : " << time << " secondes" << std::endl;
                 coordinator.goBackward(time);
                 break;
             case ROTATE:
@@ -196,19 +196,19 @@ int main(int argc, char** argv) {
                 coordinator.rotate(angle);
                 break;
             case TRANSLATOR:
-                std::cout << "Action to do : Moving the Horizental Translator " << std::endl;
+                std::cout << "Action to do : Moving the Horizental Translator to " << actuatorPosition << std::endl;
                 translator.setGoalPosition(actuatorPosition);
                 break;
             case ELEVATOR:
-                std::cout << "Action to do : Moving  the ELEVATOR " << angle << std::endl;
+                std::cout << "Action to do : Moving  the ELEVATOR to " << actuatorPosition << std::endl;
                 elevator.setGoalPosition(actuatorPosition);
                 break;
             case RIGHT_CLAMP:
-                std::cout << "Action to do : Moving the RIGHT_CLAMP " << std::endl;
+                std::cout << "Action to do : Moving the RIGHT_CLAMP to " << actuatorPosition << std::endl;
                 rightClamp.setGoalPosition(actuatorPosition);
                 break;
             case LEFT_CLAMP:
-                std::cout << "Action to do : Moving the LEFT_CLAMP " << std::endl;
+                std::cout << "Action to do : Moving the LEFT_CLAMP to " << actuatorPosition << std::endl;
                 leftClamp.setGoalPosition(actuatorPosition);
                 break;
             default:

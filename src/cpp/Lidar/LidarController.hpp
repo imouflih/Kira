@@ -4,30 +4,32 @@
 #include <cmath>
 #include <fstream>
 #include "../../../../rplidar_sdk/rplidar_sdk/sdk/include/rplidar.h"
+#include "../Commun/Time/Tempo.hpp"
 
-using namespace sl;
-
-class Lidar
+class LidarController
 {
 public:
-    Lidar();
-    ~Lidar();
+    LidarController();
+    ~LidarController();
 
-    void startScanning();
-    void stopLidar();
-    void checkIfObstacleIsClose();
+    void init();
+    bool checkIfObstacleIsClose();
 
 private:
-    bool checkLidarResult();
-
     static const char* PORT;
     static const unsigned int BAUDRATE;
     static const int SPEED;
     static const int DANGER_DISTANCE;
 
-    IChannel* channel;
-    ILidarDriver* lidar;
+    sl::IChannel* channel;
+    sl::ILidarDriver* driver;
+    Tempo tempo;
 
     sl_lidar_response_measurement_node_hq_t nodes[8192];
     size_t nodeCount = sizeof(nodes) / sizeof(sl_lidar_response_measurement_node_hq_t);
+    bool lastCheckResult;
+
+    bool checkLidarResult();
+    void startLidar();
+    void stopLidar();
 };

@@ -21,6 +21,10 @@
         "actuatorPosition": 0
     },
     {
+        "order": "ELEVATOR",
+        "actuatorPosition": 0
+    },
+    {
         "order": "MOVE_TO",
         "x": 0,
         "y": 0
