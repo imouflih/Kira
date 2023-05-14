@@ -42,7 +42,6 @@ bool Actuators::setMovingSpeed(int speed)
 bool Actuators::setGoalPosition(int goalPosition)
 {
     uint8_t dxl_error = 0;
-    std::cout << "data from elevator id" <<dxlID<<"  angle " <<goalPosition << std::endl;
     int result = packetHandler->write2ByteTxRx(portHandler, dxlID, 30, goalPosition, &dxl_error);
     if (result != COMM_SUCCESS)
     {
