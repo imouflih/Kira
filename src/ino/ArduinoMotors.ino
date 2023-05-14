@@ -42,10 +42,13 @@
 #define START_BYTE  0x25
 #define STOP_BYTE   0x5A
 #define INIT_COUNTERS 0xA1
+#define EMERGENCY_STOP 0xA2
 
 // Encoder wheels counters
 volatile long countRight = 0;
 volatile long countLeft = 0;
+
+bool stopTheRobot = false;
 
 void setup() {
 
@@ -122,8 +125,13 @@ uint8_t computeDirection(int8_t speed) {
 // Function that send an order to the motors 
 // Speed is between -128 and 127
 void orderMove(int8_t speedRight, int8_t speedLeft) { // to do : fix inversion
-    orderLeft(computeDirection(speedLeft), abs(speedLeft));
-    orderRight(computeDirection(speedRight), abs(speedRight));
+    if (stopTheRobot) {
+        stop();
+    }
+    else {
+        orderLeft(computeDirection(speedLeft), abs(speedLeft));
+        orderRight(computeDirection(speedRight), abs(speedRight));
+    }
 }
 
 // Function that send an order to the left motor
@@ -202,6 +210,11 @@ void recv(int numBytes) {
         if (data == INIT_COUNTERS) {
             initCounters();
             // Serial.println("Initialisation des compteurs!!");
+        }
+        else if (data == EMERGENCY_STOP) {
+            stop();
+            // Serial.println("Emergency button stop is pressed!!");
+            stopTheRobot = true;
         }
     }
 

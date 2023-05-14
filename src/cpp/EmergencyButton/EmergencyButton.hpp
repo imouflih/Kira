@@ -1,3 +1,5 @@
+#include "EmergencyButtonDriver.hpp"
+
 #include <wiringPi.h>
 #include <iostream>
 
@@ -5,7 +7,8 @@ class EmergencyButton {
 public:
     EmergencyButton();
     int isEmergencyButtonPressed();
+    void stopTheRobot();
 
 private:
-    static const int EMERGENCY_BUTTON_PIN;
+    EmergencyButtonDriver driver;
 };

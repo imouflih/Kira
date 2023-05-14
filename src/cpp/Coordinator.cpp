@@ -87,6 +87,10 @@ void Coordinator::stop() {
     std::cout << "Stop" << std::endl;
     this->motorsController.setMotorsSpeed(0, 0);
 }
+void Coordinator::stopLidar() {
+    std::cout << "Stop Lidar" << std::endl;
+    this->lidarController.~LidarController();
+}
 
 void Coordinator::rotate(float targetAngle) {
     std::cout << "Rotate to " << targetAngle << " rad" << std::endl;

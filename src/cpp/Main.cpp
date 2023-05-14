@@ -39,7 +39,8 @@ void checkEmergencyButton(EmergencyButton& emergencyButton, Coordinator& coordin
         if (emergencyButton.isEmergencyButtonPressed()) {
             emergencyButtonPressed.store(true);
             toggleLED.TurnOff();
-            coordinator.stop();
+            coordinator.stopLidar();
+            emergencyButton.stopTheRobot();
             exit(0);
         };
 
@@ -116,19 +117,23 @@ int main(int argc, char** argv) {
         std::thread emergencyButtonThread(checkEmergencyButton, std::ref(emergencyButton), std::ref(coordinator), std::ref(toggleLED), std::ref(emergencyButtonPressed), std::ref(stopThread));
 
         // Define our actuators
-        Actuators leftClamp(1);
-        Actuators rightClamp(2);
-        Actuators translator(3);
-        Actuators elevator(4);
+        // Actuators leftClamp(1);
+        // Actuators rightClamp(2);
+        // Actuators translator(3);
+        // Actuators elevator(4);
 
         if (argc == 2) {
             if (strcmp(argv[1], "-u") == 0)
             {
                 upload();
+                stopThread.store(true);
+                emergencyButtonThread.join();
             }
             else if (strcmp(argv[1], "-s") == 0) {
                 coordinator.stop();
                 toggleLED.TurnOff();
+                stopThread.store(true);
+                emergencyButtonThread.join();
             }
             else
             {
@@ -162,7 +167,7 @@ int main(int argc, char** argv) {
             targetPosition.second = std::get<2>(order);
             float angle = std::get<3>(order);
             int time = std::get<4>(order);
-            int actuatorPosition = std::get<5>(order);
+            // int actuatorPosition = std::get<5>(order);
             int mouvementSpeed = std::get<6>(order);
             switch (o) {
             case MOVE_TO:
@@ -195,22 +200,22 @@ int main(int argc, char** argv) {
                 std::cout << "Rotating to " << angle << " radians" << std::endl;
                 coordinator.rotate(angle);
                 break;
-            case TRANSLATOR:
-                std::cout << "Action to do : Moving the Horizental Translator to " << actuatorPosition << std::endl;
-                translator.setGoalPosition(actuatorPosition);
-                break;
-            case ELEVATOR:
-                std::cout << "Action to do : Moving  the ELEVATOR to " << actuatorPosition << std::endl;
-                elevator.setGoalPosition(actuatorPosition);
-                break;
-            case RIGHT_CLAMP:
-                std::cout << "Action to do : Moving the RIGHT_CLAMP to " << actuatorPosition << std::endl;
-                rightClamp.setGoalPosition(actuatorPosition);
-                break;
-            case LEFT_CLAMP:
-                std::cout << "Action to do : Moving the LEFT_CLAMP to " << actuatorPosition << std::endl;
-                leftClamp.setGoalPosition(actuatorPosition);
-                break;
+                // case TRANSLATOR:
+                //     std::cout << "Action to do : Moving the Horizental Translator to " << actuatorPosition << std::endl;
+                //     translator.setGoalPosition(actuatorPosition);
+                //     break;
+                // case ELEVATOR:
+                //     std::cout << "Action to do : Moving  the ELEVATOR to " << actuatorPosition << std::endl;
+                //     elevator.setGoalPosition(actuatorPosition);
+                //     break;
+                // case RIGHT_CLAMP:
+                //     std::cout << "Action to do : Moving the RIGHT_CLAMP to " << actuatorPosition << std::endl;
+                //     rightClamp.setGoalPosition(actuatorPosition);
+                //     break;
+                // case LEFT_CLAMP:
+                //     std::cout << "Action to do : Moving the LEFT_CLAMP to " << actuatorPosition << std::endl;
+                //     leftClamp.setGoalPosition(actuatorPosition);
+                //     break;
             default:
                 std::cout << "Invalid order: " << std::get<0>(order) << std::endl;
                 break;

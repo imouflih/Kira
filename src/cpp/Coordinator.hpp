@@ -9,6 +9,7 @@ public:
     void goToPositionBackward(std::pair<int, int> targetPosition, int mouvementSpeed = MOUVEMENT_SPEED);
     void init();
     void stop();
+    void stopLidar();
     void rotate(float targetAngle);
     void goForward(int duration);
     void goBackward(int duration);
