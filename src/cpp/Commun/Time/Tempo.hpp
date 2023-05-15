@@ -4,7 +4,7 @@
 
 class Tempo {
 public:
-    Tempo(unsigned delay = 200);
+    Tempo(unsigned delay = 50);
     ~Tempo();
 
     void store();

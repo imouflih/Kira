@@ -210,6 +210,7 @@ void recv(int numBytes) {
         if (data == INIT_COUNTERS) {
             initCounters();
             // Serial.println("Initialisation des compteurs!!");
+            stopTheRobot = false;
         }
         else if (data == EMERGENCY_STOP) {
             stop();

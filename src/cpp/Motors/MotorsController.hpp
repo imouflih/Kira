@@ -24,11 +24,11 @@ public:
     void goForward(
         std::function<int()> getSpeedCorrection,
         std::function<void()> doBeforeLinearMovement,
-        int duration);
+        float duration);
     void goBackward(
         std::function<int()> getSpeedCorrection,
         std::function<void()> doBeforeLinearMovement,
-        int duration);
+        float duration);
 
 private:
     static const int MAX_SPEED;

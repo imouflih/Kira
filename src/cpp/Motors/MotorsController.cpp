@@ -79,7 +79,6 @@ void MotorsController::goToPosition(
     float previousDistance = distance;
     int i = 0;
     int j = 0;
-    sleep(0.3);
     doBeforeLinearMovement();
 
     // Speed ramp-up variables
@@ -91,6 +90,7 @@ void MotorsController::goToPosition(
     while (distance > MOUVEMENT_TOLERANCE) {
         if (obstacleIsClose()) {
             this->setMotorsSpeed(0, 0);
+            sleep(3);
             continue;
         }
 
@@ -131,17 +131,17 @@ void MotorsController::goToPosition(
         i++;
         j++;
 
-        float currentAngle = getCurrentAngle();
-        float diff = std::fmod((currentAngle - dTheta + 3 * M_PI), (2 * M_PI)) - M_PI;
+        // float currentAngle = getCurrentAngle();
+        // float diff = std::fmod((currentAngle - dTheta + 3 * M_PI), (2 * M_PI)) - M_PI;
 
-        if (((diff > 1) || (diff < -1)) && j > 30) {
-            this->setMotorsSpeed(0, 0);
-            usleep(500000);
-            std::cout << "The robot went out of his trajectory" << std::endl;
-            this->rotate(dTheta, getCurrentAngle);
-            usleep(100000);
-            doBeforeLinearMovement();
-        }
+        // if (((diff > 1) || (diff < -1)) && j > 30) {
+        //     this->setMotorsSpeed(0, 0);
+        //     usleep(500000);
+        //     std::cout << "The robot went out of his trajectory" << std::endl;
+        //     this->rotate(dTheta, getCurrentAngle);
+        //     usleep(100000);
+        //     doBeforeLinearMovement();
+        // }
     }
 
     this->setMotorsSpeed(0, 0);
@@ -235,7 +235,7 @@ void MotorsController::goToPositionBackward(
 void MotorsController::goForward(
     std::function<int()> getSpeedCorrection,
     std::function<void()> doBeforeLinearMovement,
-    int duration) {
+    float duration) {
 
     doBeforeLinearMovement();
 
@@ -280,7 +280,7 @@ void MotorsController::goForward(
 void MotorsController::goBackward(
     std::function<int()> getSpeedCorrection,
     std::function<void()> doBeforeLinearMovement,
-    int duration) {
+    float duration) {
 
     doBeforeLinearMovement();
 

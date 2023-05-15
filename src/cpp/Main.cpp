@@ -17,6 +17,7 @@
 const char* ARDUINO_BOARD = "arduino:avr:nano";
 const char* ARDUINO_PORT = "/dev/ttyUSB0";
 const char* ARDUINO_FILENAME = "./ino/ArduinoMotors.ino";
+const int MATCH_TIME = 98;
 
 enum Order {
     MOVE_TO,
@@ -33,16 +34,25 @@ enum Order {
     INVALID
 };
 
-void checkEmergencyButton(EmergencyButton& emergencyButton, Coordinator& coordinator, ToggleLED& toggleLED, std::atomic_bool& emergencyButtonPressed, std::atomic_bool& stopThread) {
+void checkEmergencyButton(EmergencyButton& emergencyButton, Coordinator& coordinator, ToggleLED& toggleLED, std::atomic_bool& stopThread, std::chrono::_V2::steady_clock::time_point& startTime) {
     while (!stopThread.load()) {
         // Use the isARUpressed function from the EmergencyButton class
         if (emergencyButton.isEmergencyButtonPressed()) {
-            emergencyButtonPressed.store(true);
             toggleLED.TurnOff();
             coordinator.stopLidar();
             emergencyButton.stopTheRobot();
             exit(0);
         };
+        std::chrono::_V2::steady_clock::time_point currentTime = std::chrono::steady_clock::now();
+        int diff = std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime).count();
+        std::cout << "Temps passé : " << diff << std::endl;
+
+        if (diff >= MATCH_TIME) {
+            toggleLED.TurnOff();
+            coordinator.stopLidar();
+            emergencyButton.stopTheRobot();
+            exit(0);
+        }
 
         // Sleep for a short duration to prevent excessive CPU usage
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
@@ -113,27 +123,20 @@ int main(int argc, char** argv) {
         EmergencyButton emergencyButton = EmergencyButton();
         ToggleLED toggleLED = ToggleLED();
 
-        std::atomic_bool emergencyButtonPressed(false);
-        std::thread emergencyButtonThread(checkEmergencyButton, std::ref(emergencyButton), std::ref(coordinator), std::ref(toggleLED), std::ref(emergencyButtonPressed), std::ref(stopThread));
-
         // Define our actuators
-        // Actuators leftClamp(1);
-        // Actuators rightClamp(2);
-        // Actuators translator(3);
-        // Actuators elevator(4);
+        Actuators leftClamp(1);
+        Actuators rightClamp(2);
+        Actuators translator(3);
+        Actuators elevator(4);
 
         if (argc == 2) {
             if (strcmp(argv[1], "-u") == 0)
             {
                 upload();
-                stopThread.store(true);
-                emergencyButtonThread.join();
             }
             else if (strcmp(argv[1], "-s") == 0) {
                 coordinator.stop();
                 toggleLED.TurnOff();
-                stopThread.store(true);
-                emergencyButtonThread.join();
             }
             else
             {
@@ -144,30 +147,34 @@ int main(int argc, char** argv) {
         }
 
         coordinator.init();
+        elevator.setGoalPosition(580);
+        translator.setGoalPosition(380);
+        leftClamp.setGoalPosition(700);
+        rightClamp.setGoalPosition(700);
 
         CoordinatesReader reader("./json/Coordinates.json");
         std::vector<std::tuple<std::string, int, int, float, int, int, int>> orders = reader.getCoordinates();
 
-        // Turn on the toggle led and wait for jack to be re
+        // Turn on the toggle led and wait for jack to be removed
         toggleLED.TurnOn();
         std::cout << "Checking if the Jack is removed" << std::endl;
         while (!jack.isJackRemoved()) {
             usleep(100'000);
         }
         std::cout << "The Jack is removed, The Robot is going to start" << std::endl;
-        usleep(100'000);
 
+        std::chrono::_V2::steady_clock::time_point startTime = std::chrono::steady_clock::now();
+        std::thread emergencyButtonThread(checkEmergencyButton, std::ref(emergencyButton), std::ref(coordinator), std::ref(toggleLED), std::ref(stopThread), std::ref(startTime));
+
+        usleep(100'000);
         for (const auto& order : orders) {
-            if (emergencyButtonPressed.load()) {
-                break;
-            }
             Order o = stringToOrder(std::get<0>(order));
             std::pair<int, int> targetPosition;
             targetPosition.first = std::get<1>(order);
             targetPosition.second = std::get<2>(order);
             float angle = std::get<3>(order);
-            int time = std::get<4>(order);
-            // int actuatorPosition = std::get<5>(order);
+            float time = std::get<4>(order);
+            int actuatorPosition = std::get<5>(order);
             int mouvementSpeed = std::get<6>(order);
             switch (o) {
             case MOVE_TO:
@@ -200,28 +207,31 @@ int main(int argc, char** argv) {
                 std::cout << "Rotating to " << angle << " radians" << std::endl;
                 coordinator.rotate(angle);
                 break;
-                // case TRANSLATOR:
-                //     std::cout << "Action to do : Moving the Horizental Translator to " << actuatorPosition << std::endl;
-                //     translator.setGoalPosition(actuatorPosition);
-                //     break;
-                // case ELEVATOR:
-                //     std::cout << "Action to do : Moving  the ELEVATOR to " << actuatorPosition << std::endl;
-                //     elevator.setGoalPosition(actuatorPosition);
-                //     break;
-                // case RIGHT_CLAMP:
-                //     std::cout << "Action to do : Moving the RIGHT_CLAMP to " << actuatorPosition << std::endl;
-                //     rightClamp.setGoalPosition(actuatorPosition);
-                //     break;
-                // case LEFT_CLAMP:
-                //     std::cout << "Action to do : Moving the LEFT_CLAMP to " << actuatorPosition << std::endl;
-                //     leftClamp.setGoalPosition(actuatorPosition);
-                //     break;
+            case TRANSLATOR:
+                std::cout << "Action to do : Moving the Horizental Translator to " << actuatorPosition << std::endl;
+                translator.setGoalPosition(actuatorPosition);
+                sleep(1);
+                break;
+            case ELEVATOR:
+                std::cout << "Action to do : Moving  the ELEVATOR to " << actuatorPosition << std::endl;
+                elevator.setGoalPosition(actuatorPosition);
+                usleep(750000);
+                break;
+            case RIGHT_CLAMP:
+                std::cout << "Action to do : Moving the RIGHT_CLAMP to " << actuatorPosition << std::endl;
+                rightClamp.setGoalPosition(actuatorPosition);
+                break;
+            case LEFT_CLAMP:
+                std::cout << "Action to do : Moving the LEFT_CLAMP to " << actuatorPosition << std::endl;
+                leftClamp.setGoalPosition(actuatorPosition);
+                break;
             default:
                 std::cout << "Invalid order: " << std::get<0>(order) << std::endl;
                 break;
             }
         }
 
+        coordinator.stopLidar();
         toggleLED.TurnOff();
         stopThread.store(true);
         emergencyButtonThread.join();

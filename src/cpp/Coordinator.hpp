@@ -11,8 +11,8 @@ public:
     void stop();
     void stopLidar();
     void rotate(float targetAngle);
-    void goForward(int duration);
-    void goBackward(int duration);
+    void goForward(float duration);
+    void goBackward(float duration);
 
 private:
     static const int MOUVEMENT_SPEED;

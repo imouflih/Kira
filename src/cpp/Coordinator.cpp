@@ -98,14 +98,14 @@ void Coordinator::rotate(float targetAngle) {
     this->motorsController.rotate(targetAngle, lambdaGetOrientation);
 }
 
-void Coordinator::goForward(int duration) {
+void Coordinator::goForward(float duration) {
     std::cout << "Go Forward for : " << duration << std::endl;
     auto lambdaGetSpeedCorrection = [this]() { return this->getSpeedCorrection(); };
     auto lambdadoBeforeLinearMovement = [this]() { this->updateInitialCountersDifference(); };
     this->motorsController.goForward(lambdaGetSpeedCorrection, lambdadoBeforeLinearMovement, duration);
 }
 
-void Coordinator::goBackward(int duration) {
+void Coordinator::goBackward(float duration) {
     std::cout << "Go Backward for : " << duration << std::endl;
     auto lambdaGetSpeedCorrection = [this]() { return this->getSpeedCorrection(); };
     auto lambdadoBeforeLinearMovement = [this]() { this->updateInitialCountersDifference(); };

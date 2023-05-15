@@ -1,11 +1,13 @@
 [
     {
-        "order": "ELEVATOR",
-        "actuatorPosition": 180
+        "order": "MOVE_TO_AND_MODIFY_SPEED",
+        "x": 400,
+        "y": 0,
+        "mouvementSpeed": 55
     },
     {
         "order": "MOVE_TO_AND_MODIFY_SPEED",
-        "x": -1000,
+        "x": 800,
         "y": 0,
         "mouvementSpeed": 55
     }
