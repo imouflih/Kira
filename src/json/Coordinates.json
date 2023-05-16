@@ -1,7 +1,7 @@
 [
     {
-        "order": "MOVE_TO_BACKWARD",
-        "x": -1000,
-        "y": -1000
+        "order": "MOVE_TO",
+        "x": 1000,
+        "y": 1000
     }
 ]

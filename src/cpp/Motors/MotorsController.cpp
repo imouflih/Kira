@@ -82,7 +82,7 @@ void MotorsController::goToPosition(
     doBeforeLinearMovement();
 
     // Speed ramp-up variables
-    const int rampUpSteps = 10;
+    const int rampUpSteps = 35;
     const int speedIncrement = mouvementSpeed / rampUpSteps;
     int currentSpeed = speedIncrement;
 
@@ -90,6 +90,8 @@ void MotorsController::goToPosition(
     while (distance > MOUVEMENT_TOLERANCE) {
         if (obstacleIsClose()) {
             this->setMotorsSpeed(0, 0);
+            i = 0;
+            currentSpeed = speedIncrement;
             sleep(3);
             continue;
         }
@@ -99,7 +101,7 @@ void MotorsController::goToPosition(
         // Ramp-up speed
         if (i < 2 * rampUpSteps) {
             this->setMotorsSpeed(currentSpeed - speedCorrection, currentSpeed + speedCorrection);
-            currentSpeed += speedIncrement / 3.5;
+            currentSpeed += speedIncrement;
         }
         else if (distance < 300) {
             this->setMotorsSpeed(currentSpeed - speedCorrection, currentSpeed + speedCorrection);
@@ -175,7 +177,7 @@ void MotorsController::goToPositionBackward(
     doBeforeLinearMovement();
 
     // Speed ramp-up variables
-    const int rampUpSteps = 10;
+    const int rampUpSteps = 35;
     const int speedIncrement = mouvementSpeed / rampUpSteps;
     int currentSpeed = speedIncrement;
 
@@ -183,6 +185,8 @@ void MotorsController::goToPositionBackward(
     while (distance > MOUVEMENT_TOLERANCE) {
         if (obstacleIsClose()) {
             this->setMotorsSpeed(0, 0);
+            i = 0;
+            currentSpeed = speedIncrement;
             sleep(3);
             continue;
         }
@@ -192,7 +196,7 @@ void MotorsController::goToPositionBackward(
         // Ramp-up speed
         if (i < 2 * rampUpSteps) {
             this->setMotorsSpeed(-currentSpeed - speedCorrection, -currentSpeed + speedCorrection);
-            currentSpeed += speedIncrement / 3.5;
+            currentSpeed += speedIncrement;
         }
         else if (distance < 300) {
             this->setMotorsSpeed(-currentSpeed - speedCorrection, -currentSpeed + speedCorrection);
