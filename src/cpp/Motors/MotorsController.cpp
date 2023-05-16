@@ -131,6 +131,7 @@ void MotorsController::goToPosition(
         i++;
         j++;
 
+        // Un-comment to Correct trajectory in case of a big deviating 
         // float currentAngle = getCurrentAngle();
         // float diff = std::fmod((currentAngle - dTheta + 3 * M_PI), (2 * M_PI)) - M_PI;
 
@@ -153,6 +154,7 @@ void MotorsController::goToPositionBackward(
     std::function<float()> getCurrentAngle,
     std::function<int()> getSpeedCorrection,
     std::function<void()> doBeforeLinearMovement,
+    std::function<bool()> obstacleIsClose,
     int mouvementSpeed) {
 
     std::pair<float, float> currentPosition = getCurrentPosition();
@@ -179,6 +181,12 @@ void MotorsController::goToPositionBackward(
 
     // Move the robot backward towards the target position
     while (distance > MOUVEMENT_TOLERANCE) {
+        if (obstacleIsClose()) {
+            this->setMotorsSpeed(0, 0);
+            sleep(3);
+            continue;
+        }
+
         int speedCorrection = getSpeedCorrection();
 
         // Ramp-up speed
@@ -216,17 +224,18 @@ void MotorsController::goToPositionBackward(
         i++;
         j++;
 
-        float currentAngle = getCurrentAngle();
-        float diff = std::fmod((currentAngle - dTheta + 3 * M_PI), (2 * M_PI)) - M_PI;
+        // Un-comment to Correct trajectory in case of a big deviating 
+        // float currentAngle = getCurrentAngle();
+        // float diff = std::fmod((currentAngle - dTheta + 3 * M_PI), (2 * M_PI)) - M_PI;
 
-        if (((diff > 1) || (diff < -1)) && j > 30) {
-            this->setMotorsSpeed(0, 0);
-            usleep(500000);
-            std::cout << "The robot went out of his trajectory" << std::endl;
-            this->rotate(dTheta + M_PI, getCurrentAngle);
-            usleep(100000);
-            doBeforeLinearMovement();
-        }
+        // if (((diff > 1) || (diff < -1)) && j > 30) {
+        //     this->setMotorsSpeed(0, 0);
+        //     usleep(500000);
+        //     std::cout << "The robot went out of his trajectory" << std::endl;
+        //     this->rotate(dTheta + M_PI, getCurrentAngle);
+        //     usleep(100000);
+        //     doBeforeLinearMovement();
+        // }
     }
 
     this->setMotorsSpeed(0, 0);

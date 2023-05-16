@@ -1,14 +1,7 @@
 [
     {
-        "order": "MOVE_TO_AND_MODIFY_SPEED",
-        "x": 400,
-        "y": 0,
-        "mouvementSpeed": 55
-    },
-    {
-        "order": "MOVE_TO_AND_MODIFY_SPEED",
-        "x": 800,
-        "y": 0,
-        "mouvementSpeed": 55
+        "order": "MOVE_TO_BACKWARD",
+        "x": -1000,
+        "y": -1000
     }
 ]

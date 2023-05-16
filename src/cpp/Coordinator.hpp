@@ -26,5 +26,5 @@ private:
     float getOrientation();
     int getSpeedCorrection();
     void updateInitialCountersDifference();
-    bool obstacleIsClose();
+    bool obstacleIsClose(int side);
 };

@@ -20,6 +20,7 @@ public:
         std::function<float()> getCurrentAngle,
         std::function<int()> getSpeedCorrection,
         std::function<void()> doBeforeLinearMovement,
+        std::function<bool()> obstacleIsClose,
         int mouvementSpeed);
     void goForward(
         std::function<int()> getSpeedCorrection,

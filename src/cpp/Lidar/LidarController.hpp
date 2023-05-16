@@ -13,7 +13,7 @@ public:
     ~LidarController();
 
     void init();
-    bool checkIfObstacleIsClose();
+    bool checkIfObstacleIsClose(int side);
 
 private:
     static const char* PORT;
@@ -30,6 +30,8 @@ private:
     bool lastCheckResult;
 
     bool checkLidarResult();
+    bool checkLidarResultForward();
+    bool checkLidarResultBackward();
     void startLidar();
     void stopLidar();
 };

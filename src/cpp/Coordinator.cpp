@@ -33,8 +33,8 @@ void Coordinator::updateInitialCountersDifference() {
     std::cout << "getInitialCountersDifference : " << initialCountersDifference << std::endl;
 }
 
-bool Coordinator::obstacleIsClose() {
-    bool obstacleIsClose = this->lidarController.checkIfObstacleIsClose();
+bool Coordinator::obstacleIsClose(int side) {
+    bool obstacleIsClose = this->lidarController.checkIfObstacleIsClose(side);
     if (obstacleIsClose) {
         std::cout << "Warning!! An obstacle is close" << std::endl;
     }
@@ -48,7 +48,7 @@ void Coordinator::goToPosition(std::pair<int, int> targetPosition, int mouvement
     auto lambdaGetOrientation = [this]() { return this->getOrientation(); };
     auto lambdaGetSpeedCorrection = [this]() { return this->getSpeedCorrection(); };
     auto lambdadoBeforeLinearMovement = [this]() { this->updateInitialCountersDifference(); };
-    auto lambdadoObstacleIsClose = [this]() { return this->obstacleIsClose(); };
+    auto lambdadoObstacleIsClose = [this]() { return this->obstacleIsClose(1); };
 
     this->motorsController.goToPosition(
         targetPosition,
@@ -67,6 +67,7 @@ void Coordinator::goToPositionBackward(std::pair<int, int> targetPosition, int m
     auto lambdaGetOrientation = [this]() { return this->getOrientation(); };
     auto lambdaGetSpeedCorrection = [this]() { return this->getSpeedCorrection(); };
     auto lambdadoBeforeLinearMovement = [this]() { this->updateInitialCountersDifference(); };
+    auto lambdadoObstacleIsClose = [this]() { return this->obstacleIsClose(2); };
 
     this->motorsController.goToPositionBackward(
         targetPosition,
@@ -74,6 +75,7 @@ void Coordinator::goToPositionBackward(std::pair<int, int> targetPosition, int m
         lambdaGetOrientation,
         lambdaGetSpeedCorrection,
         lambdadoBeforeLinearMovement,
+        lambdadoObstacleIsClose,
         mouvementSpeed);
 }
 
