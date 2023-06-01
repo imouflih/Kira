@@ -1,0 +1,68 @@
+[
+    {
+        "order": "RESERVOIR",
+        "actuatorPosition": 630
+    },
+    {
+        "order": "RESERVOIR",
+        "actuatorPosition": 920
+    },
+    {
+        "order": "MOVE_TO_AND_MODIFY_SPEED",
+        "x": 705,
+        "y": 0,
+        "mouvementSpeed": 50
+    },
+    {
+        "order": "MOVE_TO_AND_MODIFY_SPEED",
+        "x": 1405,
+        "y": 0,
+        "mouvementSpeed": 75
+    },
+    {
+        "order": "MOVE_TO_AND_MODIFY_SPEED",
+        "x": 3005,
+        "y": 0,
+        "mouvementSpeed": 75
+    },
+    {
+        "order": "MOVE_TO_BACKWARD_AND_MODIFY_SPEED",
+        "x": 1855,
+        "y": 0,
+        "mouvementSpeed": 75
+    },
+    {
+        "order": "MOVE_TO_AND_MODIFY_SPEED",
+        "x": 1855,
+        "y": 900,
+        "mouvementSpeed": 50
+    },
+    {
+        "order": "MOVE_TO_AND_MODIFY_SPEED",
+        "x": 3250,
+        "y": 900,
+        "mouvementSpeed": 55
+    },
+    {
+        "order": "ROTATE",
+        "angle": 0
+    },
+    {
+        "order": "MOVE_TO_AND_MODIFY_SPEED",
+        "x": 4855,
+        "y": 900,
+        "mouvementSpeed": 55
+    },
+    {
+        "order": "MOVE_TO_BACKWARD_AND_MODIFY_SPEED",
+        "x": 1500,
+        "y": 900,
+        "mouvementSpeed": 75
+    },
+    {
+        "order": "MOVE_TO_BACKWARD_AND_MODIFY_SPEED",
+        "x": 250,
+        "y": 150,
+        "mouvementSpeed": 55
+    }
+]

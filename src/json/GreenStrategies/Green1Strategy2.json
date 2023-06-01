@@ -58,7 +58,7 @@
     },
     {
         "order": "RIGHT_DISTRIBUTER",
-        "actuatorPosition": 350
+        "actuatorPosition": 360
     },
     {
         "order": "LEFT_DISTRIBUTER",
@@ -129,7 +129,7 @@
     },
     {
         "order": "RIGHT_DISTRIBUTER",
-        "actuatorPosition": 509
+        "actuatorPosition": 514
     },
     {
         "order": "LEFT_DISTRIBUTER",
@@ -154,6 +154,12 @@
     {
         "order": "MOVE_TO_BACKWARD_AND_MODIFY_SPEED",
         "x": 1500,
+        "y": -850,
+        "mouvementSpeed": 75
+    },
+    {
+        "order": "MOVE_TO_BACKWARD_AND_MODIFY_SPEED",
+        "x": 750,
         "y": -850,
         "mouvementSpeed": 75
     },

@@ -1,13 +1,5 @@
 [
     {
-        "order": "RESERVOIR",
-        "actuatorPosition": 630
-    },
-    {
-        "order": "RESERVOIR",
-        "actuatorPosition": 920
-    },
-    {
         "order": "RIGHT_CLAMP",
         "actuatorPosition": 865
     },
@@ -17,30 +9,30 @@
     },
     {
         "order": "ELEVATOR",
-        "actuatorPosition": 520
+        "actuatorPosition": 580
     },
     {
         "order": "MOVE_TO_AND_MODIFY_SPEED",
-        "x": 705,
+        "x": 500,
         "y": 0,
         "mouvementSpeed": 50
     },
     {
-        "order": "LEFT_CLAMP",
+        "order": "RIGHT_CLAMP",
         "actuatorPosition": 800
     },
     {
         "order": "TRANSLATOR",
-        "actuatorPosition": 0
+        "actuatorPosition": 920
     },
     {
         "order": "MOVE_TO_AND_MODIFY_SPEED",
-        "x": 1405,
+        "x": 1200,
         "y": 0,
         "mouvementSpeed": 75
     },
     {
-        "order": "RIGHT_CLAMP",
+        "order": "LEFT_CLAMP",
         "actuatorPosition": 800
     },
     {
@@ -53,12 +45,12 @@
     },
     {
         "order": "MOVE_TO",
-        "x": 3005,
+        "x": 2800,
         "y": 0
     },
     {
         "order": "RIGHT_DISTRIBUTER",
-        "actuatorPosition": 350
+        "actuatorPosition": 360
     },
     {
         "order": "LEFT_DISTRIBUTER",
@@ -66,7 +58,7 @@
     },
     {
         "order": "ELEVATOR",
-        "actuatorPosition": 520
+        "actuatorPosition": 580
     },
     {
         "order": "LEFT_CLAMP",
@@ -82,36 +74,36 @@
     },
     {
         "order": "MOVE_TO_BACKWARD_AND_MODIFY_SPEED",
-        "x": 1855,
+        "x": 1650,
         "y": 0,
         "mouvementSpeed": 75
     },
     {
         "order": "ELEVATOR",
-        "actuatorPosition": 520
+        "actuatorPosition": 580
     },
     {
         "order": "MOVE_TO_AND_MODIFY_SPEED",
-        "x": 1855,
-        "y": -850,
+        "x": 1650,
+        "y": 850,
         "mouvementSpeed": 50
     },
     {
-        "order": "LEFT_CLAMP",
+        "order": "RIGHT_CLAMP",
         "actuatorPosition": 800
     },
     {
         "order": "TRANSLATOR",
-        "actuatorPosition": 0
+        "actuatorPosition": 920
     },
     {
         "order": "MOVE_TO_AND_MODIFY_SPEED",
-        "x": 3250,
-        "y": -850,
+        "x": 1800,
+        "y": 1900,
         "mouvementSpeed": 55
     },
     {
-        "order": "RIGHT_CLAMP",
+        "order": "LEFT_CLAMP",
         "actuatorPosition": 800
     },
     {
@@ -120,8 +112,8 @@
     },
     {
         "order": "MOVE_TO",
-        "x": 4855,
-        "y": -850
+        "x": 1700,
+        "y": 2700
     },
     {
         "order": "TRANSLATOR",
@@ -129,7 +121,7 @@
     },
     {
         "order": "RIGHT_DISTRIBUTER",
-        "actuatorPosition": 509
+        "actuatorPosition": 514
     },
     {
         "order": "LEFT_DISTRIBUTER",
@@ -137,7 +129,7 @@
     },
     {
         "order": "ELEVATOR",
-        "actuatorPosition": 520
+        "actuatorPosition": 580
     },
     {
         "order": "LEFT_CLAMP",
@@ -153,14 +145,93 @@
     },
     {
         "order": "MOVE_TO_BACKWARD_AND_MODIFY_SPEED",
-        "x": 1500,
-        "y": -850,
+        "x": 1800,
+        "y": 2075,
         "mouvementSpeed": 75
     },
     {
-        "order": "MOVE_TO_BACKWARD_AND_MODIFY_SPEED",
-        "x": 250,
-        "y": -150,
-        "mouvementSpeed": 55
+        "order": "TRANSLATOR",
+        "actuatorPosition": 380
+    },
+    {
+        "order": "ELEVATOR",
+        "actuatorPosition": 580
+    },
+    {
+        "order": "MOVE_TO_AND_MODIFY_SPEED",
+        "x": 3200,
+        "y": 2075,
+        "mouvementSpeed": 75
+    },
+    {
+        "order": "RIGHT_CLAMP",
+        "actuatorPosition": 800
+    },
+    {
+        "order": "TRANSLATOR",
+        "actuatorPosition": 380
+    },
+    {
+        "order": "MOVE_TO_AND_MODIFY_SPEED",
+        "x": 3850,
+        "y": 2600,
+        "mouvementSpeed": 75
+    },
+    {
+        "order": "LEFT_CLAMP",
+        "actuatorPosition": 800
+    },
+    {
+        "order": "MOVE_TO_AND_MODIFY_SPEED",
+        "x": 4650,
+        "y": 2750,
+        "mouvementSpeed": 35
+    },
+    {
+        "order": "ELEVATOR",
+        "actuatorPosition": 180
+    },
+    {
+        "order": "TRANSLATOR",
+        "actuatorPosition": 575
+    },
+    {
+        "order": "RIGHT_DISTRIBUTER",
+        "actuatorPosition": 668
+    },
+    {
+        "order": "LEFT_DISTRIBUTER",
+        "actuatorPosition": 663
+    },
+    {
+        "order": "ELEVATOR",
+        "actuatorPosition": 580
+    },
+    {
+        "order": "LEFT_CLAMP",
+        "actuatorPosition": 850
+    },
+    {
+        "order": "RIGHT_CLAMP",
+        "actuatorPosition": 850
+    },
+    {
+        "order": "MOVE_TO_BACKWARD",
+        "x": 3800,
+        "y": 2650
+    },
+    {
+        "order": "ELEVATOR",
+        "actuatorPosition": 200
+    },
+    {
+        "order": "MOVE_TO_BACKWARD",
+        "x": 1500,
+        "y": 1500
+    },
+    {
+        "order": "MOVE_TO_BACKWARD",
+        "x": 150,
+        "y": 150
     }
 ]
