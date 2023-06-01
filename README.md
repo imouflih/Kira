@@ -1,6 +1,6 @@
 # Kira
 
-Kira represents our state-of-the-art robotics solution that competed in the 2023 France Robotic Cup, helping us achieve a commendable 5th place finish. Developed in C++, it is implemented on a Raspberry Pi 4 and communicates with an Arduino Nano through the I2C interface. Kira is designed to efficiently manage all of the robot's movements and actions
+Kira represents our state-of-the-art robotics solution that competed in the 2023 France Robotic Cup, helping us achieve a commendable 5th place finish. Developed in C++, it is implemented on a Raspberry Pi 4 and communicates with an Arduino Nano through the I2C interface. Kira is designed to efficiently manage all of the robot's movements and actions.
 
 ## Remote Connection to Raspberry Pi Using Visual Studio Code
 
