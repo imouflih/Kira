@@ -4,6 +4,7 @@
 #include <chrono>
 #include <iomanip>
 
+// Get current date and time in a format suitable for a filename. Returns a string in the format "YYYY-MM-DD_HH-MM-SS.log"
 std::string getCurrentDateTimeFilename() {
     auto now = std::chrono::system_clock::now();
     auto now_time_t = std::chrono::system_clock::to_time_t(now);
@@ -14,6 +15,7 @@ std::string getCurrentDateTimeFilename() {
     return oss.str();
 }
 
+// Singleton
 Logger& Logger::getInstance(const std::string& filename) {
     static Logger instance(filename.empty() ? getCurrentDateTimeFilename() : filename);
     return instance;

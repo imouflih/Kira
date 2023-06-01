@@ -3,7 +3,8 @@
 #include <streambuf>
 #include <ostream>
 
-class Logger: public std::ostream {
+// Logger class is a custom output stream that redirects standard output (std::cout) to a log file
+class Logger : public std::ostream {
 public:
     static Logger& getInstance(const std::string& filename = "");
 
@@ -14,6 +15,6 @@ private:
     Logger(const std::string& filename);
     ~Logger();
 
-    std::ofstream log_file;
-    std::streambuf* original_cout_buffer;
+    std::ofstream log_file; // The log file
+    std::streambuf* original_cout_buffer; // A pointer to the original buffer of std::cout
 };

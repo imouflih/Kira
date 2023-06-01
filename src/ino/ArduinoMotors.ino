@@ -4,6 +4,7 @@
 
    It uses an I2C bus to communicate with the RapsberryPi.
    The board send a PWM value between -255 and 255 for each motors.
+   This code allows only to send a PWM value between -128 and 127
 
    Last updated : February 26 2022
    Author : Iliasse Mouflih
@@ -39,6 +40,7 @@
 #define LEFT 0
 #define RIGHT 1
 
+// Bytes used for communication with the Raspberry Pi
 #define START_BYTE  0x25
 #define STOP_BYTE   0x5A
 #define INIT_COUNTERS 0xA1
@@ -48,6 +50,7 @@
 volatile long countRight = 0;
 volatile long countLeft = 0;
 
+// When set to true, the robot is forced to stop. It is used to halt the robot when the emergency button is pressed or when the match time has ended
 bool stopTheRobot = false;
 
 void setup() {
@@ -91,6 +94,7 @@ void loop() {
     // do nothing
 }
 
+// Initialize the encoder wheel counters
 void initCounters() {
     countLeft = 0;
     countRight = 0;
@@ -124,7 +128,7 @@ uint8_t computeDirection(int8_t speed) {
 
 // Function that send an order to the motors 
 // Speed is between -128 and 127
-void orderMove(int8_t speedRight, int8_t speedLeft) { // to do : fix inversion
+void orderMove(int8_t speedRight, int8_t speedLeft) { // TODO : fix inversion
     if (stopTheRobot) {
         stop();
     }
@@ -176,6 +180,7 @@ void orderRight(uint8_t direction, uint8_t speed) {
     }
 }
 
+// Function that sends data over I2C
 void sendData() {
     Wire.write(START_BYTE);
 
@@ -197,11 +202,6 @@ void recv(int numBytes) {
     if (numBytes == 4) {
         int8_t speed_left = Wire.read() | (Wire.read() << 8);
         int8_t speed_right = Wire.read() | (Wire.read() << 8);
-
-        // Serial.print("speed left : ");
-        // Serial.println(speed_left);
-        // Serial.print("speed right : ");
-        // Serial.println(speed_right);
 
         orderMove(speed_right, speed_left);
     }

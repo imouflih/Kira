@@ -1,6 +1,7 @@
 #include "LidarController.hpp"
 
-const char* LidarController::PORT = "/dev/ttyUSB1";
+// Constants
+const char* LidarController::PORT = "/dev/ttyUSB0";
 const unsigned int LidarController::BAUDRATE = 115200;
 const int LidarController::SPEED = 512;
 const int LidarController::DANGER_DISTANCE = 50;
@@ -19,15 +20,17 @@ LidarController::LidarController() {
 }
 
 LidarController::~LidarController() {
-    this->stopLidar();
+    stopLidar();
     delete this->driver;
     delete this->channel;
 }
 
+// Initializes the LIDAR by starting it
 void LidarController::init() {
     this->startLidar();
 }
 
+// Starts the LIDAR : setting speed and starting scanning
 void LidarController::startLidar() {
     this->driver->setMotorSpeed(SPEED);
 
@@ -38,10 +41,14 @@ void LidarController::startLidar() {
     std::cout << "Scanning" << std::endl;
 }
 
+// Stops the LIDAR
 void LidarController::stopLidar() {
     this->driver->stop();
+    // if the lidar keep return error in the end of main program, comment the line before and uncomment this line
+    // this->driver->setMotorSpeed(0);
 }
 
+// Checks if an obstacle is close, based on the given side (0 for all directions, 1 for forward only, 2 for backward)
 bool LidarController::checkIfObstacleIsClose(int side) {
     if (!this->tempo.hasPassed()) {
         std::cout << "Tempo has not passed yet" << std::endl;
@@ -76,6 +83,7 @@ bool LidarController::checkIfObstacleIsClose(int side) {
     return lastCheckResult;
 }
 
+// Checks if there's any obstacle in all directions within the danger distance
 bool LidarController::checkLidarResult() {
     int consecutivePoints = 0;
 
@@ -96,6 +104,7 @@ bool LidarController::checkLidarResult() {
     return 0;
 }
 
+// Checks if there's any obstacle in the forward direction within the danger distance
 bool LidarController::checkLidarResultForward() {
     int consecutivePoints = 0;
 
@@ -118,6 +127,7 @@ bool LidarController::checkLidarResultForward() {
     return 0;
 }
 
+// Checks if there's any obstacle in the backward direction within the danger distance
 bool LidarController::checkLidarResultBackward()
 {
     int consecutivePoints = 0;
@@ -140,3 +150,5 @@ bool LidarController::checkLidarResultBackward()
     }
     return 0;
 }
+
+//! Note : the last 3 functions can be regrouped in the same function by adding a variable in order to improve the code

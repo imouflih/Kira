@@ -1,6 +1,7 @@
 #include "Actuators.hpp"
 #include <iostream>
 
+// Initializes the actuators object with the provided Dynamixel ID
 Actuators::Actuators(int dxlID)
     : dxlID(dxlID)
 {
@@ -22,6 +23,7 @@ Actuators::~Actuators()
     portHandler->closePort();
 }
 
+// Function to set the moving speed of the actuator
 bool Actuators::setMovingSpeed(int speed)
 {
     uint8_t dxl_error = 0;
@@ -39,6 +41,7 @@ bool Actuators::setMovingSpeed(int speed)
     return true;
 }
 
+// Function to set the goal position of the actuator
 bool Actuators::setGoalPosition(int goalPosition)
 {
     uint8_t dxl_error = 0;

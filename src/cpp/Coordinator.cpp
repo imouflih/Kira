@@ -1,6 +1,7 @@
 #include "Coordinator.hpp"
 #include <iostream>
 
+// Constants
 const int Coordinator::MOUVEMENT_SPEED = 100;
 
 Coordinator::Coordinator() :
@@ -44,6 +45,8 @@ bool Coordinator::obstacleIsClose(int side) {
 void Coordinator::goToPosition(std::pair<int, int> targetPosition, int mouvementSpeed) {
 
     std::cout << "GO TO POSITION : " << targetPosition.first << " , " << targetPosition.second << std::endl;
+
+    // Create lambda functions to pass as arguments to MotorsController's goToPositionBackward method
     auto lambdaGetCurrentPosition = [this]() { return this->getCurrentPosition(); };
     auto lambdaGetOrientation = [this]() { return this->getOrientation(); };
     auto lambdaGetSpeedCorrection = [this]() { return this->getSpeedCorrection(); };
@@ -97,7 +100,8 @@ void Coordinator::stopLidar() {
 void Coordinator::rotate(float targetAngle) {
     std::cout << "Rotate to " << targetAngle << " rad" << std::endl;
     auto lambdaGetOrientation = [this]() { return this->getOrientation(); };
-    this->motorsController.rotate(targetAngle, lambdaGetOrientation);
+    auto lambdadoObstacleIsClose = [this]() { return this->obstacleIsClose(0); };
+    this->motorsController.rotate(targetAngle, lambdaGetOrientation, lambdadoObstacleIsClose);
 }
 
 void Coordinator::goForward(float duration) {

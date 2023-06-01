@@ -1,7 +1,9 @@
 #include "EncoderWheelsDriver.hpp"
 
+// The EncoderWheelController class provides higher-level control over the encoder wheel
 class EncoderWheelsController {
 public:
+    // Inner class for Coordinates
     class Coordinates {
     public:
         Coordinates(std::pair<float, float> position, float orientationAngle);
@@ -15,12 +17,12 @@ public:
     int computeWheelsCorrection(int differenceCounts);
 
 private:
-    static const unsigned short ENTRAXE;       // distance between the wheels in mm
-    static const unsigned short DIAMETER;       // diameter of the wheels in mm
-    static const unsigned short TICK_PER_TURN; // number of ticks per wheel rotation
-    static const float PROPORTIONAL_GAIN; // Proportional gain
+    static const unsigned short ENTRAXE;        // Distance between two encoder wheels in mm
+    static const unsigned short DIAMETER;       // Diameter of the encoder wheels in mm
+    static const unsigned short TICK_PER_TURN;  // Number of ticks per a complete turn of the encoder wheels
+    static const float PROPORTIONAL_GAIN;       // Proportional gain
 
-    EncoderWheelsDriver driver;
+    EncoderWheelsDriver driver;                 // Instance of the wheel encoder driver
 
     std::pair<int, int> previousCounters;
     Coordinates coordinates;

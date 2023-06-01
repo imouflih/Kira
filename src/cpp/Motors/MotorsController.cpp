@@ -3,7 +3,9 @@
 #include <iostream>
 #include <unistd.h>
 #include <chrono>
+// #include <thread>
 
+// Constants
 const int MotorsController::MAX_SPEED = 120;
 const int MotorsController::MIN_SPEED = 7;
 const int MotorsController::MOUVEMENT_SPEED = 100;
@@ -27,7 +29,8 @@ void MotorsController::setMotorsSpeed(int speedLeft, int speedRight) {
     this->driver.setMotorsSpeed(limitedSpeedLeft, limitedSpeedRight);
 }
 
-void MotorsController::rotate(float targetAngle, std::function<float()> getCurrentAngle) {
+// Rotate function of the robot
+void MotorsController::rotate(float targetAngle, std::function<float()> getCurrentAngle, std::function<bool()> obstacleIsClose) {
     // Get the current angle of the robot
     float currentAngle = getCurrentAngle();
 
@@ -48,8 +51,20 @@ void MotorsController::rotate(float targetAngle, std::function<float()> getCurre
     }
 
     // Continue adjusting the angle until it is within the specified tolerance
-    while ((std::abs(std::fmod(targetAngle - currentAngle + 4 * M_PI, 2 * M_PI))) > ROTATION_ANGLE_TOLERANCE) {
+    while (angleDifference > ROTATION_ANGLE_TOLERANCE) {
+        if (obstacleIsClose()) {
+            this->setMotorsSpeed(0, 0);
+            sleep(3);
+            continue;
+        }
+        if (angleDifference < M_PI) {
+            this->setMotorsSpeed(-ROTATION_SPEED, ROTATION_SPEED);
+        }
+        else {
+            this->setMotorsSpeed(ROTATION_SPEED, -ROTATION_SPEED);
+        }
         currentAngle = getCurrentAngle();
+        angleDifference = std::fmod(targetAngle - currentAngle + 4 * M_PI, 2 * M_PI);
         std::cout << "The error is : " << (std::abs(std::fmod(targetAngle - currentAngle + 4 * M_PI, 2 * M_PI))) << std::endl;
     }
 
@@ -74,7 +89,7 @@ void MotorsController::goToPosition(
     float dTheta = atan2(dy, dx);
     dTheta = fmod(dTheta, 2 * M_PI) < 0 ? fmod(dTheta, 2 * M_PI) + 4 * M_PI : fmod(dTheta, 2 * M_PI);
 
-    this->rotate(dTheta, getCurrentAngle);
+    this->rotate(dTheta, getCurrentAngle, obstacleIsClose);
 
     float previousDistance = distance;
     int i = 0;
@@ -82,12 +97,15 @@ void MotorsController::goToPosition(
     doBeforeLinearMovement();
 
     // Speed ramp-up variables
-    const int rampUpSteps = 35;
+    const int rampUpSteps = 20;
     const int speedIncrement = mouvementSpeed / rampUpSteps;
     int currentSpeed = speedIncrement;
 
     // Move the robot forward towards the target position
     while (distance > MOUVEMENT_TOLERANCE) {
+        // auto start = std::chrono::high_resolution_clock::now();
+
+        // Lidar detection
         if (obstacleIsClose()) {
             this->setMotorsSpeed(0, 0);
             i = 0;
@@ -99,13 +117,17 @@ void MotorsController::goToPosition(
         int speedCorrection = getSpeedCorrection();
 
         // Ramp-up speed
-        if (i < 2 * rampUpSteps) {
+        if (i < rampUpSteps) {
             this->setMotorsSpeed(currentSpeed - speedCorrection, currentSpeed + speedCorrection);
             currentSpeed += speedIncrement;
+            if (currentSpeed > mouvementSpeed) {
+                currentSpeed = mouvementSpeed;
+            }
         }
+        // Brake
         else if (distance < 300) {
-            this->setMotorsSpeed(currentSpeed - speedCorrection, currentSpeed + speedCorrection);
             currentSpeed -= speedIncrement;
+            this->setMotorsSpeed(currentSpeed - speedCorrection, currentSpeed + speedCorrection);
             if (currentSpeed < 35) {
                 currentSpeed = 35;
             }
@@ -123,7 +145,7 @@ void MotorsController::goToPosition(
         distance = sqrt(dx * dx + dy * dy);
 
         std::cout << "distance : " << distance << ", previousDistance : " << previousDistance << std::endl;
-        if (distance > previousDistance + 1 && i > 1) {
+        if (distance > previousDistance + 1 && i > 20) {
             this->setMotorsSpeed(0, 0);
             std::cout << "The robot depaced the point, distance : " << distance << ", previousDistance : " << previousDistance << std::endl;
             break;
@@ -134,6 +156,7 @@ void MotorsController::goToPosition(
         j++;
 
         // Un-comment to Correct trajectory in case of a big deviating 
+
         // float currentAngle = getCurrentAngle();
         // float diff = std::fmod((currentAngle - dTheta + 3 * M_PI), (2 * M_PI)) - M_PI;
 
@@ -144,6 +167,14 @@ void MotorsController::goToPosition(
         //     this->rotate(dTheta, getCurrentAngle);
         //     usleep(100000);
         //     doBeforeLinearMovement();
+        // }
+
+        // auto end = std::chrono::high_resolution_clock::now();
+        // auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+
+        // ensure that all loop have the same period
+        // if (duration.count() < 100) {
+        //     std::this_thread::sleep_for(std::chrono::milliseconds(10) - duration);
         // }
     }
 
@@ -168,7 +199,7 @@ void MotorsController::goToPositionBackward(
     float dTheta = atan2(dy, dx) + M_PI;
     dTheta = fmod(dTheta, 2 * M_PI) < 0 ? fmod(dTheta, 2 * M_PI) + 2 * M_PI : fmod(dTheta, 2 * M_PI);
 
-    this->rotate(dTheta, getCurrentAngle);
+    this->rotate(dTheta, getCurrentAngle, obstacleIsClose);
 
     float previousDistance = distance;
     int i = 0;
@@ -177,12 +208,13 @@ void MotorsController::goToPositionBackward(
     doBeforeLinearMovement();
 
     // Speed ramp-up variables
-    const int rampUpSteps = 35;
+    const int rampUpSteps = 20;
     const int speedIncrement = mouvementSpeed / rampUpSteps;
     int currentSpeed = speedIncrement;
 
     // Move the robot backward towards the target position
     while (distance > MOUVEMENT_TOLERANCE) {
+        // Lidar detection
         if (obstacleIsClose()) {
             this->setMotorsSpeed(0, 0);
             i = 0;
@@ -194,15 +226,19 @@ void MotorsController::goToPositionBackward(
         int speedCorrection = getSpeedCorrection();
 
         // Ramp-up speed
-        if (i < 2 * rampUpSteps) {
+        if (i < rampUpSteps) {
             this->setMotorsSpeed(-currentSpeed - speedCorrection, -currentSpeed + speedCorrection);
             currentSpeed += speedIncrement;
+            if (currentSpeed > mouvementSpeed) {
+                currentSpeed = mouvementSpeed;
+            }
         }
+        // Brake
         else if (distance < 300) {
             this->setMotorsSpeed(-currentSpeed - speedCorrection, -currentSpeed + speedCorrection);
             currentSpeed -= speedIncrement;
-            if (currentSpeed < 25) {
-                currentSpeed = 25;
+            if (currentSpeed < 35) {
+                currentSpeed = 35;
             }
         }
         else {
