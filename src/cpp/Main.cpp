@@ -321,3 +321,5 @@ int main(int argc, char** argv) {
     }
     return 0;
 }
+
+//! Note that the algorithm of this main program can be improved, especially managing threads, so that the can activate some actuators when moving
