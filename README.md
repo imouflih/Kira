@@ -43,6 +43,10 @@ If the port is occupied, terminate the process using:
 ``` sudo kill <pid> ```.
 Replace `<pid>` with the relevant process identifier, which can be obtained using the ``sudo fuser /dev/ttyUSB0`` command.
 
+## Frequently encountered problem
+
+After each restart of the robot, it happens that the ports `/dev/ttyUSB` of the arduino and the lidar are reversed, to resolve this, simply change the file `LidarController.cpp` the port number, either `/dev/ttyUSB0` or `/dev/ttyUSB1`, and to change if necessary to upload the arduino code, the variable named `ARDUINO_PORT` in the file `Main.cpp`
+
 ## For Assistance
 
 If you encounter any roadblocks or have queries, do not hesitate to contact me, Iliasse MOUFLIH, on any of my social media platforms.
