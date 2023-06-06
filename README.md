@@ -6,7 +6,7 @@ Kira represents our state-of-the-art robotics solution that competed in the 2023
 
 1. First, ensure that the `Remote - SSH` extension is installed in your Visual Studio Code environment.
 2. Open Visual Studio Code, press `F1` to open the command palette, type `Remote-SSH: Connect to Host...`, and hit `Enter`.
-3. When prompted, enter the Raspberry Pi's IP address `172.24.1.1` and press Enter.
+3. When prompted, enter the Raspberry Pi's IP address `pi@172.24.1.1` and press Enter.
 4. Next, input the password for authentication. The password is noted in the blackboard.
 
 ## Accessing the Project Directory
